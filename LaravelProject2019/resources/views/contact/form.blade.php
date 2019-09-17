@@ -8,7 +8,7 @@
         <div class="col-sm-6 offset-sm-3">
             <h1>Contact Me</h1>
             <hr>
-            <form action="#" method="POST">
+            <form method="POST" action="/contact-action">
                 <label for="name">Name</label>
                 <input type="text" name="name" class="form-control">
 

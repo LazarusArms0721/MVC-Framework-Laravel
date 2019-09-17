@@ -4,14 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Page;
+
 class PagesController extends Controller
 {
-    //Get index page
-    //Put the url in there
-    public function getIndex(){
+    public function getIndex(Request $request){
+
+        $slug = $request->path();
+
+        $pages = Page::all();
+
+
+
+//        dd($page);
+
+
+//        $pages = Page::all();
+
+//        dd($pages);
 
         $page_title = "Home";
-        return view ('pages.index', ['page_title' => $page_title]);
+        return view ('pages.index', compact('pages'));
     }
 
     public function getAbout(){
