@@ -12,9 +12,11 @@
 */
 
 
-Route::get('/', 'PagesController@getIndex');
+Route::get('/', 'PagesController@getIndex')->name('pages.index');
 
-Route::get('/about', 'PagesController@getAbout');
+Route::get('/about', 'PagesController@getAbout')->name('pages.about');
+
+Route::get('/contact', 'ContactController@showForm')->name('contact.show');
 
 Auth::routes();
 

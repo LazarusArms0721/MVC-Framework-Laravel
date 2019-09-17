@@ -3,15 +3,7 @@
 @section ('title', 'Homepage')
 
 @section('stylesheets')
-    <style type="text/css">
 
-        body {
-            background-color:#212121;
-            color: #fff;
-        }
-
-
-    </style>
 
 @endsection
 
