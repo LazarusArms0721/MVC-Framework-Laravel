@@ -10650,3 +10650,17 @@ a.text-dark:focus {
   }
 }
 
+.contact-showcase {
+  background-color: #38c172;
+  border-radius: 5px;
+}
+
+.contact-showcase a {
+  color: #fff !important;
+}
+
+.contact-showcase :hover {
+  background-color: #3490dc;
+  border-radius: 5px;
+}
+
