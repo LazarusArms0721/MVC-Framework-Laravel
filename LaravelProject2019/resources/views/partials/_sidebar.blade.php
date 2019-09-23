@@ -10,6 +10,12 @@
                 <a class="nav-link" href="{{route('pages.index')}}">Home</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="">Projects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">Blog</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{route('pages.about')}}">About</a>
             </li>
             <li class="nav-item">
@@ -30,9 +36,16 @@
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
             </li>
         </ul>
-        {{--<form class="form-inline my-2 my-lg-0">--}}
-            {{--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">--}}
-            {{--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>--}}
-        {{--</form>--}}
+        <ul class="form-inline my-2 my-lg-0">
+        @if (Auth::check())
+            <li style="color: #000; list-style:none; margin-right:10px;">{{ Auth::user()->name}}</li>
+            <li style="list-style:none;"><a href="{{ url('/logout') }}"> Logout </a></li>
+
+        @else
+            <li><a href="{{ url('/login') }}"> Login </a></li>
+        @endif
+
+
+        </ul>
     </div>
 </nav>

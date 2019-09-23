@@ -24,7 +24,7 @@ class ContactController extends Controller
 
         $contact->save();
 
-        
 
+        return view('contact.form');
     }
 }

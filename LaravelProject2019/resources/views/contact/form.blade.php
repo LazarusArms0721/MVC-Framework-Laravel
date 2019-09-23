@@ -9,6 +9,7 @@
             <h1>Contact Me</h1>
             <hr>
             <form method="POST" action="/contact-action">
+                @csrf <!-- {{ csrf_field() }} -->
                 <label for="name">Name</label>
                 <input type="text" name="name" class="form-control">
 
