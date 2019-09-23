@@ -31,4 +31,12 @@ class PagesController extends Controller
         return view ('pages.about');
     }
 
+    public function getProjects(){
+        return view ('pages.projects');
+    }
+
+    public function getBlog(){
+        return view ('pages.blog');
+    }
+
 }
