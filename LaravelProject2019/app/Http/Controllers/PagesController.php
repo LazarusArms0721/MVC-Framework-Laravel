@@ -14,13 +14,8 @@ class PagesController extends Controller
 
         $pages = Page::all();
 
-
-
 //        dd($page);
-
-
 //        $pages = Page::all();
-
 //        dd($pages);
 
         $page_title = "Home";
