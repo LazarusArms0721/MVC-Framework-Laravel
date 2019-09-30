@@ -14,13 +14,8 @@ class PagesController extends Controller
 
         $pages = Page::all();
 
-
-
 //        dd($page);
-
-
 //        $pages = Page::all();
-
 //        dd($pages);
 
         $page_title = "Home";
@@ -29,6 +24,14 @@ class PagesController extends Controller
 
     public function getAbout(){
         return view ('pages.about');
+    }
+
+    public function getProjects(){
+        return view ('pages.projects');
+    }
+
+    public function getBlog(){
+        return view ('pages.blog');
     }
 
 }

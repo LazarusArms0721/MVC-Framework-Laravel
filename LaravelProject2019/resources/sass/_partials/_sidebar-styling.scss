@@ -1,0 +1,13 @@
+.contact-showcase {
+  background-color: $green;
+  border-radius: 5px;
+
+  a {
+    color: #fff !important;
+  }
+
+  :hover {
+    background-color: $blue;
+    border-radius: 5px;
+  }
+}
