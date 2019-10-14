@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Page;
 
+
 class PagesController extends Controller
 {
     public function getIndex(Request $request){
@@ -14,9 +15,7 @@ class PagesController extends Controller
 
         $pages = Page::all();
 
-//        dd($page);
-//        $pages = Page::all();
-//        dd($pages);
+
 
         $page_title = "Home";
         return view ('pages.index', compact('pages'));
@@ -32,6 +31,10 @@ class PagesController extends Controller
 
     public function getBlog(){
         return view ('pages.blog');
+    }
+
+    public function createBlog(){
+        return view ('pages.create_blog');
     }
 
 }
