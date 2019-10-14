@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+
+
 use Illuminate\Http\Request;
 
 use App\Page;
+use App\Assignment;
+use App\Blog;
 
 
 class PagesController extends Controller
@@ -30,11 +34,34 @@ class PagesController extends Controller
     }
 
     public function getBlog(){
-        return view ('pages.blog');
+
+//        haalt alle entries op uit blogs table
+
+        $blogs = Blog::all();
+
+        return view ('blog.blade.php');
+
+//        return view ('pages.blog');
+
+
     }
 
     public function createBlog(){
-        return view ('pages.create_blog');
+
+        $assignments = Assignment::all();
+
+        return view ('pages.create_blog', compact('assignments'));
+    }
+
+    public function storeBlog(){
+
+        $blog = new Blog();
+        $blog->assignment_id = request('assignment_id');
+        $blog->title = request('title');
+        $blog->text = request('text');
+        $blog->save();
+
+        return view('pages.blog');
     }
 
 }

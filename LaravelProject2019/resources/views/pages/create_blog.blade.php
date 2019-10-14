@@ -6,20 +6,24 @@
 
     <div class="row">
         <div class="col-sm-6 offset-sm-3">
-            <h1>Contact Me</h1>
+            <h1>Create Blog</h1>
             <hr>
             <form method="POST" action="/blog-action">
                 @csrf <!-- {{ csrf_field() }} -->
-                <label for="name">Name</label>
-                <input type="text" name="name" class="form-control">
+                <label for="assignment_id">Assignment</label>
+                <select name="assignment_id" id="assignment_id">
+                    @foreach ($assignments as $assignment)
+                        <option value="{{ $assignment->id }}"> {{$assignment->name}}</option>
+                    @endforeach
+                </select>
 
-                <label for="email" class="mt-3">Email</label>
-                <input type="email" name="email" class="form-control">
+                <label for="title">Title</label>
+                <input type="text" name="title" class="form-control">
 
-                <label for="message" class="mt-3">Message</label>
-                <textarea name="message" cols="30" rows="10" class="form-control"></textarea>
+                <label for="text">Text</label>
+                <input type="text" name="text" class="form-control">
 
-                <button type="sumbit" class="btn btn-success btn-block mt-3">Send Email</button>
+                <button type="sumbit" class="btn btn-success btn-block mt-3">Create Blogpost</button>
 
             </form>
         </div>

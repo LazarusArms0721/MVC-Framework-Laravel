@@ -10,8 +10,8 @@ class BlogsController extends Controller
 {
     public function getIndex(Request $request){
 
-//        $blogs = Blog::all();
+        $blogs = Blog::all();
 
-//        return view ('blog.blade.php');
+        return view ('blog.blade.php');
     }
 }
