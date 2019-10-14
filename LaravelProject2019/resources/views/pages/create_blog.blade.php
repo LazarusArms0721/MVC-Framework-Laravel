@@ -1,6 +1,6 @@
 @extends ('layouts.app')
 
-@section ('Title', 'Contact Us')
+@section ('Title', 'Create Blog')
 
 @section ('content')
 
@@ -23,8 +23,7 @@
                 <label for="text">Text</label>
                 <input type="text" name="text" class="form-control">
 
-                <button type="sumbit" class="btn btn-success btn-block mt-3">Create Blogpost</button>
-
+                <button type="submit" class="btn btn-success btn-block mt-3">Create Blogpost</button>
             </form>
         </div>
     </div>

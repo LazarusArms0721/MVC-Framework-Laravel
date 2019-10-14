@@ -1,6 +1,6 @@
 @extends ('layouts.app')
 
-@section ('title', 'Projects')
+@section ('title', 'Create Assignment')
 
 @section('stylesheets')
 

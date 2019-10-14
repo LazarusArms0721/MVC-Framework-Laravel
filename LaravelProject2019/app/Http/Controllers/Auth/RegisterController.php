@@ -72,6 +72,6 @@ class RegisterController extends Controller
             ->roles()
             ->attach(Role::where('role', 'support')->first());
 
-        return $user
+        return $user;
     }
 }
