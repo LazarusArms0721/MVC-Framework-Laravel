@@ -14,8 +14,12 @@
 
 Route::get('/', 'PagesController@getIndex')->name('pages.index');
 Route::get('/about', 'PagesController@getAbout')->name('pages.about');
-Route::get('/projects', 'PagesController@getProjects')->name('pages.projects');
 
+Route::get('/assignments', 'PagesController@getAssignments')->name('pages.assignments');
+Route::get('/assignments/create', 'PagesController@createAssignment');
+Route::post('/assignment-action', 'PagesController@storeAssignment');
+//update
+//delete
 
 Route::get('/blog', 'PagesController@getBlog')->name('pages.blog');
 Route::get('/blog/create', 'PagesController@createBlog')->name('pages.create_blog');
@@ -25,8 +29,8 @@ Route::get('/contact', 'ContactController@showForm')->name('contact.show');
 Route::get('/contact/create', 'ContactController@createEntry');
 Route::post('/contact-action', 'ContactController@storeContact');
 
-Route::get('/project', 'ProjectsController@getIndex');
-Route::get('/project/create', 'ProjectsController@createProject');
+
+
 
 
 

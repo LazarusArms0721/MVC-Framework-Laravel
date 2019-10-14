@@ -29,21 +29,30 @@ class PagesController extends Controller
         return view ('pages.about');
     }
 
-    public function getProjects(){
-        return view ('pages.projects');
+    public function getAssignments(){
+
+        $assignments = Assignment::all();
+
+        return view ('pages.assignments', compact('assignments'));
+    }
+
+    public function createAssignment(){
+
+        return view ('pages.create_assignment');
+    }
+
+    public function storeAssignment(){
+
+        $assignment = new Assignment();
+        $assignment->name = request('name');
+        $assignment->save();
     }
 
     public function getBlog(){
 
-//        haalt alle entries op uit blogs table
-
         $blogs = Blog::all();
 
-        return view ('blog.blade.php');
-
-//        return view ('pages.blog');
-
-
+        return view ('pages.blog', compact('blogs'));
     }
 
     public function createBlog(){

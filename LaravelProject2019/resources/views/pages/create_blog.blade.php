@@ -10,13 +10,13 @@
             <hr>
             <form method="POST" action="/blog-action">
                 @csrf <!-- {{ csrf_field() }} -->
-                <label for="assignment_id">Assignment</label>
+                <label for="assignment_id">Assignment:</label>
                 <select name="assignment_id" id="assignment_id">
                     @foreach ($assignments as $assignment)
                         <option value="{{ $assignment->id }}"> {{$assignment->name}}</option>
                     @endforeach
                 </select>
-
+                <br>
                 <label for="title">Title</label>
                 <input type="text" name="title" class="form-control">
 

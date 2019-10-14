@@ -10,7 +10,7 @@
                 <a class="nav-link" href="{{route('pages.index')}}">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('pages.projects')}}">Projects</a>
+                <a class="nav-link" href="{{route('pages.assignments')}}">Assignments</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{route('pages.blog')}}">Blog</a>

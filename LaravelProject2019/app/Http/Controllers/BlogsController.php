@@ -8,10 +8,10 @@ use App\Blog;
 
 class BlogsController extends Controller
 {
-    public function getIndex(Request $request){
-
-        $blogs = Blog::all();
-
-        return view ('blog.blade.php');
-    }
+//    public function getIndex(Request $request){
+//
+//        $blogs = Blog::all();
+//
+//        return view ('blog.blade.php');
+//    }
 }

@@ -8,8 +8,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Assignment;
+use Illuminate\Http\Request;
 
-class AssignmentsController
+class AssignmentsController extends Controller
 {
+    public function getIndex(Request $request){
 
+
+    }
+
+    public function createProject(){
+
+    }
 }
