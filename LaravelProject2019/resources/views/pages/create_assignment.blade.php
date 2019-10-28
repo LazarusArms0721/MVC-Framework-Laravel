@@ -18,6 +18,12 @@
                 <label for="name">Assignment Name</label>
                 <input type="text" name="name" class="form-control">
 
+                <label for="assignment_text">Assignment Text</label>
+                <textarea name="assignment_text" class="form-control">Enter text here...</textarea>
+
+                <label for="assignment_image">Select image to upload:</label>
+                <input type="file" name="assignment_image" class="form-control">
+
                 <button type="sumbit" class="btn btn-success btn-block mt-3">Create Assignment</button>
 
             </form>

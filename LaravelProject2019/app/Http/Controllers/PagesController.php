@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use Validator,Redirect,Response,File;
 
 use App\Page;
 use App\Assignment;
@@ -43,8 +44,24 @@ class PagesController extends Controller
 
     public function storeAssignment(){
 
+        request()->validate([
+            'assignment_image' => 'required|image|mimes:jpeg,png,jpg,gif,svgl'
+        ]);
+        if ($files = $request->file('assignment_image')){
+            $destinationPath = 'public/image/';
+            $assignmentImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+            $files->move($destinationPath, $assignmentImage);
+            $insert['assignment_image'] = $assignmentImage;
+        }
+        $check = Image::insertGetId($insert);
+
+        return Redirect::to("image")
+            ->withSuccess('Great! Image has been successfully uploaded.');
+
         $assignment = new Assignment();
         $assignment->name = request('name');
+        $assignment->assignment_text = request('assignment_text');
+        $assignment->assignment_image = request('assignment_image');
         $assignment->save();
     }
 

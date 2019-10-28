@@ -12,7 +12,9 @@
     <h1>Assignments Page</h1>
 
     @foreach($assignments as $assignment)
-        <h4>{{ $assignment->name }}</h4>
+        <h4>{{$assignment->name}}</h4>
+        <p>{{$assignment->assignment_text}}</p>
+        <img src="{{ asset($assignment->assignment_image)}}" alt="">
     @endforeach
 
 
