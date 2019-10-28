@@ -19,7 +19,7 @@
                 <input type="text" name="name" class="form-control">
 
                 <label for="assignment_text">Assignment Text</label>
-                <textarea name="assignment_text" class="form-control">Enter text here...</textarea>
+                <textarea name="assignment_text" class="form-control" placeholder="Enter text here..."></textarea>
 
                 <label for="assignment_image">Select image to upload:</label>
                 <input type="file" name="assignment_image" class="form-control">
@@ -31,11 +31,14 @@
     </div>
 
     @if($errors->any())
-        <div><ul>
-                @foreach($errors->all() as $error)
-                    <li>{{$error}}</li>
-                @endforeach
-            </ul>
+        <div class="row">
+            <div class="col-sm-6 offset-sm-3">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
         </div>
     @endif
 

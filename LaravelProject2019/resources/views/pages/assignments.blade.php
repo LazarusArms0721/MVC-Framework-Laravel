@@ -18,8 +18,8 @@
     @endforeach
 
     @if (Auth::check())
-    <a href="/assignments/create">
-        <button>Create Assignment</button>
+    <a href="/assignments/create" class="btn btn-primary btn-lg">
+        Assignment aanmaken
     </a>
     @endif
 

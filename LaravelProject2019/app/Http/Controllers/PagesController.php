@@ -49,13 +49,13 @@ class PagesController extends Controller
             'assignment_image' => 'required',
         ]);
 
-        print_r($validation);
+        $assignment = new Assignment();
+        $assignment->name = request('name');
+        $assignment->assignment_text = request('assignment_text');
+        $assignment->assignment_image = request('assignment_image');
+        $assignment->save();
 
-//        $assignment = new Assignment();
-//        $assignment->name = request('name');
-//        $assignment->assignment_text = request('assignment_text');
-//        $assignment->assignment_image = request('assignment_image');
-//        $assignment->save();
+        return view ('pages.blog');
     }
 
     public function getBlog(){
