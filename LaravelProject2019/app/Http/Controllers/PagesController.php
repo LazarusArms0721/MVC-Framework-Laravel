@@ -41,11 +41,21 @@ class PagesController extends Controller
         return view ('pages.create_assignment');
     }
 
-    public function storeAssignment(){
+    public function storeAssignment(Request $request){
+
+        $this->validate($request, [
+            'name' => 'required',
+            'assignment_text' => 'required',
+            'assignment_image' => 'required',
+        ]);
 
         $assignment = new Assignment();
         $assignment->name = request('name');
+        $assignment->assignment_text = request('assignment_text');
+        $assignment->assignment_image = request('assignment_image');
         $assignment->save();
+
+        return view ('pages.blog');
     }
 
     public function getBlog(){

@@ -12,9 +12,10 @@
     <h1>Blog page</h1>
 
     @foreach ($blogs as $blog)
-        <h4> {{$blog->title}}</h4>
-        <p> {{ $blog->assignment_id }}</p>
-        <p> {{$blog->text }}</p>
+        <h4>{{$blog->title}}</h4>
+        <p>{{$blog->assignment_id}}</p>
+        {{--<p>{{$blog->text }}</p>--}}
+        {{--<img src="{{$blog->assignment_image}}" alt="">--}}
     @endforeach
 
     @if (Auth::check())
