@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use Validator,Redirect,Response,File;
 
 use App\Page;
 use App\Assignment;
@@ -42,27 +41,21 @@ class PagesController extends Controller
         return view ('pages.create_assignment');
     }
 
-    public function storeAssignment(){
+    public function storeAssignment(Request $request){
 
-        request()->validate([
-            'assignment_image' => 'required|image|mimes:jpeg,png,jpg,gif,svgl'
+        $this->validate($request, [
+            'name' => 'required',
+            'assignment_text' => 'required',
+            'assignment_image' => 'required',
         ]);
-        if ($files = $request->file('assignment_image')){
-            $destinationPath = 'public/image/';
-            $assignmentImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
-            $files->move($destinationPath, $assignmentImage);
-            $insert['assignment_image'] = $assignmentImage;
-        }
-        $check = Image::insertGetId($insert);
 
-        return Redirect::to("image")
-            ->withSuccess('Great! Image has been successfully uploaded.');
+        print_r($validation);
 
-        $assignment = new Assignment();
-        $assignment->name = request('name');
-        $assignment->assignment_text = request('assignment_text');
-        $assignment->assignment_image = request('assignment_image');
-        $assignment->save();
+//        $assignment = new Assignment();
+//        $assignment->name = request('name');
+//        $assignment->assignment_text = request('assignment_text');
+//        $assignment->assignment_image = request('assignment_image');
+//        $assignment->save();
     }
 
     public function getBlog(){

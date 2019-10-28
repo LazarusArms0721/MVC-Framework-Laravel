@@ -17,7 +17,6 @@
         <img src="{{ asset($assignment->assignment_image)}}" alt="">
     @endforeach
 
-
     @if (Auth::check())
     <a href="/assignments/create">
         <button>Create Assignment</button>
