@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+
+
 use Illuminate\Http\Request;
 
 use App\Page;
+use App\Assignment;
+use App\Blog;
+
 
 class PagesController extends Controller
 {
@@ -14,9 +19,7 @@ class PagesController extends Controller
 
         $pages = Page::all();
 
-//        dd($page);
-//        $pages = Page::all();
-//        dd($pages);
+
 
         $page_title = "Home";
         return view ('pages.index', compact('pages'));
@@ -26,12 +29,48 @@ class PagesController extends Controller
         return view ('pages.about');
     }
 
-    public function getProjects(){
-        return view ('pages.projects');
+    public function getAssignments(){
+
+        $assignments = Assignment::all();
+
+        return view ('pages.assignments', compact('assignments'));
+    }
+
+    public function createAssignment(){
+
+        return view ('pages.create_assignment');
+    }
+
+    public function storeAssignment(){
+
+        $assignment = new Assignment();
+        $assignment->name = request('name');
+        $assignment->save();
     }
 
     public function getBlog(){
-        return view ('pages.blog');
+
+        $blogs = Blog::all();
+
+        return view ('pages.blog', compact('blogs'));
+    }
+
+    public function createBlog(){
+
+        $assignments = Assignment::all();
+
+        return view ('pages.create_blog', compact('assignments'));
+    }
+
+    public function storeBlog(){
+
+        $blog = new Blog();
+        $blog->assignment_id = request('assignment_id');
+        $blog->title = request('title');
+        $blog->text = request('text');
+        $blog->save();
+
+        return view('pages.blog');
     }
 
 }
