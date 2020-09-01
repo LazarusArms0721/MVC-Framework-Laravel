@@ -31,7 +31,7 @@
         <div class="assignment">
             <h4>{{$assignment->name}}</h4>
             <p>{{$assignment->assignment_text}}</p>
-            <img class="assignment_image" src="{{asset($assignment->assignment_image)}}" alt="">
+            <img class="assignment_image" src="{{asset('storage/assignment_images1').'/'.$assignment->assignment_image }}" alt="">
         </div>
     @endforeach
 

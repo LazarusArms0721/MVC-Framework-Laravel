@@ -55,7 +55,7 @@ class PagesController extends Controller
 
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
 
-            $path = $request->file('assignment_image')->storeAs('storage/public/assignment_images', $fileNameToStore);
+            $path = $request->file('assignment_image')->storeAs('public/assignment_images1', $fileNameToStore);
 
         } else {
             $fileNameToStore = 'noimage.jpeg';
@@ -67,8 +67,7 @@ class PagesController extends Controller
 
         $assignment->name = $request->input('name');
         $assignment->assignment_text = $request->input('assignment_text');
-//        $assignment->assignment_image = $fileNameToStore;
-        $assignment->assignment_image = $request->input('assignment_image');
+        $assignment->assignment_image = $fileNameToStore;
 
         $assignment->save();
 
