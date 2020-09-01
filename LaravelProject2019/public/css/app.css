@@ -10664,3 +10664,21 @@ a.text-dark:focus {
   border-radius: 5px;
 }
 
+.assignments-container {
+  margin-top: 50px;
+}
+
+.assignments-container .assignment_image {
+  width: 100px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.assignment {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #424242;
+  border-radius: 5px;
+}
+

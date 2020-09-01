@@ -9,12 +9,30 @@
 
 @section ('content')
 
+
+
+
+    <div class="col-md-8 offset-2 assignments-container">
+
     <h1>Assignments Page</h1>
 
+    <form action="filter-assignment?assignment_id=" method="POST">
+        @csrf
+        <label for="assignment_id">Choose assignment:</label>
+        <select name="assignment_id" id="assignment_id">
+            @foreach ($assignments as $assignment)
+                <option value="{{$assignment->id}}">{{$assignment->name}}</option>
+            @endforeach
+        </select>
+        <button action="submit">Search</button>
+    </form>
+
     @foreach($assignments as $assignment)
-        <h4>{{$assignment->name}}</h4>
-        <p>{{$assignment->assignment_text}}</p>
-        <img src="{{ asset($assignment->assignment_image)}}" alt="">
+        <div class="assignment">
+            <h4>{{$assignment->name}}</h4>
+            <p>{{$assignment->assignment_text}}</p>
+            <img class="assignment_image" src="{{asset($assignment->assignment_image)}}" alt="">
+        </div>
     @endforeach
 
     @if (Auth::check())
@@ -23,6 +41,7 @@
     </a>
     @endif
 
+    </div>
 
 @endsection
 
