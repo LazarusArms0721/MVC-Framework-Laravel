@@ -74,6 +74,10 @@ class PagesController extends Controller
         return redirect()->to('/assignments');
     }
 
+    public function deleteAssignment(Request $request){
+
+    }
+
     public function assignmentFilter(Request $request) {
 
         return Assignment::filter($request)->get();
@@ -83,8 +87,11 @@ class PagesController extends Controller
 
     public function getBlog(){
         $blogs = Blog::all();
+        $assignments = Assignment::all();
 
-        return view ('pages.blog', compact('blogs'));
+
+
+        return view ('pages.blog', compact('blogs', 'assignments'));
     }
 
     public function createBlog(){

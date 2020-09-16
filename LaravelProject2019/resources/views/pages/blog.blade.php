@@ -13,7 +13,7 @@
 
     @foreach ($blogs as $blog)
         <h4>{{$blog->title}}</h4>
-        <p>{{$blog->assignment_id}}</p>
+        <p>{{$blog->assignment['name']}}</p>
         {{--<p>{{$blog->text }}</p>--}}
         {{--<img src="{{$blog->assignment_image}}" alt="">--}}
     @endforeach

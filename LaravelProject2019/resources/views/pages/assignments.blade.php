@@ -29,9 +29,13 @@
 
     @foreach($assignments as $assignment)
         <div class="assignment">
+            <h1>{{$assignment->id}}</h1>
             <h4>{{$assignment->name}}</h4>
             <p>{{$assignment->assignment_text}}</p>
             <img class="assignment_image" src="{{asset('storage/assignment_images1').'/'.$assignment->assignment_image }}" alt="">
+            <div class="assignment-button">
+                <button>Blogposts</button>
+            </div>
         </div>
     @endforeach
 

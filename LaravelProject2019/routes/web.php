@@ -15,9 +15,11 @@
 Route::get('/', 'PagesController@getIndex')->name('pages.index');
 Route::get('/about', 'PagesController@getAbout')->name('pages.about');
 
+//Assignments
 Route::get('/assignments', 'PagesController@getAssignments')->name('pages.assignments');
 Route::get('/assignments/create', 'PagesController@createAssignment')->middleware('auth');;
 Route::post('/assignment-action', 'PagesController@storeAssignment')->middleware('auth');;
+Route::delete('/assignments/delete', 'PagesController@deleteAssignment')->middleware('auth');;
 
 //Filter op basis van GET (assignment=value) in url.
 Route::get('/assignment-filter', 'PagesController@assignmentFilter');
