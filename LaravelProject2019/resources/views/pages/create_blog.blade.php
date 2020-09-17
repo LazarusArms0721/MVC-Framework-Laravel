@@ -13,7 +13,7 @@
                 <label for="assignment_id">Assignment:</label>
                 <select name="assignment_id" id="assignment_id">
                     @foreach ($assignments as $assignment)
-                        <option value="{{ $assignment->id }}"> {{$assignment->name}}</option>
+                        <option value="{{ $assignment->id}}"> {{$assignment->name}}</option>
                     @endforeach
                 </select>
                 <br>

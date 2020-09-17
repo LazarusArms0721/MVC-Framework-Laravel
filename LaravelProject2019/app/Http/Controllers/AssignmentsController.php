@@ -15,10 +15,15 @@ class AssignmentsController extends Controller
 {
     public function getIndex(Request $request){
 
+//        $agent_id = $_GET['assignment_id'];
 
     }
 
-    public function createProject(){
+    public function index(Request $request){
 
+        return Assignment::filter($request)->get();
     }
+
+
+
 }

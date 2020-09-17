@@ -13,8 +13,9 @@
         <div class="col-sm-6 offset-sm-3">
             <h1>Create Assignment</h1>
             <hr>
-            <form method="POST" action="/assignment-action">
-                @csrf <!-- {{ csrf_field() }} -->
+            <form method="POST" action="/assignment-action" enctype="multipart/form-data">
+                {{--@csrf <!-- {{ csrf_field() }} -->--}}
+                {{ csrf_field() }}
                 <label for="name">Assignment Name</label>
                 <input type="text" name="name" class="form-control">
 

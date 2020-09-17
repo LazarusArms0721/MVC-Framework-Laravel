@@ -14,12 +14,9 @@ use App\Blog;
 class PagesController extends Controller
 {
     public function getIndex(Request $request){
-
         $slug = $request->path();
 
         $pages = Page::all();
-
-
 
         $page_title = "Home";
         return view ('pages.index', compact('pages'));
@@ -30,7 +27,6 @@ class PagesController extends Controller
     }
 
     public function getAssignments(){
-
         $assignments = Assignment::all();
 
         return view ('pages.assignments', compact('assignments'));
@@ -42,45 +38,82 @@ class PagesController extends Controller
     }
 
     public function storeAssignment(Request $request){
-
+        //hier wordt aangegeven welke velden verplicht zijn.
         $this->validate($request, [
             'name' => 'required',
             'assignment_text' => 'required',
-            'assignment_image' => 'required',
+            'assignment_image' => 'image'
         ]);
 
+
+//      Afbeelding wordt hier opgehaald bij submissie en in een public envorinment geplaats
+        if ($request->hasFile('assignment_image')){
+
+            $filenameWithExt = $request->file('assignment_image')->getClientOriginalName();
+
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+            $extension = $request->file('assignment_image')->getClientOriginalExtension();
+
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+
+            $path = $request->file('assignment_image')->storeAs('public/assignment_images1', $fileNameToStore);
+
+        } else {
+            $fileNameToStore = 'noimage.jpeg';
+        }
+
+//        // hier wordt een nieuwe assignment qua gegevens opgehaald en opgeslagen als nieuwe entry.
         $assignment = new Assignment();
-        $assignment->name = request('name');
-        $assignment->assignment_text = request('assignment_text');
-        $assignment->assignment_image = request('assignment_image');
+
+
+        $assignment->name = $request->input('name');
+        $assignment->assignment_text = $request->input('assignment_text');
+        $assignment->assignment_image = $fileNameToStore;
+
         $assignment->save();
 
-        return view ('pages.blog');
+        return redirect()->to('/assignments');
+    }
+
+    public function deleteAssignment(Request $request){
+
+    }
+
+    public function assignmentFilter(Request $request) {
+
+        return Assignment::filter($request)->get();
+
+
     }
 
     public function getBlog(){
-
         $blogs = Blog::all();
+        $assignments = Assignment::all();
 
-        return view ('pages.blog', compact('blogs'));
+
+
+        return view ('pages.blog', compact('blogs', 'assignments'));
     }
 
     public function createBlog(){
-
         $assignments = Assignment::all();
 
         return view ('pages.create_blog', compact('assignments'));
     }
 
     public function storeBlog(){
-
         $blog = new Blog();
         $blog->assignment_id = request('assignment_id');
         $blog->title = request('title');
         $blog->text = request('text');
         $blog->save();
 
-        return view('pages.blog');
+        return redirect()->to('/blog');
+    }
+
+    public function deleteBlog(){
+
     }
 
 }
