@@ -8,6 +8,6 @@ class TypeFilter
 {
     public function filter($builder, $value)
     {
-        return $builder->where('id', $value);
+        return $builder->where('assignment_id', $value);
     }
 }

@@ -11,6 +11,7 @@ use App\Assignment;
 use App\Blog;
 
 
+
 class PagesController extends Controller
 {
     public function getIndex(Request $request){
@@ -94,6 +95,16 @@ class PagesController extends Controller
 
 
         return view ('pages.blog', compact('blogs', 'assignments'));
+    }
+
+    public function getBlogFilter(Request $request) {
+
+        $filteredblogs =  Blog::filter($request)->get();
+        $assignments = Assignment::all();
+
+        return view ('pages.blog_results', compact('filteredblogs', 'assignments'));
+
+
     }
 
     public function createBlog(){

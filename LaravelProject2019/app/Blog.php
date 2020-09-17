@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Filters\BlogFilter;
+use Illuminate\Database\Eloquent\Builder;
 
 class Blog extends Model
 {
@@ -12,9 +14,17 @@ class Blog extends Model
         return $this->belongsTo(Assignment::class);
     }
 
+
+    // Aanduiden dat bij elke blogpost de assignment_id als naam kan worden weergeven.
     public function assignmentName()
     {
         return $this->belongsTo('App\Assignment', 'assignment_id');
+    }
+
+    // Filtermogelijkheden door een informatie door te sturen naar de header.
+    public function scopeFilter(Builder $builder, $request){
+        return (new BlogFilter($request))->filter($builder);
+
     }
 
 }

@@ -16,7 +16,7 @@
 
     <h1>Assignments Page</h1>
 
-    <form action="filter-assignment?assignment_id=" method="POST">
+    <form action="assignment-filter?assignment_id=" method="POST">
         @csrf
         <label for="assignment_id">Choose assignment:</label>
         <select name="assignment_id" id="assignment_id">
