@@ -24,7 +24,7 @@
                 <option value="{{$assignment->id}}">{{$assignment->name}}</option>
             @endforeach
         </select>
-        <button action="submit">Search</button>
+        <button class="btn btn-outline-info" action="submit">Search</button>
     </form>
 
     @foreach($assignments as $assignment)
@@ -32,9 +32,18 @@
             <h1>{{$assignment->name}}</h1>
             <p>{{$assignment->assignment_text}}</p>
             <img class="assignment_image" src="{{asset('storage/assignment_images1').'/'.$assignment->assignment_image }}" alt="">
-            <div class="assignment-button">
-                <button>Blogposts</button>
+            <div class="button-group">
+                <a href class="btn btn-primary ">
+                    Blogposts
+                </a>
+
+                @if (Auth::check())
+                    <a href="/assignments/update" class="btn btn-secondary">
+                        Assignment aanpassen
+                    </a>
+                @endif
             </div>
+
         </div>
     @endforeach
 

@@ -23,6 +23,7 @@ Route::get('/assignments', 'PagesController@getAssignments')->name('pages.assign
 Route::get('/assignments/create', 'PagesController@createAssignment')->middleware('auth');;
 Route::post('/assignment-action', 'PagesController@storeAssignment')->middleware('auth');;
 Route::delete('/assignments/delete', 'PagesController@deleteAssignment')->middleware('auth');;
+//Route::update('/assignments/updatem', '')
 
 //Filter op basis van GET (assignment=value) in url.
 Route::get('/assignment-filter', 'PagesController@assignmentFilter');
