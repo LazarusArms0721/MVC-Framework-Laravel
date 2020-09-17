@@ -45,6 +45,8 @@ class PagesController extends Controller
             'assignment_image' => 'image'
         ]);
 
+
+//      Afbeelding wordt hier opgehaald bij submissie en in een public envorinment geplaats
         if ($request->hasFile('assignment_image')){
 
             $filenameWithExt = $request->file('assignment_image')->getClientOriginalName();
@@ -108,6 +110,10 @@ class PagesController extends Controller
         $blog->save();
 
         return redirect()->to('/blog');
+    }
+
+    public function deleteBlog(){
+
     }
 
 }
