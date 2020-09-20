@@ -38,7 +38,7 @@
                 </a>
 
                 @if (Auth::check())
-                    <a href="/assignments/update" class="btn btn-secondary">
+                    <a href="/assignments/{{$assignment->id}}" class="btn btn-secondary">
                         Assignment aanpassen
                     </a>
                 @endif

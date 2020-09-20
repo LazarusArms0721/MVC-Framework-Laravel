@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 use App\Page;
 use App\Assignment;
 use App\Blog;
-
+use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Expr\Assign;
 
 
 class PagesController extends Controller
@@ -28,7 +29,9 @@ class PagesController extends Controller
     }
 
     public function getAssignments(){
-        $assignments = Assignment::all();
+        $assignments = Assignment::all()->sortByDesc('created_at');
+
+
 
         return view ('pages.assignments', compact('assignments'));
     }
@@ -68,13 +71,31 @@ class PagesController extends Controller
         $assignment = new Assignment();
 
 
-        $assignment->name = $request->input('name');
+        $assignment->name            = $request->input('name');
         $assignment->assignment_text = $request->input('assignment_text');
         $assignment->assignment_image = $fileNameToStore;
 
         $assignment->save();
 
         return redirect()->to('/assignments');
+    }
+
+    public function showAssignment(Assignment $assignment){
+
+        $assignment = Assignment::find($assignment->id);
+
+
+        return view('pages.assignment_update', compact('assignment'));
+    }
+
+    public function updateAssignment(Request $request, $id){
+
+        $name            = $request->input('name');
+        $assignmentText  = $request->input('assignment_text');
+        $assignmentImage = $request->input('assignment_image');
+
+        DB::update('update assignment set name=?, assignment_text=?, assignment_image=? where id=?', [$name, $assignmentText, $assignmentImage, $id]);
+
     }
 
     public function deleteAssignment(Request $request){
@@ -88,8 +109,8 @@ class PagesController extends Controller
 
     }
 
-    public function getBlog(){
-        $blogs = Blog::all();
+    public function getBlogs(){
+        $blogs = Blog::all()->sortByDesc('created_at');
         $assignments = Assignment::all();
 
 

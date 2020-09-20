@@ -5,6 +5,7 @@ namespace App;
 use App\Filters\AssignmentFilter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class Assignment extends Model
 {
@@ -19,6 +20,11 @@ class Assignment extends Model
 
     public function scopeFilter(Builder $builder, $request){
         return (new AssignmentFilter($request))->filter($builder);
+
+    }
+
+    public function updateAssignment($id, $data){
+        DB::table('Assignments')->where('id', $id)->update($data);
 
     }
 }

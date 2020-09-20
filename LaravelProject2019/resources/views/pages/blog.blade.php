@@ -21,7 +21,7 @@
                     <option value="{{$assignment->id}}">{{$assignment->name}}</option>
                 @endforeach
             </select>
-            <button action="submit">Search</button>
+            <button class="btn btn-outline-info" action="submit">Search</button>
         </form>
 
         @foreach ($blogs as $blog)
@@ -31,12 +31,25 @@
             <p>{{$blog->text }}</p>
             {{--<img src="{{$blog->assignment_image}}" alt="">--}}
             <p>{{$blog->created_at->todatestring()}}</p>
+
+
+              <div class="button-group">
+                  <a href class="btn btn-primary ">
+                      Read More
+                  </a>
+
+                  @if (Auth::check())
+                      <a href="" class="btn btn-secondary">
+                          Blog aanpassen
+                      </a>
+                  @endif
+              </div>
           </div>
         @endforeach
 
         @if (Auth::check())
-            <a href="/blog/create">
-                <button>Create Blog Post</button>
+            <a href="/blog/create" class="btn btn-primary btn-lg">
+                Create Blog Post
             </a>
         @endif
 
