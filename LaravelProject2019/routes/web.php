@@ -19,12 +19,16 @@ Route::get('/', 'PagesController@getIndex')->name('pages.index');
 //
 // ASSIGNMENTS
 //
+// SHOW AND CREATE NEW
 Route::get('/assignments', 'PagesController@getAssignments')->name('pages.assignments');
 Route::get('/assignments/create', 'PagesController@createAssignment')->middleware('auth');
+// POST CREATED ASSIGNMENT
 Route::post('/assignment-action', 'PagesController@storeAssignment')->middleware('auth');
+//
 Route::delete('/assignments/delete', 'PagesController@deleteAssignment')->middleware('auth');
-Route::get('/assignments/{assignment}', 'PagesController@showAssignment')->middleware('auth');
-Route::post('/assignments/{assignment}/edit', 'PagesController@updateAssignment')->name('pages.assignment_update')->middleware('auth');
+// SHOW AND UPDATE ASSIGNMENTS
+Route::get('/assignments/{assignment}/edit', 'PagesController@showAssignment')->middleware('auth');
+Route::post('/assignments/{assignment}', 'PagesController@updateAssignment')->name('pages.assignment_update')->middleware('auth');
 
 //Filter op basis van GET (assignment=value) in url.
 Route::get('/assignment-filter', 'PagesController@assignmentFilter');
@@ -38,7 +42,7 @@ Route::get('/blog', 'PagesController@getBlogs')->name('pages.blog');
 Route::get('/blog-filter', 'PagesController@getBlogFilter')->name('pages.blog_results');
 Route::get('/blog/create', 'PagesController@createBlog')->middleware('auth');
 Route::post('/blog-action', 'PagesController@storeBlog')->middleware('auth');
-Route::get('/blog-edit/{id}',);
+Route::get('/blog/{blog}/edit', 'PagesController@showBlog')->middleware('auth');
 
 
 //

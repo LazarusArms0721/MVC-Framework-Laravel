@@ -39,7 +39,7 @@
                   </a>
 
                   @if (Auth::check())
-                      <a href="" class="btn btn-secondary">
+                      <a href="/blog/{{$blog->id}}/edit" class="btn btn-secondary">
                           Blog aanpassen
                       </a>
                   @endif

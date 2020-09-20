@@ -80,21 +80,17 @@ class PagesController extends Controller
         return redirect()->to('/assignments');
     }
 
+    // Get selected assignment through edit button.
     public function showAssignment(Assignment $assignment){
 
         $assignment = Assignment::find($assignment->id);
 
-
         return view('pages.assignment_update', compact('assignment'));
     }
 
-    public function updateAssignment(Request $request, $id){
+    public function updateAssignment(Request $request, Assignment $assignment){
 
-        $name            = $request->input('name');
-        $assignmentText  = $request->input('assignment_text');
-        $assignmentImage = $request->input('assignment_image');
 
-        DB::update('update assignment set name=?, assignment_text=?, assignment_image=? where id=?', [$name, $assignmentText, $assignmentImage, $id]);
 
     }
 
@@ -142,6 +138,19 @@ class PagesController extends Controller
         $blog->save();
 
         return redirect()->to('/blog');
+    }
+
+    public function showBlog(Blog $blog, Assignment $assignments){
+
+        $blog = Blog::find($blog->id);
+        $assignments = Assignment::all();
+
+        return view ('pages.blog_update', compact('blog', 'assignments'));
+
+    }
+
+    public function updateBlog(){
+
     }
 
     public function deleteBlog(){

@@ -13,21 +13,25 @@
         <div class="col-sm-6 offset-sm-3">
             <h1>Update Assignment</h1>
             <hr>
-            <form method="POST" action="{{ route('pages.updateAssignment', [$assignment->id])}}" enctype="multipart/form-data">
+            <form method="POST" action="" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
                 <input type = "hidden" name = "_method" value = "put">
 
+                <label for="assignment_id">Assignment:</label>
+                <select name="assignment_id" id="assignment_id">
+                    @foreach ($assignments as $assignment)
+                        <option value="{{ $assignment->id}}"> {{$assignment->name}}</option>
+                    @endforeach
+                </select>
+
                 <label for="name">Assignment Name</label>
-                <input type="text" name="name" class="form-control" value="<?php echo $assignment->name; ?>">
+                <input type="text" name="name" class="form-control" value="<?php echo $blog->title; ?>">
 
                 <label for="assignment_text">Assignment Text</label>
-                <textarea name="assignment_text" class="form-control"><?php echo $assignment->assignment_text; ?></textarea>
+                <textarea name="assignment_text" class="form-control"><?php echo $blog->text; ?></textarea>
 
-                <label for="assignment_image">Select image to upload:</label>
-                <input type="file" name="assignment_image" class="form-control" value="<?php echo $assignment->assignment_image; ?>">
-
-                <button type="sumbit" class="btn btn-success btn-block mt-3">Update Assignment</button>
+                <button type="sumbit" class="btn btn-success btn-block mt-3">Update Blog</button>
 
             </form>
         </div>
