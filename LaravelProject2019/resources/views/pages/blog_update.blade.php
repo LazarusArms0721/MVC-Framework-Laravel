@@ -11,7 +11,7 @@
 
     <div class="row">
         <div class="col-sm-6 offset-sm-3">
-            <h1>Update Assignment</h1>
+            <h1>Update Blog post</h1>
             <hr>
             <form method="POST" action="" enctype="multipart/form-data">
                 {{ csrf_field() }}
@@ -25,13 +25,13 @@
                     @endforeach
                 </select>
 
-                <label for="name">Assignment Name</label>
+                <label for="name">Blogpost Name</label>
                 <input type="text" name="name" class="form-control" value="<?php echo $blog->title; ?>">
 
-                <label for="assignment_text">Assignment Text</label>
+                <label for="assignment_text">Blogpost Text</label>
                 <textarea name="assignment_text" class="form-control"><?php echo $blog->text; ?></textarea>
 
-                <button type="sumbit" class="btn btn-success btn-block mt-3">Update Blog</button>
+                <button type="sumbit" class="btn btn-success btn-block mt-3">Update Blogpost</button>
 
             </form>
         </div>

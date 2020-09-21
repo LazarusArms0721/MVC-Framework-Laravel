@@ -38,7 +38,7 @@
         </ul>
         <ul class="form-inline my-2 my-lg-0">
         @if (Auth::check())
-            <li style="color: #000; list-style:none; margin-right:10px;">{{ Auth::user()->name}}</li>
+            <li style="color: #fff; list-style:none; margin-right:10px;">{{ Auth::user()->name}}</li>
             <li style="list-style:none;"><a href="{{ url('/logout') }}"> Logout </a></li>
 
         @else

@@ -22,6 +22,12 @@
                 @endforeach
             </select>
             <button class="btn btn-outline-info" action="submit">Search</button>
+
+            @if (Auth::check())
+                <a href="/blog/create" class="btn btn-primary">
+                    Create Blogpost
+                </a>
+            @endif
         </form>
 
         @foreach ($blogs as $blog)
@@ -40,7 +46,7 @@
 
                   @if (Auth::check())
                       <a href="/blog/{{$blog->id}}/edit" class="btn btn-secondary">
-                          Blog aanpassen
+                          Blogpost aanpassen
                       </a>
                   @endif
               </div>

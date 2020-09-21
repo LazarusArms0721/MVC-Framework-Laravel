@@ -19,6 +19,7 @@
     </div>
 
 
+
     <?php
         foreach ($pages as $page) { ?>
             <h1> <?php echo $page->title ?></h1>

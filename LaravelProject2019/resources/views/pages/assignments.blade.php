@@ -25,6 +25,12 @@
             @endforeach
         </select>
         <button class="btn btn-outline-info" action="submit">Search</button>
+
+        @if (Auth::check())
+            <a href="/blog/create" class="btn btn-primary">
+                Create Assignment
+            </a>
+        @endif
     </form>
 
     @foreach($assignments as $assignment)

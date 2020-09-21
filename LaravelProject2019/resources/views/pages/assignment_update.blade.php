@@ -13,10 +13,11 @@
         <div class="col-sm-6 offset-sm-3">
             <h1>Update Assignment</h1>
             <hr>
-            <form method="POST" action="{{ route('pages.updateAssignment', [$assignment->id])}}" enctype="multipart/form-data">
+            <form method="POST" action="/assignments/{{$assignment->id}}" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
                 <input type = "hidden" name = "_method" value = "put">
+
 
                 <label for="name">Assignment Name</label>
                 <input type="text" name="name" class="form-control" value="<?php echo $assignment->name; ?>">
