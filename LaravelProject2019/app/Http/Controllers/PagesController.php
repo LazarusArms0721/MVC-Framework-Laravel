@@ -118,7 +118,7 @@ class PagesController extends Controller
 
         if ($assignmentUpdate){
 
-            return view ('pages.assignments')->with('success', 'Assignment updated sucessfully');
+            return redirect('/assignments')->with('success', 'Assignment updated sucessfully');
         }
 
 
@@ -145,8 +145,13 @@ class PagesController extends Controller
         $assignments = Assignment::all();
 
 
-
         return view ('pages.blog', compact('blogs', 'assignments'));
+    }
+
+    public function getSingleBlog(Blog $blog){
+        $blog = Blog::find($blog->id);
+
+        return view ('pages.blog_single', compact('blog'));
     }
 
     public function getBlogFilter(Request $request) {

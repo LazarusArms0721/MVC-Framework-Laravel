@@ -40,7 +40,7 @@
 
 
               <div class="button-group">
-                  <a href class="btn btn-primary ">
+                  <a href="/blog/{{$blog->id}}/single" class="btn btn-primary">
                       Read More
                   </a>
 

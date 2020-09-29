@@ -66,6 +66,9 @@ Route::get('/blog',
             'PagesController@getBlogs')
                 ->name('pages.blog');
 
+Route::get('blog/{blog}/single',
+            'PagesController@getSingleBlog');
+
 Route::get('/blog-filter',
             'PagesController@getBlogFilter')
                 ->name('pages.blog_results');
