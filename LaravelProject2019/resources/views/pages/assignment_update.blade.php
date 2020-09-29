@@ -23,7 +23,7 @@
                 <input type="text" name="name" class="form-control" value="<?php echo $assignment->name; ?>">
 
                 <label for="assignment_text">Assignment Text</label>
-                <textarea name="assignment_text" class="form-control"><?php echo $assignment->assignment_text; ?></textarea>
+                <textarea rows="10" name="assignment_text" class="form-control"><?php echo $assignment->assignment_text; ?></textarea>
 
                 <label for="assignment_image">Select image to upload:</label>
                 <input type="file" name="assignment_image" class="form-control" value="<?php echo $assignment->assignment_image; ?>">

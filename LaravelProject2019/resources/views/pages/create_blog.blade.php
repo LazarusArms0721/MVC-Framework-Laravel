@@ -21,7 +21,7 @@
                 <input type="text" name="title" class="form-control">
 
                 <label for="text">Text</label>
-                <input type="text" name="text" class="form-control">
+                <textarea rows="10" type="text" name="text" class="form-control"></textarea>
 
                 <button type="submit" class="btn btn-success btn-block mt-3">Create Blogpost</button>
             </form>

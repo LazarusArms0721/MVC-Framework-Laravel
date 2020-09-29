@@ -20,7 +20,7 @@
                 <input type="text" name="name" class="form-control">
 
                 <label for="assignment_text">Assignment Text</label>
-                <textarea name="assignment_text" class="form-control" placeholder="Enter text here..."></textarea>
+                <textarea rows="10" name="assignment_text" class="form-control" placeholder="Enter text here..."></textarea>
 
                 <label for="assignment_image">Select image to upload:</label>
                 <input type="file" name="assignment_image" class="form-control">

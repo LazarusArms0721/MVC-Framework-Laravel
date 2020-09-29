@@ -29,7 +29,7 @@
                 <input type="text" name="name" class="form-control" value="<?php echo $blog->title; ?>">
 
                 <label for="assignment_text">Blogpost Text</label>
-                <textarea name="assignment_text" class="form-control"><?php echo $blog->text; ?></textarea>
+                <textarea rows="10" name="assignment_text" class="form-control"><?php echo $blog->text; ?></textarea>
 
                 <button type="submit" class="btn btn-success mt-3">Update Blogpost</button>
 

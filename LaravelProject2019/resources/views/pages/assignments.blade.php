@@ -16,22 +16,14 @@
 
     <h1>Assignments Page</h1>
 
-    <form action="assignment-filter?assignment_id=" method="POST">
-        @csrf
-        <label for="assignment_id">Choose assignment:</label>
-        <select name="assignment_id" id="assignment_id">
-            @foreach ($assignments as $assignment)
-                <option value="{{$assignment->id}}">{{$assignment->name}}</option>
-            @endforeach
-        </select>
-        <button class="btn btn-outline-info" action="submit">Search</button>
 
-        @if (Auth::check())
-            <a href="/assignments/create" class="btn btn-primary">
-                Create Assignment
-            </a>
-        @endif
-    </form>
+
+    @if (Auth::check())
+        <a href="/assignments/create" class="btn btn-primary">
+            Create Assignment
+        </a>
+    @endif
+
 
     @foreach($assignments as $assignment)
         <div class="assignment">
