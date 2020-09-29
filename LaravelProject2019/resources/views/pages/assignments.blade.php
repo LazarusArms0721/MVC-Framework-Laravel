@@ -39,7 +39,7 @@
             <p>{{$assignment->assignment_text}}</p>
             <img class="assignment_image" src="{{asset('storage/assignment_images1').'/'.$assignment->assignment_image }}" alt="">
             <div class="button-group">
-                <a href class="btn btn-primary ">
+                <a href="/blog-filter?assignment_id={{$assignment->id}}" class="btn btn-primary ">
                     Blogposts
                 </a>
 
