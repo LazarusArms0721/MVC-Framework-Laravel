@@ -28,7 +28,13 @@
                 <label for="assignment_image">Select image to upload:</label>
                 <input type="file" name="assignment_image" class="form-control" value="<?php echo $assignment->assignment_image; ?>">
 
-                <button type="sumbit" class="btn btn-success btn-block mt-3">Update Assignment</button>
+                <button type="sumbit" class="btn btn-success mt-3">Update Assignment</button>
+
+                @if (Auth::check())
+                    <a href="/assignments/{{$assignment->id}}/delete" class="btn btn-outline-danger mt-3 ">
+                        Delete Assignment
+                    </a>
+                @endif
 
             </form>
         </div>

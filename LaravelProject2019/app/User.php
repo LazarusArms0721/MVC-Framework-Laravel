@@ -5,8 +5,10 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
@@ -15,6 +17,21 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+
+
+    public function getJWTIdentifier()
+    {
+        // TODO: Implement getJWTIdentifier() method.
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        // TODO: Implement getJWTCustomClaims() method.
+        return [];
+    }
+
     protected $fillable = [
         'name', 'email', 'password',
     ];
@@ -35,33 +52,51 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'roles' => 'array',
     ];
 
+    public function addRole($role){
 
-    public function roles(){
-        return $this->hasOne('App\Role', 'role', 'roles');
+        $roles->$this->getRoles();
+        $roles[] = $role;
+
+        $roles = array_unique($roles);
+        $this->setRoles($roles);
+
+        return $this;
     }
 
-    public function authorizeRoles($roles){
+    public function setRoles(array $roles){
 
-        if (is_array($roles)){
-
-            return $this->hasAnyRole($roles) ||
-                abort(401,'This action is unauthorized.');
-        }
-
-        return $this->hasRole($roles) ||
-            abort(401, 'This action is unauthorized.');
-
-    }
-
-    public function hasAnyRole($roles){
-
-        return null !== $this->roles()->whereIn('role', $roles)->first();
+        $this->setAttribute('roles', $roles);
+        return $this;
     }
 
     public function hasRole($role){
 
-        return null !==$this->roles()->where('role', $role)->first();
+        return in_array($role, $this->getRoles());
+    }
+
+    public function hasRoles($roles){
+
+        $currentRoles = $this->getRoles();
+        foreach ($roles as $role){
+            if (! in_array($role, $currentRoles)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public function getRoles(){
+
+        $roles = $this->getAttribute('roles');
+
+        if (is_null($roles)) {
+            $roles = [];
+        }
+
+        return $roles;
     }
 }

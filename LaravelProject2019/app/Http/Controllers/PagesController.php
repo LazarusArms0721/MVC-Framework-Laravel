@@ -18,6 +18,7 @@ class PagesController extends Controller
     public function getIndex(Request $request){
         $slug = $request->path();
 
+
         $pages = Page::all();
 
         $page_title = "Home";
@@ -29,7 +30,7 @@ class PagesController extends Controller
     }
 
     public function getAssignments(){
-        $assignments = Assignment::all()->sortByDesc('created_at');
+        $assignments = Assignment::paginate(15)->sortByDesc('created_at');
 
 
 
@@ -90,11 +91,45 @@ class PagesController extends Controller
 
     public function updateAssignment(Request $request, Assignment $assignment){
 
+        if ($request->hasFile('assignment_image')){
+
+            $filenameWithExt = $request->file('assignment_image')->getClientOriginalName();
+
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+            $extension = $request->file('assignment_image')->getClientOriginalExtension();
+
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+
+            $path = $request->file('assignment_image')->storeAs('public/assignment_images1', $fileNameToStore);
+
+        } else {
+            $fileNameToStore = 'noimage.jpeg';
+        }
+
+        $assignmentUpdate = Assignment::where('id', $assignment->id)->update([
+
+            'name' => $request->input('name'),
+            'assignment_text' => $request->input('assignment_text'),
+            'assignment_image' => $request->update['image']
+
+        ]);
 
 
+        if ($assignmentUpdate){
+
+            return view ('pages.assignments')->with('success', 'Assignment updated sucessfully');
+        }
+
+
+        return back()->withInput();
     }
 
-    public function deleteAssignment(Request $request){
+    public function deleteAssignment(Assignment $assignment){
+
+        $assignment->delete();
+
+        return redirect('/assignments');
 
     }
 
@@ -153,7 +188,12 @@ class PagesController extends Controller
 
     }
 
-    public function deleteBlog(){
+    public function deleteBlog(Blog $blog){
+
+        $blog->delete();
+
+        return redirect('/blogs');
+
 
     }
 
