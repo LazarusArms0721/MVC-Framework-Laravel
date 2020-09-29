@@ -197,7 +197,7 @@ class PagesController extends Controller
 
         $blog->delete();
 
-        return redirect('/blogs');
+        return redirect('/blog');
 
 
     }
