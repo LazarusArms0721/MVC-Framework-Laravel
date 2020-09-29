@@ -15,7 +15,7 @@
         <p class="lead">As a (front end) developer, I am mainly focussing on a diverse set of tasks that range from designing to actually building functional websites and services</p>
         <hr class="my-4">
         <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <a class="btn btn-primary btn-lg" href="/assignments" role="button">See Projects</a>
+        <a class="btn btn-primary btn-lg" href="/assignments" role="button">See Assignments</a>
     </div>
 
 

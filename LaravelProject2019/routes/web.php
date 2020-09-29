@@ -82,6 +82,10 @@ Route::get('/blog/{blog}/edit',
             'PagesController@showBlog')
                 ->middleware('auth');
 
+Route::get('/blog/{blog}/delete',
+    'PagesController@deleteBlog')
+    ->middleware('auth');
+
 
 //
 // OTHER

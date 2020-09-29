@@ -31,7 +31,13 @@
                 <label for="assignment_text">Blogpost Text</label>
                 <textarea name="assignment_text" class="form-control"><?php echo $blog->text; ?></textarea>
 
-                <button type="sumbit" class="btn btn-success btn-block mt-3">Update Blogpost</button>
+                <button type="submit" class="btn btn-success mt-3">Update Blogpost</button>
+
+                @if (Auth::check())
+                    <a href="/blog/{{$blog->id}}/delete" class="btn btn-outline-danger mt-3 ">
+                        Delete Assignment
+                    </a>
+                @endif
 
             </form>
         </div>
