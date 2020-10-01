@@ -19,12 +19,29 @@
     </div>
 
 
+    <div class="block-container">
+        <div class="left-block">
+            <h1>{{$latestAssignment['name']}}</h1>
+            <p>{{$latestAssignment['assignment_text']}}</p>
+            <p>{{$latestAssignment['created_at']}}</p>
+            <p>{{$latestAssignment['assignment_image']}}</p>
+            {{--<img class="latest_assignment_image" src="{{asset('storage/assignment_images1').'/'.$latestAssignment->assignment_image }}" alt="">--}}
+            <a href="/blog-filter?assignment_id={{$latestAssignment['id']}}" class="btn btn-primary ">
+                Blogposts
+            </a>
+        </div>
 
-    <?php
-        foreach ($pages as $page) { ?>
-            <h1> <?php echo $page->title ?></h1>
-            <p> <?php echo $page->content ?></p>
-    <?php } ?>
+        <div class="right-block">
+            <h1>{{$latestBlog['title']}}</h1>
+            <p>{{$latestBlog['text']}}</p>
+            <p>{{$latestBlog['created_at']}}</p>
+            <div class="button-group">
+                <a href="/blog/{{$latestBlog['id']}}/single" class="btn btn-primary">
+                    Read More
+                </a>
+            </div>
+        </div>
+    </div>
 
 @endsection
 

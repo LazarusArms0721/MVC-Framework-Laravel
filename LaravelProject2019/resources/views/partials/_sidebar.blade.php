@@ -18,7 +18,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{route('pages.about')}}">About</a>
             </li>
-            <li class="nav-item contact-showcase">
+            <li class="nav-item">
                 <a class="nav-link" href="{{route('contact.show')}}">Contact</a>
             </li>
 

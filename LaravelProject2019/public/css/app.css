@@ -10786,19 +10786,58 @@ a.text-dark:focus {
   background-color: #424242;
 }
 
-.assignments-table {
+.dashboard-table {
   border-radius: 5px;
   border-style: 1px solid #ffffff;
+  margin-bottom: 50px;
 }
 
-.assignments-table .table-head th {
+.dashboard-table .table-head th {
   font-size: 18px;
   font-style: bold;
   background-color: #311B92;
 }
 
-.assignments-table .td-spacing {
+.dashboard-table .td-spacing {
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.blog-header {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 86%;
+  text-align: right;
+}
+
+.blog-header h3 {
+  display: inline;
+  padding-top: 5px;
+  position: relative;
+  top: 4px;
+}
+
+.blog-header a {
+  display: inline;
+}
+
+.block-container {
+  border-radius: 10px;
+}
+
+.block-container .left-block {
+  width: 45%;
+  float: left;
+  height: 300px;
+  background-color: #2d2d2d;
+  padding: 20px 20px;
+}
+
+.block-container .right-block {
+  width: 45%;
+  float: right;
+  height: 300px;
+  background-color: #2d2d2d;
+  padding: 20px 20px;
 }
 

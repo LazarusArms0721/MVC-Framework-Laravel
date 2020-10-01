@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Page;
 use App\Assignment;
 use App\Blog;
+use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Expr\Assign;
 
@@ -18,11 +20,14 @@ class PagesController extends Controller
     public function getIndex(Request $request){
         $slug = $request->path();
 
+        $latestAssignment = Assignment::latest()->first();
+        $latestBlog       = Blog::latest()->first();
+
 
         $pages = Page::all();
 
         $page_title = "Home";
-        return view ('pages.index', compact('pages'));
+        return view ('pages.index', compact('pages', 'latestAssignment', 'latestBlog'));
     }
 
     public function getAbout(){
@@ -182,6 +187,7 @@ class PagesController extends Controller
 
     public function showBlog(Blog $blog, Assignment $assignments){
 
+
         $blog = Blog::find($blog->id);
         $assignments = Assignment::all();
 
@@ -195,10 +201,17 @@ class PagesController extends Controller
 
     public function deleteBlog(Blog $blog){
 
+        $currentPath = \Illuminate\Support\Facades\Route::getFacadeRoot()->current()->uri();
+
         $blog->delete();
 
-        return redirect('/blog');
+        if ($currentPath === 'dashboard'){
+            return redirect('/dashboard');
+        } else {
 
+            return redirect('/blog');
+
+        }
 
     }
 

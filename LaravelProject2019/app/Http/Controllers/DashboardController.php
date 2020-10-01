@@ -12,10 +12,11 @@ class DashboardController extends Controller
 
     public function showDashboard(){
 
-        $assignments = Assignment::all();
-        $blogs = Blog::all();
+        $assignments = Assignment::all()->sortByDesc('created_at');
+        $blogs = Blog::all()->sortByDesc('created_at');
 
+        $currentPath = \Illuminate\Support\Facades\Route::getFacadeRoot()->current()->uri();
 
-        return view('dashboard', compact('blogs','assignments'));
+        return view('dashboard', compact('blogs','assignments', 'currentPath'));
     }
 }
