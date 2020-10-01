@@ -20,6 +20,12 @@ Route::get('/',
                 ->name('pages.index');
 
 //
+// Dashboard
+//
+
+Route::get('/dashboard', 'DashboardController@showDashboard')->middleware('auth');
+
+//
 // ASSIGNMENTS
 //
 
