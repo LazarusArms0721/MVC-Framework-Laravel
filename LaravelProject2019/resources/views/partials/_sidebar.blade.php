@@ -18,9 +18,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{route('pages.about')}}">About</a>
             </li>
-            <li class="nav-item contact-showcase">
+            <li class="nav-item">
                 <a class="nav-link" href="{{route('contact.show')}}">Contact</a>
             </li>
+
+            @if (Auth::check())
+                <li class="nav-item dashboard-showcase">
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                </li>
+            @endif
             {{--<li class="nav-item dropdown">--}}
                 {{--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
                     {{--Dropdown--}}
@@ -36,10 +42,17 @@
                 {{--<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>--}}
             {{--</li>--}}
         </ul>
-        <ul class="form-inline my-2 my-lg-0">
+        <ul class="dropdown form-inline my-2 my-lg-0">
         @if (Auth::check())
             <li style="color: #fff; list-style:none; margin-right:10px;">{{ Auth::user()->name}}</li>
-            <li style="list-style:none;"><a href="{{ url('/logout') }}"> Logout </a></li>
+            <li style="color:#fff; list-style:none; margin-right:10px;"><a href="{{ url('/logout') }}">Logout</a></li>
+            {{--<button onclick="myFunction()" class="dropbtn">Menu</button>--}}
+            <div id="myDropdown" class="dropdown-content">
+                <a href="{{ url('/logout') }}"> Logout </a>
+
+            </div>
+
+
 
         @else
             <li><a href="{{ url('/login') }}"> Login </a></li>

@@ -30,7 +30,20 @@
                 <p>{{$filteredblog->assignment['name']}}</p>
                 {{--<p>{{$blog->text }}</p>--}}
                 {{--<img src="{{$blog->assignment_image}}" alt="">--}}
+
+                <div class="button-group">
+                    <a href="/blog/{{$filteredblog->id}}/single" class="btn btn-primary">
+                        Read More
+                    </a>
+
+                    @if (Auth::check())
+                        <a href="/blog/{{$filteredblog->id}}/edit" class="btn btn-secondary">
+                            Blogpost aanpassen
+                        </a>
+                    @endif
+                </div>
             </div>
+
         @endforeach
 
 

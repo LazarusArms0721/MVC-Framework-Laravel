@@ -29,9 +29,15 @@
                 <input type="text" name="name" class="form-control" value="<?php echo $blog->title; ?>">
 
                 <label for="assignment_text">Blogpost Text</label>
-                <textarea name="assignment_text" class="form-control"><?php echo $blog->text; ?></textarea>
+                <textarea rows="10" name="assignment_text" class="form-control"><?php echo $blog->text; ?></textarea>
 
-                <button type="sumbit" class="btn btn-success btn-block mt-3">Update Blogpost</button>
+                <button type="submit" class="btn btn-success mt-3">Update Blogpost</button>
+
+                @if (Auth::check())
+                    <a href="/blog/{{$blog->id}}/delete" class="btn btn-outline-danger mt-3 ">
+                        Delete Assignment
+                    </a>
+                @endif
 
             </form>
         </div>

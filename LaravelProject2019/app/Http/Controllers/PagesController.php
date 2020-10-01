@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Page;
 use App\Assignment;
 use App\Blog;
+use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Expr\Assign;
 
@@ -18,10 +20,14 @@ class PagesController extends Controller
     public function getIndex(Request $request){
         $slug = $request->path();
 
+        $latestAssignment = Assignment::latest()->first();
+        $latestBlog       = Blog::latest()->first();
+
+
         $pages = Page::all();
 
         $page_title = "Home";
-        return view ('pages.index', compact('pages'));
+        return view ('pages.index', compact('pages', 'latestAssignment', 'latestBlog'));
     }
 
     public function getAbout(){
@@ -29,7 +35,7 @@ class PagesController extends Controller
     }
 
     public function getAssignments(){
-        $assignments = Assignment::all()->sortByDesc('created_at');
+        $assignments = Assignment::paginate(15)->sortByDesc('created_at');
 
 
 
@@ -90,11 +96,45 @@ class PagesController extends Controller
 
     public function updateAssignment(Request $request, Assignment $assignment){
 
+        if ($request->hasFile('assignment_image')){
+
+            $filenameWithExt = $request->file('assignment_image')->getClientOriginalName();
+
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+            $extension = $request->file('assignment_image')->getClientOriginalExtension();
+
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+
+            $path = $request->file('assignment_image')->storeAs('public/assignment_images1', $fileNameToStore);
+
+        } else {
+            $fileNameToStore = 'noimage.jpeg';
+        }
+
+        $assignmentUpdate = Assignment::where('id', $assignment->id)->update([
+
+            'name' => $request->input('name'),
+            'assignment_text' => $request->input('assignment_text'),
+            'assignment_image' => $request->update['image']
+
+        ]);
 
 
+        if ($assignmentUpdate){
+
+            return redirect('/assignments')->with('success', 'Assignment updated sucessfully');
+        }
+
+
+        return back()->withInput();
     }
 
-    public function deleteAssignment(Request $request){
+    public function deleteAssignment(Assignment $assignment){
+
+        $assignment->delete();
+
+        return redirect('/assignments');
 
     }
 
@@ -110,8 +150,13 @@ class PagesController extends Controller
         $assignments = Assignment::all();
 
 
-
         return view ('pages.blog', compact('blogs', 'assignments'));
+    }
+
+    public function getSingleBlog(Blog $blog){
+        $blog = Blog::find($blog->id);
+
+        return view ('pages.blog_single', compact('blog'));
     }
 
     public function getBlogFilter(Request $request) {
@@ -142,6 +187,7 @@ class PagesController extends Controller
 
     public function showBlog(Blog $blog, Assignment $assignments){
 
+
         $blog = Blog::find($blog->id);
         $assignments = Assignment::all();
 
@@ -153,7 +199,19 @@ class PagesController extends Controller
 
     }
 
-    public function deleteBlog(){
+    public function deleteBlog(Blog $blog){
+
+        $currentPath = \Illuminate\Support\Facades\Route::getFacadeRoot()->current()->uri();
+
+        $blog->delete();
+
+        if ($currentPath === 'dashboard'){
+            return redirect('/dashboard');
+        } else {
+
+            return redirect('/blog');
+
+        }
 
     }
 

@@ -23,12 +23,18 @@
                 <input type="text" name="name" class="form-control" value="<?php echo $assignment->name; ?>">
 
                 <label for="assignment_text">Assignment Text</label>
-                <textarea name="assignment_text" class="form-control"><?php echo $assignment->assignment_text; ?></textarea>
+                <textarea rows="10" name="assignment_text" class="form-control"><?php echo $assignment->assignment_text; ?></textarea>
 
                 <label for="assignment_image">Select image to upload:</label>
                 <input type="file" name="assignment_image" class="form-control" value="<?php echo $assignment->assignment_image; ?>">
 
-                <button type="sumbit" class="btn btn-success btn-block mt-3">Update Assignment</button>
+                <button type="submit" class="btn btn-success mt-3">Update Assignment</button>
+
+                @if (Auth::check())
+                    <a href="/assignments/{{$assignment->id}}/delete" class="btn btn-outline-danger mt-3 ">
+                        Delete Assignment
+                    </a>
+                @endif
 
             </form>
         </div>

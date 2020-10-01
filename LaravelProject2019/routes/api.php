@@ -16,3 +16,23 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('login', '\App\Http\Controllers\Api\Auth\LoginController@login')->name('auth.login');
+
+Route::post('login', [
+   'as' => 'login.login',
+   'uses' => 'Api\Auth\LoginController@login'
+]);
+
+Route::get('refresh', [
+    'as' => 'login.refresh',
+    'uses' => 'Api\Auth\LoginController@refresh'
+]);
+
+Route::get('/assignments/self', [
+    'as' => 'assignments.self',
+    'uses' => 'Api\AssignmentsController@index'
+]);
+
+
+

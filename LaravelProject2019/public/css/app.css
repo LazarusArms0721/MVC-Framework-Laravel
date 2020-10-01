@@ -10664,6 +10664,69 @@ a.text-dark:focus {
   border-radius: 5px;
 }
 
+.dashboard-showcase {
+  background-color: #3490dc;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
+/* Dropdown Button */
+
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+
+.dropbtn:hover,
+.dropbtn:focus {
+  background-color: #2980B9;
+}
+
+/* The container <div> - needed to position the dropdown content */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+
+.show {
+  display: block;
+}
+
 .assignments-container {
   margin-top: 50px;
 }
@@ -10703,5 +10766,78 @@ a.text-dark:focus {
 .button-group {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.footer-container {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-top: 20px;
+}
+
+.login-page {
+  border: none !important;
+}
+
+.login-page .card-header {
+  background-color: #212121;
+}
+
+.login-page .card-body {
+  background-color: #424242;
+}
+
+.dashboard-table {
+  border-radius: 5px;
+  border-style: 1px solid #ffffff;
+  margin-bottom: 50px;
+}
+
+.dashboard-table .table-head th {
+  font-size: 18px;
+  font-style: bold;
+  background-color: #311B92;
+}
+
+.dashboard-table .td-spacing {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.blog-header {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 86%;
+  text-align: right;
+}
+
+.blog-header h3 {
+  display: inline;
+  padding-top: 5px;
+  position: relative;
+  top: 4px;
+}
+
+.blog-header a {
+  display: inline;
+}
+
+.block-container {
+  border-radius: 10px;
+}
+
+.block-container .left-block {
+  width: 45%;
+  float: left;
+  height: 300px;
+  background-color: #2d2d2d;
+  padding: 20px 20px;
+}
+
+.block-container .right-block {
+  width: 45%;
+  float: right;
+  height: 300px;
+  background-color: #2d2d2d;
+  padding: 20px 20px;
 }
 

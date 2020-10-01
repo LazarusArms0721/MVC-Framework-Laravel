@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,35 +15,85 @@
 //
 // HOME
 //
-Route::get('/', 'PagesController@getIndex')->name('pages.index');
+Route::get('/',
+            'PagesController@getIndex')
+                ->name('pages.index');
+
+//
+// Dashboard
+//
+
+Route::get('/dashboard', 'DashboardController@showDashboard')->middleware('auth');
 
 //
 // ASSIGNMENTS
 //
+
 // SHOW AND CREATE NEW
-Route::get('/assignments', 'PagesController@getAssignments')->name('pages.assignments');
-Route::get('/assignments/create', 'PagesController@createAssignment')->middleware('auth');
+Route::get('/assignments',
+            'PagesController@getAssignments')
+                ->name('pages.assignments');
+
+//Route::get('/assignments/create',
+//            'PagesController@createAssignment')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_SUPPORT );
+
+Route::get('assignments/create',
+            'PagesController@createAssignment')->middleware('auth');
+
 // POST CREATED ASSIGNMENT
-Route::post('/assignment-action', 'PagesController@storeAssignment')->middleware('auth');
-//
-Route::delete('/assignments/delete', 'PagesController@deleteAssignment')->middleware('auth');
+Route::post('/assignment-action',
+            'PagesController@storeAssignment')
+                ->middleware('auth');
+// DELETE ASSIGNMENT
+Route::get('/assignments/{assignment}/delete',
+            'PagesController@deleteAssignment')
+                ->middleware('auth');
+
 // SHOW AND UPDATE ASSIGNMENTS
-Route::get('/assignments/{assignment}/edit', 'PagesController@showAssignment')->middleware('auth');
-Route::post('/assignments/{assignment}', 'PagesController@updateAssignment')->name('pages.assignment_update')->middleware('auth');
+Route::get('/assignments/{assignment}/edit',
+            'PagesController@showAssignment')
+                ->middleware('auth');
+
+Route::put('/assignments/{assignment}',
+            'PagesController@updateAssignment')
+                ->middleware('auth');
 
 //Filter op basis van GET (assignment=value) in url.
-Route::get('/assignment-filter', 'PagesController@assignmentFilter');
-//update
-//delete
+Route::get('/assignment-filter',
+            'PagesController@assignmentFilter');
+
+
+
 
 //
 //  BLOG
 //
-Route::get('/blog', 'PagesController@getBlogs')->name('pages.blog');
-Route::get('/blog-filter', 'PagesController@getBlogFilter')->name('pages.blog_results');
-Route::get('/blog/create', 'PagesController@createBlog')->middleware('auth');
-Route::post('/blog-action', 'PagesController@storeBlog')->middleware('auth');
-Route::get('/blog/{blog}/edit', 'PagesController@showBlog')->middleware('auth');
+Route::get('/blog',
+            'PagesController@getBlogs')
+                ->name('pages.blog');
+
+Route::get('blog/{blog}/single',
+            'PagesController@getSingleBlog');
+
+Route::get('/blog-filter',
+            'PagesController@getBlogFilter')
+                ->name('pages.blog_results');
+
+Route::get('/blog/create',
+            'PagesController@createBlog')
+                ->middleware('auth');
+
+Route::post('/blog-action',
+            'PagesController@storeBlog')
+                ->middleware('auth');
+
+Route::get('/blog/{blog}/edit',
+            'PagesController@showBlog')
+                ->middleware('auth');
+
+Route::get('/blog/{blog}/delete',
+    'PagesController@deleteBlog')
+    ->middleware('auth');
 
 
 //
@@ -60,7 +111,8 @@ Auth::routes();
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 
-Auth::routes();
+
+//Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
