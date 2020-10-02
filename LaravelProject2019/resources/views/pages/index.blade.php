@@ -20,6 +20,9 @@
 
 
     <div class="block-container">
+
+        <h1>Latest activity</h1>
+
         <div class="left-block">
             <h1>{{$latestAssignment['name']}}</h1>
             <p>{{$latestAssignment['assignment_text']}}</p>

@@ -10803,6 +10803,10 @@ a.text-dark:focus {
   padding-right: 10px;
 }
 
+.dashboard-table .table-body {
+  background-color: #2d2d2d;
+}
+
 .blog-header {
   margin-top: 10px;
   margin-bottom: 10px;

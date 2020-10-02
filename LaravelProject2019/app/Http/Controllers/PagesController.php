@@ -180,6 +180,7 @@ class PagesController extends Controller
         $blog->assignment_id = request('assignment_id');
         $blog->title = request('title');
         $blog->text = request('text');
+        $blog->user_id = Auth::user()->id;
         $blog->save();
 
         return redirect()->to('/blog');

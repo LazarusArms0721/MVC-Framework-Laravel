@@ -18,6 +18,11 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
 
+    public function blogs(){
+
+        return $this->hasMany(Blog::class);
+    }
+
 
 
     public function getJWTIdentifier()

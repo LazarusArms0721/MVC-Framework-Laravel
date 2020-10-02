@@ -44,7 +44,7 @@
                 </thead>
                 <tbody>
             @foreach ($assignments as $assignment)
-                    <tr class="">
+                    <tr class="table-body">
                         <td class="">{{$assignment->name}}</td>
                         <td class="">{{$assignment->assignment_text}}</td>
                         <td class="">Erhan Akin</td>
@@ -90,7 +90,7 @@
                 </thead>
                 <tbody>
                 @foreach ($blogs as $blog)
-                    <tr class="">
+                    <tr class="table-body">
                         <td class="">{{$blog->title}}</td>
                         <td class="">{{ substr($blog->text, 0, 23) }}</td>
                         <td class="">{{$blog->assignment['name']}}</td>
