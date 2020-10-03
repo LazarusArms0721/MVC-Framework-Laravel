@@ -10763,6 +10763,10 @@ a.text-dark:focus {
   border-radius: 5px;
 }
 
+.author-name {
+  color: #38c172;
+}
+
 .button-group {
   margin-top: 10px;
   margin-bottom: 10px;

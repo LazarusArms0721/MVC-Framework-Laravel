@@ -94,7 +94,7 @@
                         <td class="">{{$blog->title}}</td>
                         <td class="">{{ substr($blog->text, 0, 23) }}</td>
                         <td class="">{{$blog->assignment['name']}}</td>
-                        <td class="">Erhan Akin</td>
+                        <td class="">{{$blog->user['name']}}</td>
                         <td class="">{{$blog->created_at->todatestring()}}</td>
                         @if (Auth::check())
                         <td class="">

@@ -37,7 +37,7 @@
             <p>{{$blog->text }}</p>
             {{--<img src="{{$blog->assignment_image}}" alt="">--}}
             <p>{{$blog->created_at->todatestring()}}</p>
-            <p>Written by {{$blog->user['name']}}</p>
+            <p class="author-name">Written by {{$blog->user['name']}}</p>
 
 
               <div class="button-group">

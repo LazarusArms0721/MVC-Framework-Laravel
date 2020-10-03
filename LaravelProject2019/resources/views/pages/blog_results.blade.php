@@ -28,6 +28,7 @@
             <div class="blog">
                 <h4>{{$filteredblog->title}}</h4>
                 <p>{{$filteredblog->assignment['name']}}</p>
+
                 {{--<p>{{$blog->text }}</p>--}}
                 {{--<img src="{{$blog->assignment_image}}" alt="">--}}
 

@@ -196,8 +196,25 @@ class PagesController extends Controller
 
     }
 
-    public function updateBlog(){
+    public function updateBlog(Request $request,  Blog $blog ){
 
+        $blogUpdate = Blog::where('id', $blog->id)->update([
+
+            'assignment_id' => $request->input('assignment_id'),
+            'title' => $request->input('title'),
+            'text' => $request->input('text'),
+
+
+        ]);
+
+
+        if ($blogUpdate){
+
+            return redirect('/blog')->with('success', 'Blog updated sucessfully');
+        }
+
+
+        return back()->withInput();
     }
 
     public function deleteBlog(Blog $blog){
