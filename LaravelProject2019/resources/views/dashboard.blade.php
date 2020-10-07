@@ -114,6 +114,34 @@
             </table>
         </div>
 
+        <div class="dashboard-table">
+            <table class="" cellpadding="5" border="2">
+                <thead>
+                <tr class="table-head">
+                    <th class="">User Name</th>
+                    <th class="">Email</th>
+                    <th class="">Created At</th>
+                    <th class="">Roles</th>
+                    <th class="">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach ($users as $user)
+                    <tr class="table-body">
+                        <td class="">{{$user->name}}</td>
+                        <td class="">{{$user->email}}</td>
+                        <td class="">{{$user->created_at}}</td>
+                        <td class="">{{$user->roles}}</td>
+                        @if (Auth::check())
+                        @endif
+                    </tr>
+
+                @endforeach
+
+                </tbody>
+            </table>
+        </div>
+
         {{--<p>{{$currentPath}}</p>--}}
 
 

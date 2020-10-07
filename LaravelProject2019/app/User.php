@@ -38,7 +38,7 @@ class User extends Authenticatable implements JWTSubject
     }
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'roles',
     ];
 
     /**
@@ -80,6 +80,7 @@ class User extends Authenticatable implements JWTSubject
     public function hasRole($role){
 
         return in_array($role, $this->getRoles());
+
     }
 
     public function hasRoles($roles){

@@ -45,6 +45,8 @@
         <ul class="dropdown form-inline my-2 my-lg-0">
         @if (Auth::check())
             <li style="color: #fff; list-style:none; margin-right:10px;">{{ Auth::user()->name}}</li>
+                <li style="color: #fff; list-style:none; margin-right:10px;">{{ Auth::guard()->user()}}</li>
+
             <li style="color:#fff; list-style:none; margin-right:10px;"><a href="{{ url('/logout') }}">Logout</a></li>
             {{--<button onclick="myFunction()" class="dropbtn">Menu</button>--}}
             <div id="myDropdown" class="dropdown-content">

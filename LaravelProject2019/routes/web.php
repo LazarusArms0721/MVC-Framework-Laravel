@@ -34,11 +34,12 @@ Route::get('/assignments',
             'PagesController@getAssignments')
                 ->name('pages.assignments');
 
-//Route::get('/assignments/create',
-//            'PagesController@createAssignment')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_SUPPORT );
-
 Route::get('assignments/create',
-            'PagesController@createAssignment')->middleware('auth');
+             'PagesController@createAssignment')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+
+//
+//Route::get('assignments/create',
+//            'PagesController@createAssignment')->middleware('auth');
 
 // POST CREATED ASSIGNMENT
 Route::post('/assignment-action',
@@ -92,7 +93,8 @@ Route::get('/blog/{blog}/edit',
                 ->middleware('auth');
 
 Route::put('/blog/{blog}',
-            'PagesController@updateBlog')
+            'Pages
+            Controller@updateBlog')
                 ->middleware('auth');
 
 Route::get('/blog/{blog}/delete',
