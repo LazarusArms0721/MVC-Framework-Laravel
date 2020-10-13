@@ -6,6 +6,14 @@ body {
   text-decoration: none;
 }
 
+.card-header {
+  background-color: #212121 !important;
+}
+
+.card-body {
+  background-color: #424242;
+}
+
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors

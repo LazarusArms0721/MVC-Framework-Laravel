@@ -131,8 +131,19 @@
                         <td class="">{{$user->name}}</td>
                         <td class="">{{$user->email}}</td>
                         <td class="">{{$user->created_at}}</td>
-                        <td class="">{{$user->roles}}</td>
+                        <td class="">
+                          {{$user->roles}}
+                        </td>
                         @if (Auth::check())
+                           <td>
+                                <a href="/dashboard/{{$user->id}}/edit" class="btn btn-primary">
+                                    Edit
+                                </a>
+
+                               <a href="/dashboard/{{$user->id}}/delete" class="btn btn-outline-danger">
+                                   Delete
+                               </a>
+                           </td>
                         @endif
                     </tr>
 

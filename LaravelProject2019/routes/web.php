@@ -12,6 +12,15 @@
 |
 */
 
+use App\User;
+
+// ADD ROLE function
+
+Route::get('/add/role/editor', function(){
+
+
+});
+
 //
 // HOME
 //
@@ -23,7 +32,21 @@ Route::get('/',
 // Dashboard
 //
 
-Route::get('/dashboard', 'DashboardController@showDashboard')->middleware('auth');
+Route::get('/dashboard',
+            'DashboardController@showDashboard')
+                ->middleware('auth');
+
+Route::get('/dashboard/{user}/edit',
+            'DashboardController@getUser')
+                ->middleware('auth');
+
+Route::put('/dashboard/{user}',
+            'DashboardController@updateUser')
+                ->middleware('auth');
+
+Route::get('/dashboard/{user}/delete',
+            'DashboardController@deleteUser')
+                ->middleware('auth');
 
 //
 // ASSIGNMENTS

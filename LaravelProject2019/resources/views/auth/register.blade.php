@@ -65,9 +65,9 @@
                             <label for="roles" class="col-md-4 col-form-label text-md-right">{{ __('Roles') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="roles" class="form-control" name="roles">
+                                <label for="checkbox">Editor</label>
+                                <input id="roles" type="checkbox" class="form-control" name="roles">
                             </div>
-
                         </div>
 
                         <div class="form-group row mb-0">
