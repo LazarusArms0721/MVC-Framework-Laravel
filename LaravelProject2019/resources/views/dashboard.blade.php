@@ -24,7 +24,7 @@
 
         <div class="blog-header">
             <h3>Latest Assignments</h3>
-            @if (Auth::check())
+            @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
                 <a href="/assignments/create" class="btn btn-primary mt-2 mb-2">
                     Create Assignment
                 </a>
@@ -49,17 +49,21 @@
                         <td class="">{{$assignment->assignment_text}}</td>
                         <td class="">Erhan Akin</td>
                         <td class="">{{$assignment->created_at->todatestring()}}</td>
-                        @if (Auth::check())
+
                         <td class="">
+                        @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_EDITOR))
                                 <a href="/assignments/{{$assignment->id}}/edit" class="btn btn-primary">
                                     Edit
                                 </a>
+                        @endif
+                        @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
 
                                 <a href="/assignments/{{$assignment->id}}/delete" class="btn btn-outline-danger">
                                     Delete
                                 </a>
-                        </td>
                         @endif
+                        </td>
+
                     </tr>
 
             @endforeach
@@ -69,7 +73,7 @@
 
         <div class="blog-header">
             <h3>Latest Blogposts</h3>
-        @if (Auth::check())
+            @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
             <a href="/blog/create" class="btn btn-primary mt-2 mb-2">
                 Create Blogpost
             </a>
@@ -96,23 +100,29 @@
                         <td class="">{{$blog->assignment['name']}}</td>
                         <td class="">{{$blog->user['name']}}</td>
                         <td class="">{{$blog->created_at->todatestring()}}</td>
-                        @if (Auth::check())
                         <td class="">
+                        @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_EDITOR))
                             <a href="/blog/{{$blog->id}}/edit" class="btn btn-primary">
                                 Edit
                             </a>
+                        @endif
+
+                            @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
 
                             <a href="/blog/{{$blog->id}}/delete" class="btn btn-outline-danger">
                                 Delete
                             </a>
-                        </td>
                         @endif
+                        </td>
+
                     </tr>
 
                 @endforeach
                 </tbody>
             </table>
         </div>
+
+        @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
 
         <div class="dashboard-table">
             <table class="" cellpadding="5" border="2">
@@ -132,9 +142,9 @@
                         <td class="">{{$user->email}}</td>
                         <td class="">{{$user->created_at}}</td>
                         <td class="">
-                          {{--{{$user['roles']}}--}}
+
                         </td>
-                        @if (Auth::check())
+
                            <td>
                                 <a href="/dashboard/{{$user->id}}/edit" class="btn btn-primary">
                                     Edit
@@ -144,7 +154,7 @@
                                    Delete
                                </a>
                            </td>
-                        @endif
+
                     </tr>
 
                 @endforeach
@@ -152,6 +162,8 @@
                 </tbody>
             </table>
         </div>
+
+        @endif
 
         {{--<p>{{$currentPath}}</p>--}}
 

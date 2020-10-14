@@ -18,7 +18,7 @@
 
 
 
-    @if (Auth::check())
+        @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
         <a href="/assignments/create" class="btn btn-primary">
             Create Assignment
         </a>
@@ -38,7 +38,7 @@
                     Blogposts
                 </a>
 
-                @if (Auth::check())
+                @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_EDITOR))
                     <a href="/assignments/{{$assignment->id}}/edit" class="btn btn-secondary">
                         Assignment aanpassen
                     </a>
@@ -48,7 +48,7 @@
         </div>
     @endforeach
 
-    @if (Auth::check())
+        @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
     <a href="/assignments/create" class="btn btn-primary btn-lg">
         Assignment aanmaken
     </a>

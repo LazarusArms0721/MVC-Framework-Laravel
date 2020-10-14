@@ -29,7 +29,7 @@ class CheckUserRole
         $user = Auth::guard()->user();
 
         if (!$this->userRoleChecker->check($user, $role)){
-                throw new AuthorizationException('You do not have permission to view this page OSMANNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN');
+                throw new AuthorizationException('You do not have permission to view this page');
 
         }
 
