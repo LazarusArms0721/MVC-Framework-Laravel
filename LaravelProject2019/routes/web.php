@@ -14,12 +14,20 @@
 
 use App\User;
 
+
 // ADD ROLE function
 
 Route::get('/add/role/editor', function(){
 
+    $newrole = auth()->user();
 
-});
+
+
+
+    return $newrole->addRole('ROLE_EDITOR')->save();
+
+
+})->middleware('auth');
 
 //
 // HOME
@@ -58,7 +66,7 @@ Route::get('/assignments',
                 ->name('pages.assignments');
 
 Route::get('assignments/create',
-             'PagesController@createAssignment')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+             'PagesController@createAssignment')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_EDITOR);
 
 //
 //Route::get('assignments/create',

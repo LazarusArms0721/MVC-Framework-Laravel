@@ -62,11 +62,12 @@ class User extends Authenticatable implements JWTSubject
 
     public function addRole($role){
 
-        $roles->$this->getRoles();
+        $roles = $this->getRoles();
         $roles[] = $role;
 
         $roles = array_unique($roles);
         $this->setRoles($roles);
+
 
         return $this;
     }

@@ -132,7 +132,7 @@
                         <td class="">{{$user->email}}</td>
                         <td class="">{{$user->created_at}}</td>
                         <td class="">
-                          {{$user->roles}}
+                          {{--{{$user['roles']}}--}}
                         </td>
                         @if (Auth::check())
                            <td>
