@@ -24,7 +24,7 @@ Route::get('/add/role/editor', function(){
 
 
 
-    return $newrole->addRole('ROLE_ADMIN')->save();
+    return $newrole->addRole('ROLE_EDITOR')->save();
 
 
 })->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
@@ -48,7 +48,7 @@ Route::get('/dashboard/{user}/edit',
             'DashboardController@getUser')
                 ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
 
-Route::put('/dashboard/{user}',
+Route::put('/dashboard/{user}/update',
             'DashboardController@updateUser')
                 ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
 
@@ -64,6 +64,9 @@ Route::get('/dashboard/{user}/delete',
 Route::get('/assignments',
             'PagesController@getAssignments')
                 ->name('pages.assignments');
+
+Route::get('/assignments/{assignment}',
+            'Pagescontroller@getAssigment');
 
 Route::get('assignments/create',
              'PagesController@createAssignment')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);

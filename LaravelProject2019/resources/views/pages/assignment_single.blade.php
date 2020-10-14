@@ -24,9 +24,9 @@
                     Blogpost aanpassen
                 </a>
             @endif
-                <a href="/blog" class="btn btn-secondary">
-                    Return
-                </a>
+            <a href="/blog" class="btn btn-secondary">
+                Return
+            </a>
 
         </div>
     </div>

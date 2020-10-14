@@ -42,6 +42,12 @@ class PagesController extends Controller
         return view ('pages.assignments', compact('assignments'));
     }
 
+    public function getAssignment(Assignment $assignment){
+        $assignment = Assignment::find($assignment->id);
+
+        return view('pages.assignment_single', compact('assignment'));
+    }
+
     public function createAssignment(){
 
         return view ('pages.create_assignment');

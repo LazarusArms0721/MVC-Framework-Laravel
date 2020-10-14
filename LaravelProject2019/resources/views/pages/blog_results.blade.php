@@ -22,6 +22,13 @@
                 @endforeach
             </select>
             <button action="submit">Search</button>
+
+            @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
+                <a href="/blog/create" class="btn btn-primary">
+                    Create Blogpost
+                </a>
+            @endif
+
         </form>
 
         @foreach ($filteredblogs as $filteredblog)
@@ -31,6 +38,7 @@
 
                 {{--<p>{{$blog->text }}</p>--}}
                 {{--<img src="{{$blog->assignment_image}}" alt="">--}}
+                <p class="author-name">Written by {{$filteredblog->user['name']}} on {{$filteredblog->created_at->todatestring()}}</p>
 
                 <div class="button-group">
                     <a href="/blog/{{$filteredblog->id}}/single" class="btn btn-primary">
