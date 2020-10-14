@@ -9,22 +9,21 @@
 
 @section ('content')
 
-    <div class="blog">
-        <h4>{{$blog->title}}</h4>
-        <p>{{$blog->assignment['name']}}</p>
-        <p>{{$blog->text}}</p>
-        {{--<img src="{{$blog->assignment_image}}" alt="">--}}
-        <p class="author-name">Written by {{$blog->user['name']}} on {{$blog->created_at->todatestring()}}</p>
+    <div class="assignment">
+        <h4>{{$assignment->name}}</h4>
+        <p>{{$assignment->assignment_text}}</p>
+        <img class="assignment_image" src="{{asset('storage/assignment_images1').'/'.$assignment->assignment_image }}" alt="">
+        {{--<p class="author-name">Written by {{$assignment->user['name']}} on {{$blog->created_at->todatestring()}}</p>--}}
 
 
         <div class="button-group">
 
             @if (Auth::check())
-                <a href="/blog/{{$blog->id}}/edit" class="btn btn-secondary">
-                    Blogpost aanpassen
+                <a href="/assignments/{{$assignment->id}}/edit" class="btn btn-secondary">
+                    Assignment aanpassen
                 </a>
             @endif
-            <a href="/blog" class="btn btn-secondary">
+            <a href="/assignments" class="btn btn-secondary">
                 Return
             </a>
 
