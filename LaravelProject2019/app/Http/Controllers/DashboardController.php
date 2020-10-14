@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\Assignment;
 use App\Blog;
 use App\User;
 use App\Role;
+
 
 
 class DashboardController extends Controller
@@ -36,13 +38,15 @@ class DashboardController extends Controller
 
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'role' => $request->input('roles'),
+            'roles' => $request->input('roles'),
 
 
         ]);
 
 
         if ($userUpdate){
+
+            $userUpdate->addRole['roles']->save();
 
             return redirect('/dashboard')->with('success', 'Blog updated sucessfully');
         }

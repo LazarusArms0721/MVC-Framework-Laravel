@@ -24,7 +24,7 @@
         <div class="col-sm-6 offset-sm-3">
             <h1>Update User: {{$user->name}}</h1>
             <hr>
-            <form method="POST" action="/dashboard/{{$user->id}}" enctype="multipart/form-data">
+            <form method="POST" action="/dashboard/{{$user->id}}/update" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
                 <input type = "hidden" name = "_method" value = "put">
@@ -35,16 +35,20 @@
                 <label for="email">Email address</label>
                 <input name="email" class="form-control mb-3" value="<?php echo $user->email; ?>">
 
-                <p>Active role: {{$user->roles}}</p>
+                <p>Active role(s):
+                    {{--@foreach ($user->roles as $userrole)--}}
+                        {{--{{$userrole}},--}}
+                    {{--@endforeach--}}
+                </p>
 
                 <label for="roles">Role(s)</label>
-                <select name="roles" id="roles">
-                    <option valie="NONE">Select role</option>
-                    @foreach ($roles as $role)
-                        <option value="{{$role}}">{{$role}}</option>
-                    @endforeach
-                </select>
                 <br>
+                    @foreach ($roles as $role)
+                        <input type="checkbox" name="{{$role}}" id="roles" value="{{$role}}">
+                        <label for="{{$role}}">{{$role}}</label>
+                        <br>
+                    @endforeach
+
 
 
                 <button type="submit" class="btn btn-success mt-3">Update User</button>
