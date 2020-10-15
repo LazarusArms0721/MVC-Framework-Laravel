@@ -17,12 +17,11 @@
     <h1>Assignments Page</h1>
 
 
-
         @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
-        <a href="/assignments/create" class="btn btn-primary">
+        <a href="/assignment/create" class="btn btn-primary">
             Create Assignment
         </a>
-    @endif
+        @endif
 
 
     @foreach($assignments as $assignment)

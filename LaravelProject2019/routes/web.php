@@ -68,8 +68,8 @@ Route::get('/assignments',
 Route::get('/assignments/{assignment}',
             'Pagescontroller@getAssignment');
 
-Route::get('assignments/create',
-             'PagesController@createAssignment')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+Route::get('/assignment/create', 'PagesController@createAssignment'
+             )->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
 
 //
 //Route::get('assignments/create',

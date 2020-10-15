@@ -50,7 +50,7 @@ class PagesController extends Controller
 
     public function createAssignment(){
 
-        return view ('pages.create_assignment');
+        return view('pages.create_assignment');
     }
 
     public function storeAssignment(Request $request){
