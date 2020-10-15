@@ -23,10 +23,12 @@
             </select>
             <button class="btn btn-outline-info" action="submit">Search</button>
 
-            @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
-                <a href="/blog/create" class="btn btn-primary">
-                    Create Blogpost
-                </a>
+            @if(Auth::check())
+                @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
+                    <a href="/blog/create" class="btn btn-primary">
+                        Create Blogpost
+                    </a>
+                @endif
             @endif
         </form>
 
@@ -53,10 +55,12 @@
           </div>
         @endforeach
 
-        @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
-            <a href="/blog/create" class="btn btn-primary btn-lg">
-                Create Blog Post
-            </a>
+        @if(Auth::check())
+            @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
+                <a href="/blog/create" class="btn btn-primary btn-lg">
+                    Create Blog Post
+                </a>
+            @endif
         @endif
 
     </div>

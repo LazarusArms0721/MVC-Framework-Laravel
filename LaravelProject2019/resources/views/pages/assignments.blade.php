@@ -16,12 +16,13 @@
 
     <h1>Assignments Page</h1>
 
-
+    @if(Auth::check())
         @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
         <a href="/assignment/create" class="btn btn-primary">
             Create Assignment
         </a>
         @endif
+    @endif
 
 
     @foreach($assignments as $assignment)
@@ -41,20 +42,25 @@
                     Blogposts
                 </a>
 
-                @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_EDITOR))
+                @if (Auth::check())
+                    @if(Auth()->user()->hasRole(App\Role\UserRole::ROLE_EDITOR))
                     <a href="/assignments/{{$assignment->id}}/edit" class="btn btn-outline-secondary">
                         Assignment aanpassen
                     </a>
+                    @endif
                 @endif
             </div>
 
         </div>
     @endforeach
 
+
+    @if (Auth::check())
         @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
-    <a href="/assignments/create" class="btn btn-primary btn-lg">
-        Assignment aanmaken
-    </a>
+        <a href="/assignments/create" class="btn btn-primary btn-lg">
+            Assignment aanmaken
+        </a>
+        @endif
     @endif
 
     </div>

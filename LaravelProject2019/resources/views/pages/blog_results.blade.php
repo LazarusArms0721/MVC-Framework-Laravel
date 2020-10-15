@@ -23,10 +23,12 @@
             </select>
             <button action="submit">Search</button>
 
-            @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
-                <a href="/blog/create" class="btn btn-primary">
-                    Create Blogpost
-                </a>
+            @if (Auth::check())
+                @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
+                    <a href="/blog/create" class="btn btn-primary">
+                        Create Blogpost
+                    </a>
+                @endif
             @endif
 
         </form>
@@ -46,9 +48,11 @@
                     </a>
 
                     @if (Auth::check())
+                        @if(Auth()->user()->hasRole(App\Role\UserRole::ROLE_EDITOR))
                         <a href="/blog/{{$filteredblog->id}}/edit" class="btn btn-secondary">
                             Blogpost aanpassen
                         </a>
+                        @endif
                     @endif
                 </div>
             </div>
