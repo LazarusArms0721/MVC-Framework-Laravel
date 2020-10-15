@@ -27,7 +27,7 @@ Route::get('/add/role/editor', function(){
     return $newrole->addRole('ROLE_EDITOR')->save();
 
 
-})->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+})->middleware('auth');
 
 //
 // HOME

@@ -10739,16 +10739,40 @@ a.text-dark:focus {
   margin-top: 50px;
 }
 
+.assignments-container .left-side {
+  height: 300px;
+  float: left;
+  width: 70%;
+  max-height: 300px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  position: relative;
+}
+
+.assignments-container .right-side {
+  height: 300px;
+  float: right;
+  width: 30%;
+  max-height: 300px;
+}
+
 .assignments-container .assignment_image {
-  width: 200px;
-  height: auto;
-  border-radius: 5px;
+  max-height: 300px;
+  float: right;
+}
+
+.assignments-container .bpos {
+  position: absolute;
+  bottom: 0px;
+  left: 10px;
 }
 
 .assignment {
+  height: 300px;
   margin-top: 10px;
   margin-bottom: 10px;
-  padding: 10px;
   background-color: #424242;
   border-radius: 5px;
 }

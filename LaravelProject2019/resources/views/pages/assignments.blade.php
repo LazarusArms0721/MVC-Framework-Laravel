@@ -27,29 +27,35 @@
 
     @foreach($assignments as $assignment)
         <div class="assignment">
-            <h1>{{$assignment->name}}</h1>
-            <p>{{$assignment->assignment_text}}</p>
-            <img class="assignment_image" src="{{asset('storage/assignment_images1').'/'.$assignment->assignment_image }}" alt="">
 
-
-
-            <div class="button-group">
-                <a href="/assignments/{{$assignment->id}}" class="btn btn-primary">
-                    Read More
-                </a>
-
-                <a href="/blog-filter?assignment_id={{$assignment->id}}" class="btn btn-secondary">
-                    Blogposts
-                </a>
-
-                @if (Auth::check())
-                    @if(Auth()->user()->hasRole(App\Role\UserRole::ROLE_EDITOR))
-                    <a href="/assignments/{{$assignment->id}}/edit" class="btn btn-outline-secondary">
-                        Assignment aanpassen
+            <div class="left-side">
+                <h1>{{$assignment->name}}</h1>
+                <p>{{$assignment->assignment_text}}</p>
+                <div class="bpos button-group">
+                    <a href="/assignments/{{$assignment->id}}" class="btn btn-primary">
+                        Read More
                     </a>
+
+                    <a href="/blog-filter?assignment_id={{$assignment->id}}" class="btn btn-secondary">
+                        Blogposts
+                    </a>
+
+                    @if (Auth::check())
+                        @if(Auth()->user()->hasRole(App\Role\UserRole::ROLE_EDITOR))
+                            <a href="/assignments/{{$assignment->id}}/edit" class="btn btn-outline-secondary">
+                                Assignment aanpassen
+                            </a>
+                        @endif
                     @endif
-                @endif
+                </div>
             </div>
+
+            <div class="right-side">
+                <img class="assignment_image" src="{{asset('storage/assignment_images1').'/'.$assignment->assignment_image }}" alt="">
+            </div>
+
+
+
 
         </div>
     @endforeach
