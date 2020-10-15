@@ -1,0 +1,47 @@
+.dashboard-table {
+
+  border-radius: 5px;
+  border-style: 1px solid #ffffff;
+  margin-bottom: 50px;
+
+
+  .table-head {
+
+
+    th {
+      font-size: 18px;
+      font-style: bold;
+      background-color: #311B92;
+    }
+  }
+
+
+  .td-spacing {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .table-body {
+    background-color: #2d2d2d;
+  }
+}
+
+.blog-header {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 86%;
+  text-align: right;
+
+
+  h3 {
+    display: inline;
+    padding-top: 5px;
+    position: relative;
+    top: 4px;
+  }
+
+  a {
+    display: inline;
+  }
+
+}

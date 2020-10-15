@@ -1,0 +1,20 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+@import 'themes/darktheme';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+//Partials
+@import '_partials/_sidebar-styling.scss';
+@import '_partials/_assignment-styling.scss';
+@import '_partials/_blog-styling.scss';
+@import '_partials/_button-styling.scss';
+@import '_partials/_footer-styling.scss';
+@import '_partials/_login-styling.scss';
+@import '_partials/_dashboard-styling.scss';
+@import '_partials/_home-styling.scss';
