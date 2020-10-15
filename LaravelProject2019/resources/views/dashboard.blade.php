@@ -141,9 +141,7 @@
                         <td class="">{{$user->name}}</td>
                         <td class="">{{$user->email}}</td>
                         <td class="">{{$user->created_at}}</td>
-                        <td class="">
-
-                        </td>
+                        <td class="">{{json_encode($user->roles)}}</td>
 
                            <td>
                                 <a href="/dashboard/{{$user->id}}/edit" class="btn btn-primary">
