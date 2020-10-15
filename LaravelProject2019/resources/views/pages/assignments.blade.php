@@ -60,6 +60,12 @@
         </div>
     @endforeach
 
+    <div class="row">
+        <div class="col-12 text-center">
+            {{ $assignments->links() }}
+        </div>
+    </div>
+
 
     @if (Auth::check())
         @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))

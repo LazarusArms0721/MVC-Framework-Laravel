@@ -35,7 +35,7 @@ class PagesController extends Controller
     }
 
     public function getAssignments(){
-        $assignments = Assignment::paginate(15)->sortByDesc('created_at');
+        $assignments = Assignment::orderBy('created_at', 'DESC')->paginate(10);
 
 
 
@@ -152,8 +152,10 @@ class PagesController extends Controller
     }
 
     public function getBlogs(){
-        $blogs = Blog::all()->sortByDesc('created_at');
+        $blogs = Blog::orderBy('created_at', 'DESC')->paginate(10);
         $assignments = Assignment::all();
+
+
 
 
         return view ('pages.blog', compact('blogs', 'assignments'));
@@ -167,7 +169,7 @@ class PagesController extends Controller
 
     public function getBlogFilter(Request $request) {
 
-        $filteredblogs =  Blog::filter($request)->get();
+        $filteredblogs =  Blog::filter($request)->orderBy('created_at', 'DESC')->paginate(10);
         $assignments = Assignment::all();
 
         return view ('pages.blog_results', compact('filteredblogs', 'assignments'));

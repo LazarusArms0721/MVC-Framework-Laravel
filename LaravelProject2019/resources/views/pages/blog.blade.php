@@ -55,6 +55,13 @@
           </div>
         @endforeach
 
+
+        <div class="row">
+            <div class="col-12 text-center">
+                {{ $blogs->links() }}
+            </div>
+        </div>
+
         @if(Auth::check())
             @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
                 <a href="/blog/create" class="btn btn-primary btn-lg">
