@@ -29,6 +29,18 @@ Route::get('/add/role/editor', function(){
 
 })->middleware('auth');
 
+Route::get('/add/role/admin', function(){
+
+    $newrole = auth()->user();
+
+
+
+
+    return $newrole->addRole('ROLE_ADMIN')->save();
+
+
+})->middleware('auth');
+
 //
 // HOME
 //
@@ -55,6 +67,16 @@ Route::put('/dashboard/{user}/update',
 Route::get('/dashboard/{user}/delete',
             'DashboardController@deleteUser')
                 ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+
+
+//
+//  User Dashboard
+//
+
+Route::get('/dashboard/user', 'DashboardController@showUserDashboard')->middleware('auth');
+
+Route::get('/dashboard/user/{user}/edit', 'DashboardController@editUserDashboard')->middleware('auth');
+
 
 //
 // ASSIGNMENTS

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Assignment;
 use App\Blog;
 use App\User;
@@ -13,6 +15,21 @@ use App\Role;
 
 class DashboardController extends Controller
 {
+
+    public function showUserDashboard(){
+
+        $user = User::find(Auth::user()->id);
+
+        return view('user_dashboard', compact('user'));
+    }
+
+    public function editUserDashboard(User $user){
+        $user = User::find($user->id);
+        $roles = Role\UserRole::getRoleList();
+        $alert = Alert::alert('Warning', 'Are you sure you want to delete your account?', 'Type');
+
+        return view('user_dashboard_single', compact('user', 'roles','alert'));
+    }
 
     public function showDashboard(){
 
@@ -28,6 +45,7 @@ class DashboardController extends Controller
     public function getUser(User $user){
         $user = User::find($user->id);
         $roles = Role\UserRole::getRoleList();
+
 
         return view('user_single', compact('user', 'roles'));
 
@@ -61,6 +79,10 @@ class DashboardController extends Controller
         $user->delete();
 
         return redirect('/dashboard');
+
+    }
+
+    public function deleteUserAlert(){
 
     }
 

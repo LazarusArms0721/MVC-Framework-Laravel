@@ -23,9 +23,7 @@
             </li>
 
             @if (Auth::check())
-                <li class="nav-item dashboard-showcase">
-                    <a class="nav-link" href="/dashboard">Dashboard</a>
-                </li>
+
             @endif
             {{--<li class="nav-item dropdown">--}}
                 {{--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
@@ -44,9 +42,12 @@
         </ul>
         <ul class="dropdown form-inline my-2 my-lg-0">
         @if (Auth::check())
-            <li style="color: #fff; list-style:none; margin-right:10px;">{{ Auth::user()->name}}</li>
-                <li style="color: #fff; list-style:none; margin-right:10px;">{{ Auth::guard()->user()}}</li>
-
+            <li class="nav-item dashboard-showcase">
+                <a class="nav-link" href="/dashboard">Dashboard</a>
+            </li>
+            <li style="color: #fff; list-style:none; margin-right:10px;">
+                <a href="/dashboard/user">{{ Auth::user()->name}}</a>
+            </li>
             <li style="color:#fff; list-style:none; margin-right:10px;"><a href="{{ url('/logout') }}">Logout</a></li>
             {{--<button onclick="myFunction()" class="dropbtn">Menu</button>--}}
             <div id="myDropdown" class="dropdown-content">

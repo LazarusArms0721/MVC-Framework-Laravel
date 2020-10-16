@@ -1,6 +1,6 @@
 @extends ('layouts.app')
 
-@section ('title', 'Blog')
+@section ('title', 'Edit User')
 
 @section('stylesheets')
 
@@ -35,11 +35,7 @@
                 <label for="email">Email address</label>
                 <input name="email" class="form-control mb-3" value="<?php echo $user->email; ?>">
 
-                <p>Active role(s):
-                    {{--@foreach ($user->roles as $userrole)--}}
-                        {{--{{$userrole}},--}}
-                    {{--@endforeach--}}
-                </p>
+                <p>Active role(s): {{json_encode($user->roles)}}</p>
 
                 <label for="roles">Role(s)</label>
                 <br>

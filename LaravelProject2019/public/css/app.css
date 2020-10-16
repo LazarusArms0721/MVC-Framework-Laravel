@@ -10700,7 +10700,16 @@ a.text-dark:focus {
 
 .dropdown {
   position: relative;
-  display: inline-block;
+  list-style: none;
+}
+
+.dropdown li {
+  display: inline;
+  margin-right: 10px;
+}
+
+.dropdown .nav-link {
+  color: #fff !important;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -10802,6 +10811,15 @@ a.text-dark:focus {
 .button-group {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.page-link {
+  background-color: #212121 !important;
+}
+
+.page-item.disabled .page-link {
+  background-color: #212121 !important;
+  color: #e3342f !important;
 }
 
 .footer-container {
