@@ -126,7 +126,7 @@ class PagesController extends Controller
             $path = $request->file('assignment_image')->storeAs('public/assignment_images1', $fileNameToStore);
 
         } else {
-            $fileNameToStore = 'noimage.jpeg';
+            $fileNameToStore = $assignment->assignment_image;
         }
 
         $assignment = Assignment::where('id', $assignment->id)->update([
