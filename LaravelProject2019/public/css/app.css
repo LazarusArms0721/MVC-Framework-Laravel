@@ -10780,7 +10780,7 @@ a.text-dark:focus {
 }
 
 .assignment {
-  height: 300px;
+  min-height: 300px;
   margin-top: 10px;
   margin-bottom: 10px;
   background-color: #424242;
