@@ -129,16 +129,16 @@ class PagesController extends Controller
             $fileNameToStore = 'noimage.jpeg';
         }
 
-        $assignmentUpdate = Assignment::where('id', $assignment->id)->update([
+        $assignment = Assignment::where('id', $assignment->id)->update([
 
             'name' => $request->input('name'),
             'assignment_text' => $request->input('assignment_text'),
-            'assignment_image' => $request->update['image']
+            'assignment_image' => $fileNameToStore
 
         ]);
 
 
-        if ($assignmentUpdate){
+        if ($assignment){
 
             return redirect('/assignments')->withEditedMessage('Assignment updated successfully');
         }
