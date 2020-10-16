@@ -10770,6 +10770,7 @@ a.text-dark:focus {
 .assignments-container .assignment_image {
   max-height: 300px;
   float: right;
+  max-width: 110%;
 }
 
 .assignments-container .bpos {

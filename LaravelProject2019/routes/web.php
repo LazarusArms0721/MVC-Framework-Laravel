@@ -77,6 +77,8 @@ Route::get('/dashboard/user', 'DashboardController@showUserDashboard')->middlewa
 
 Route::get('/dashboard/user/{user}/edit', 'DashboardController@editUserDashboard')->middleware('auth');
 
+Route::get('/dashboard/user/{user}/delete')->middleware('auth');
+
 
 //
 // ASSIGNMENTS
@@ -148,9 +150,8 @@ Route::get('/blog/{blog}/edit',
             'PagesController@showBlog')
                 ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_EDITOR);
 
-Route::put('/blog/{blog}',
-            'Pages
-            Controller@updateBlog')
+Route::put('/blog/{blog}/update',
+            'PagesController@updateBlog')
                 ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_EDITOR);
 
 Route::get('/blog/{blog}/delete',

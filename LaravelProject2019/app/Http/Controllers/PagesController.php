@@ -13,6 +13,7 @@ use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Expr\Assign;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class PagesController extends Controller
@@ -37,7 +38,17 @@ class PagesController extends Controller
     public function getAssignments(){
         $assignments = Assignment::orderBy('created_at', 'DESC')->paginate(10);
 
+        if(session('success_message')){
+            Alert::success('Success!', session('success_message'));
+        }
 
+        elseif(session('deleted_message')){
+            Alert::success('Success!', session('deleted_message'));
+        }
+
+        elseif(session('edited_message')){
+            Alert::success('Success!', session('edited_message'));
+        }
 
         return view ('pages.assignments', compact('assignments'));
     }
@@ -89,7 +100,7 @@ class PagesController extends Controller
 
         $assignment->save();
 
-        return redirect()->to('/assignments');
+        return redirect()->to('/assignments')->withSuccessMessage('Assignment successfully added!');
     }
 
     // Get selected assignment through edit button.
@@ -129,7 +140,7 @@ class PagesController extends Controller
 
         if ($assignmentUpdate){
 
-            return redirect('/assignments')->with('success', 'Assignment updated sucessfully');
+            return redirect('/assignments')->withEditedMessage('Assignment updated successfully');
         }
 
 
@@ -140,7 +151,7 @@ class PagesController extends Controller
 
         $assignment->delete();
 
-        return redirect('/assignments');
+        return redirect('/assignments')->withDeletedMessage('Assignment deleted successfully');
 
     }
 
@@ -155,8 +166,15 @@ class PagesController extends Controller
         $blogs = Blog::orderBy('created_at', 'DESC')->paginate(10);
         $assignments = Assignment::all();
 
-
-
+        if(session('success_message')){
+            Alert::success('Success!', session('success_message'));
+        }
+        elseif(session('edited_message')){
+            Alert::success('Success!', session('edited_message'));
+        }
+        elseif(session('deleted_message')){
+            Alert::success('Success!', session('deleted_message'));
+        }
 
         return view ('pages.blog', compact('blogs', 'assignments'));
     }
@@ -191,7 +209,7 @@ class PagesController extends Controller
         $blog->user_id = Auth::user()->id;
         $blog->save();
 
-        return redirect()->to('/blog');
+        return redirect()->to('/blog')->withSuccessMessage('Blogpost created succesfully!');
     }
 
     public function showBlog(Blog $blog, Assignment $assignments){
@@ -218,7 +236,7 @@ class PagesController extends Controller
 
         if ($blogUpdate){
 
-            return redirect('/blog')->with('success', 'Blog updated sucessfully');
+            return redirect('/blog')->with('success', 'Blog updated sucessfully')->withEditedMessage('Blogpost edited successfully!');
         }
 
 
@@ -235,7 +253,7 @@ class PagesController extends Controller
             return redirect('/dashboard');
         } else {
 
-            return redirect('/blog');
+            return redirect('/blog')->withDeletedMessage('Blogpost deleted successfully!');
 
         }
 

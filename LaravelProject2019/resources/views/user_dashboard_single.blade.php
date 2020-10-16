@@ -43,7 +43,7 @@
                         {{--Delete Account--}}
                     {{--</a> --}}
 
-                    <a href="#" id="btndelete" class="btn btn-outline-danger mt-3">Delete Account</a>
+                    <a href="#" id="btndelete" data-id="{{$user->id}}" class="btn btn-outline-danger mt-3">Delete Account</a>
                 @endif
 
                 <a href="/dashboard/user" class="btn btn-outline-info mt-3">Return</a>
@@ -52,14 +52,30 @@
         </div>
     </div>
 
-
     <script type="text/javascript">
 
-        Swal.fire({
-            imageUrl: 'https://placeholder.pics/svg/300x1500',
-            imageHeight: 1500,
-            imageAlt: 'A tall image'
-        });
+//        $(document).on('click', '#btndelete', function (e) {
+//            e.preventDefault();
+//            var id = $(this).data('id');
+//            swal.fire({
+//                title: "Are you sure?",
+//                type: "Error",
+//                confirmButtonClass: "btn-danger",
+//                confirmButtonText: "Yes, I am sure",
+//                showCancelButton: true
+//            },
+//            function () {
+//                $.ajax({
+//                    type: 'GET',
+//                    url: '/dashboard/user/{user}/delete',
+//                    data: {id:id},
+//                    success: function (data) {
+//
+//                    }
+//                });
+//
+//            });
+//        });
 
     </script>
 
@@ -74,6 +90,8 @@
             </div>
         </div>
     @endif
+
+
 
 @endsection
 

@@ -23,12 +23,12 @@ class DashboardController extends Controller
         return view('user_dashboard', compact('user'));
     }
 
-    public function editUserDashboard(User $user){
+    public function editUserDashboard(User $user, Alert $alert){
         $user = User::find($user->id);
         $roles = Role\UserRole::getRoleList();
-        $alert = Alert::alert('Warning', 'Are you sure you want to delete your account?', 'Type');
+        $alert = Alert::warning('Warning Title', 'Warning Message');
 
-        return view('user_dashboard_single', compact('user', 'roles','alert'));
+        return view('user_dashboard_single', compact('user', 'roles', 'alert'));
     }
 
     public function showDashboard(){

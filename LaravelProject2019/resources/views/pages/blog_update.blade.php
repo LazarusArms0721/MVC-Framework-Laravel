@@ -13,7 +13,7 @@
         <div class="col-sm-6 offset-sm-3">
             <h1>Update Blog post</h1>
             <hr>
-            <form method="POST" action="/blog/{{$blog->id}}" enctype="multipart/form-data">
+            <form method="POST" action="/blog/{{$blog->id}}/update" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
                 <input type = "hidden" name = "_method" value = "put">
