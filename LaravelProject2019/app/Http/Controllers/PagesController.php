@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-
-
-use Illuminate\Http\Request;
-
 use App\Page;
 use App\Assignment;
 use App\Blog;
 use Illuminate\Routing\Route;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Expr\Assign;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -39,15 +37,15 @@ class PagesController extends Controller
         $assignments = Assignment::orderBy('created_at', 'DESC')->paginate(10);
 
         if(session('success_message')){
-            Alert::success('Success!', session('success_message'));
+            Alert::toast('Assignment created successfully!', 'success');
         }
 
         elseif(session('deleted_message')){
-            Alert::success('Success!', session('deleted_message'));
+            Alert::toast('Assignment deleted successfully!', 'success');
         }
 
         elseif(session('edited_message')){
-            Alert::success('Success!', session('edited_message'));
+            Alert::toast('Assignment edited successfully!', 'success');
         }
 
         return view ('pages.assignments', compact('assignments'));
@@ -55,6 +53,7 @@ class PagesController extends Controller
 
     public function getAssignment(Assignment $assignment){
         $assignment = Assignment::find($assignment->id);
+
 
         return view('pages.assignment_single', compact('assignment'));
     }
@@ -67,8 +66,8 @@ class PagesController extends Controller
     public function storeAssignment(Request $request){
         //hier wordt aangegeven welke velden verplicht zijn.
         $this->validate($request, [
-            'name' => 'required',
-            'assignment_text' => 'required',
+            'name' => 'required|min: 8',
+            'assignment_text' => 'required|min: 15',
             'assignment_image' => 'image'
         ]);
 
@@ -100,7 +99,8 @@ class PagesController extends Controller
 
         $assignment->save();
 
-        return redirect()->to('/assignments')->withSuccessMessage('Assignment successfully added!');
+//        return redirect()->to('/assignments')->withSuccessMessage('Assignment successfully added!');
+        return redirect('/assignments')->with('success', 'Post was created!');
     }
 
     // Get selected assignment through edit button.
@@ -112,6 +112,7 @@ class PagesController extends Controller
     }
 
     public function updateAssignment(Request $request, Assignment $assignment){
+
 
         if ($request->hasFile('assignment_image')){
 
@@ -167,13 +168,13 @@ class PagesController extends Controller
         $assignments = Assignment::all();
 
         if(session('success_message')){
-            Alert::success('Success!', session('success_message'));
+            Alert::toast('Success! Created blogpost', 'success');
         }
         elseif(session('edited_message')){
-            Alert::success('Success!', session('edited_message'));
+            Alert::toast('Success! Edited blogpost', 'success');
         }
         elseif(session('deleted_message')){
-            Alert::success('Success!', session('deleted_message'));
+            Alert::toast('Success! Deleted blogpost.', 'success');
         }
 
         return view ('pages.blog', compact('blogs', 'assignments'));

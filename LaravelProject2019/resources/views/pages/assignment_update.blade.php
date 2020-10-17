@@ -36,9 +36,15 @@
                     </a>
                 @endif
 
+
+
             </form>
+
+                <a href="#" id="button" data-id="{{$assignment->id}}">Delete</a>
         </div>
     </div>
+
+
 
     @if($errors->any())
         <div class="row">
