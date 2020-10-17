@@ -33,8 +33,8 @@ class DashboardController extends Controller
 
     public function showDashboard(){
 
-        $assignments = Assignment::all()->sortByDesc('created_at');
-        $blogs = Blog::all()->sortByDesc('created_at');
+        $assignments = Assignment::orderBy('created_at', 'DESC')->paginate(10);
+        $blogs = Blog::orderBy('created_at','DESC')->paginate(10);
         $users = User::all();
 
         $currentPath = \Illuminate\Support\Facades\Route::getFacadeRoot()->current()->uri();
@@ -49,6 +49,7 @@ class DashboardController extends Controller
 
         return view('user_single', compact('user', 'roles'));
 
+
     }
 
     public function updateUser(Request $request,  User $user ){
@@ -58,13 +59,11 @@ class DashboardController extends Controller
             'email' => $request->input('email'),
             'roles' => $request->input('roles'),
 
-
         ]);
 
 
         if ($userUpdate){
 
-            $userUpdate->addRole['roles']->save();
 
             return redirect('/dashboard')->with('success', 'Blog updated sucessfully');
         }

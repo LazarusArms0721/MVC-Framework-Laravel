@@ -1,26 +1,24 @@
-@extends ('layouts.app')
+<?php
+/**
+ * Created by PhpStorm.
+ * User: erhan
+ * Date: 30/09/2020
+ * Time: 00:57
+ */
+?>
 
-@section ('title', 'Edit User')
+@extends('layouts.app')
 
-@section('stylesheets')
-
-
-@endsection
-
-@section ('content')
-
-    @extends ('layouts.app')
-
-@section ('title', 'Create Assignment')
+@section ('title', 'Dashboard User')
 
 @section('stylesheets')
 
 
 @endsection
 
-@section ('content')
+@section('content')
 
-    <div class="row">
+<div class="row">
         <div class="col-sm-6 offset-sm-3">
             <h1>Update User: {{$user->name}}</h1>
             <hr>
@@ -39,11 +37,11 @@
 
                 <label for="roles">Role(s)</label>
                 <br>
-                    @foreach ($roles as $role)
-                        <input type="checkbox" name="{{$role}}" id="roles" value="{{$role}}">
-                        <label for="{{$role}}">{{$role}}</label>
-                        <br>
-                    @endforeach
+                @foreach ($roles as $role)
+                    <input type="checkbox" name="{{$role}}" id="roles" value="{{$role}}">
+                    <label for="{{$role}}">{{$role}}</label>
+                    <br>
+                @endforeach
 
 
 
@@ -72,22 +70,5 @@
             </div>
         </div>
     @endif
-
-@endsection
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @endsection

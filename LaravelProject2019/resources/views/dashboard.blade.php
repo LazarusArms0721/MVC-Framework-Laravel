@@ -68,6 +68,11 @@
 
             @endforeach
                 </tbody>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        {{ $assignments->links() }}
+                    </div>
+                </div>
             </table>
         </div>
 
@@ -119,6 +124,11 @@
 
                 @endforeach
                 </tbody>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        {{ $blogs->links() }}
+                    </div>
+                </div>
             </table>
         </div>
 

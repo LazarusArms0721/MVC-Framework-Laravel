@@ -20,13 +20,12 @@
 
                 <label for="assignment_id">Assignment:</label>
                 <select name="assignment_id" id="assignment_id">
+                    <option value="{{$blog->assignment_id}}">{{$blog->assignment['name']}}</option>
                     @foreach ($assignments as $assignment)
                         <option value="{{ $assignment->id}}"> {{$assignment->name}}</option>
                     @endforeach
                 </select>
                 <br>
-                <p>Current Assignment Category {{$blog->assignment['name']}}</p>
-
 
                 <label for="title">Blogpost Title</label>
                 <input type="text" name="title" class="form-control" value="<?php echo $blog->title; ?>">
