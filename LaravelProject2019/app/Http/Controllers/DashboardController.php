@@ -23,12 +23,28 @@ class DashboardController extends Controller
         return view('user_dashboard', compact('user'));
     }
 
-    public function editUserDashboard(User $user, Alert $alert){
+    public function editUserDashboard(User $user){
         $user = User::find($user->id);
         $roles = Role\UserRole::getRoleList();
-        $alert = Alert::warning('Warning Title', 'Warning Message');
 
-        return view('user_dashboard_single', compact('user', 'roles', 'alert'));
+        return view('user_dashboard_single', compact('user', 'roles'));
+    }
+
+    public function updateUserDashboard(Request $request, User $user){
+
+        $userUpdate = User::where('id', $user->id)->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+        ]);
+
+
+        if ($userUpdate){
+
+            return redirect('/dashboard')->with('success', 'You have updated your profile!');
+        }
+
+
+        return back()->withInput();
     }
 
     public function showDashboard(){

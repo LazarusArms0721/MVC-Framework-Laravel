@@ -77,7 +77,9 @@ Route::get('/dashboard/user', 'DashboardController@showUserDashboard')->middlewa
 
 Route::get('/dashboard/user/{user}/edit', 'DashboardController@editUserDashboard')->middleware('auth');
 
-Route::get('/dashboard/user/{user}/delete')->middleware('auth');
+Route::put('/dashboard/user/{user}/update', 'DashboardController@updateUserDashboard')->middleware('auth');
+
+Route::get('/dashboard/user/{user}/delete', 'DashboardController@deleteUserDashboard')->middleware('auth');
 
 
 //
