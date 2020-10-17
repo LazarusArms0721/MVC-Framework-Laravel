@@ -33,16 +33,8 @@
                 <label for="email">Email address</label>
                 <input name="email" class="form-control mb-3" value="<?php echo $user->email; ?>">
 
-                <p>Active role(s): {{json_encode($user->roles)}}</p>
-
-                <label for="roles">Role(s)</label>
-                <br>
-                @foreach ($roles as $role)
-                    <input type="checkbox" name="{{$role}}" id="roles" value="{{$role}}">
-                    <label for="{{$role}}">{{$role}}</label>
-                    <br>
-                @endforeach
-
+                <label for="roles">Active role(s)</label>
+                <input name="roles" class="form-control mb-3" value="{{json_encode($user->roles)}}">
 
 
                 <button type="submit" class="btn btn-success mt-3">Update User</button>

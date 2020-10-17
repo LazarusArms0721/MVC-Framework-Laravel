@@ -44,7 +44,10 @@ class DashboardController extends Controller
 
     public function getUser(User $user){
         $user = User::find($user->id);
-        $roles = Role\UserRole::getRoleList();
+        $rolenames = Role\UserRole::getRoleList();
+        $rolevalues = Role\UserRole::getRoleList();
+
+        $roles = array_combine($rolenames, $rolevalues);
 
 
         return view('user_single', compact('user', 'roles'));
@@ -53,6 +56,7 @@ class DashboardController extends Controller
     }
 
     public function updateUser(Request $request,  User $user ){
+
         $userUpdate = User::where('id', $user->id)->update([
 
             'name' => $request->input('name'),
@@ -65,7 +69,7 @@ class DashboardController extends Controller
         if ($userUpdate){
 
 
-            return redirect('/dashboard')->with('success', 'Blog updated sucessfully');
+            return redirect('/dashboard')->with('success', 'User updated sucessfully');
         }
 
 
