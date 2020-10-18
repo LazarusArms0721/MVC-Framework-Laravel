@@ -31,14 +31,41 @@
                 <button type="submit" class="btn btn-success mt-3">Update Assignment</button>
 
                 @if (Auth::check())
-                    <a href="/assignments/{{$assignment->id}}/delete" class="btn btn-outline-danger mt-3 ">
+                    <a id="delete-assignment" href="" class="btn btn-outline-danger mt-3 ">
                         Delete Assignment
                     </a>
                 @endif
 
+
+
             </form>
+
         </div>
     </div>
+
+@section('scripts')
+    <script>
+
+
+        $( "#delete-assignment" ).click(function(e) {
+            e.preventDefault();
+            swal({
+                title: "Are you sure?",
+                text: "Once you delete this Assignmnent there is no going back.",
+                type: "warning",
+                showCancelButton: true,
+                cancelButtonText: "No, take me back",
+                showConfirmButton: true,
+                confirmButtonColor: '#e3342f',
+                confirmButtonText: "<a style='color: white !important;' href='/assignments/{{$assignment->id}}/delete'>Yes, I'm sure</a>",
+            })
+        });
+
+    </script>
+
+@endsection
+
+
 
     @if($errors->any())
         <div class="row">

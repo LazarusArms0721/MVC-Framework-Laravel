@@ -13,6 +13,7 @@
 
         <h1>Hello World</h1>
         <p>Erhan Akin 2020 All Rights Reserved</p>
+        <li style="color: #fff; list-style:none; margin-right:10px;">{{ Auth::guard()->user()}}</li>
 
     </div>
 </div>

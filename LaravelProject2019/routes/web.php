@@ -16,7 +16,7 @@ use App\User;
 
 
 // ADD ROLE function
-
+//
 Route::get('/add/role/editor', function(){
 
     $newrole = auth()->user();
@@ -27,7 +27,19 @@ Route::get('/add/role/editor', function(){
     return $newrole->addRole('ROLE_EDITOR')->save();
 
 
-})->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+})->middleware('auth');
+
+Route::get('/add/role/admin', function(){
+
+    $newrole = auth()->user();
+
+
+
+
+    return $newrole->addRole('ROLE_ADMIN')->save();
+
+
+})->middleware('auth');
 
 //
 // HOME
@@ -55,6 +67,24 @@ Route::put('/dashboard/{user}/update',
 Route::get('/dashboard/{user}/delete',
             'DashboardController@deleteUser')
                 ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+
+Route::get('dashboard/user/create',
+            'DashboardController@addUser')
+                ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+
+
+//
+//  User Dashboard
+//
+
+Route::get('/dashboard/user', 'DashboardController@showUserDashboard')->middleware('auth');
+
+Route::get('/dashboard/user/{user}/edit', 'DashboardController@editUserDashboard')->middleware('auth');
+
+Route::put('/dashboard/user/{user}/update', 'DashboardController@updateUserDashboard')->middleware('auth');
+
+Route::get('/dashboard/user/{user}/delete', 'DashboardController@deleteUserDashboard')->middleware('auth');
+
 
 //
 // ASSIGNMENTS
@@ -126,9 +156,8 @@ Route::get('/blog/{blog}/edit',
             'PagesController@showBlog')
                 ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_EDITOR);
 
-Route::put('/blog/{blog}',
-            'Pages
-            Controller@updateBlog')
+Route::put('/blog/{blog}/update',
+            'PagesController@updateBlog')
                 ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_EDITOR);
 
 Route::get('/blog/{blog}/delete',
@@ -140,7 +169,6 @@ Route::get('/blog/{blog}/delete',
 // OTHER
 //
 
-Route::get('/about', 'PagesController@getAbout')->name('pages.about');
 Route::get('/contact', 'ContactController@showForm')->name('contact.show');
 Route::get('/contact/create', 'ContactController@createEntry');
 Route::post('/contact-action', 'ContactController@storeContact');
@@ -154,6 +182,5 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 //Auth::routes();
 
-//Route::get('/home', 'HomeController@index')->name('home');
 
 

@@ -2,3 +2,12 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.page-link {
+  background-color:  #212121 !important;
+}
+
+.page-item.disabled .page-link {
+  background-color: #212121 !important;
+  color: $red !important;
+}

@@ -11,12 +11,13 @@
 
 
     <div class="col-md-8 offset-2 blog-container">
-        <h1>Blog results</h1>
+        <h1>Blog results: </h1>
 
         <form action="/blog-filter?assignment_id=" method="GET">
             @csrf
             <label for="assignment_id">Search blog by Assignment category</label>
             <select name="assignment_id" id="assignment_id">
+
                 @foreach ($assignments as $assignment)
                     <option value="{{$assignment->id}}">{{$assignment->name}}</option>
                 @endforeach

@@ -10700,7 +10700,16 @@ a.text-dark:focus {
 
 .dropdown {
   position: relative;
-  display: inline-block;
+  list-style: none;
+}
+
+.dropdown li {
+  display: inline;
+  margin-right: 10px;
+}
+
+.dropdown .nav-link {
+  color: #fff !important;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -10739,16 +10748,41 @@ a.text-dark:focus {
   margin-top: 50px;
 }
 
+.assignments-container .left-side {
+  height: 300px;
+  float: left;
+  width: 67%;
+  max-height: 300px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  position: relative;
+}
+
+.assignments-container .right-side {
+  height: 300px;
+  float: right;
+  width: 30%;
+  max-height: 300px;
+}
+
 .assignments-container .assignment_image {
-  width: 200px;
-  height: auto;
-  border-radius: 5px;
+  max-height: 300px;
+  float: right;
+  max-width: 110%;
+}
+
+.assignments-container .bpos {
+  position: absolute;
+  bottom: 0px;
+  left: 10px;
 }
 
 .assignment {
+  min-height: 300px;
   margin-top: 10px;
   margin-bottom: 10px;
-  padding: 10px;
   background-color: #424242;
   border-radius: 5px;
 }
@@ -10778,6 +10812,15 @@ a.text-dark:focus {
 .button-group {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.page-link {
+  background-color: #212121 !important;
+}
+
+.page-item.disabled .page-link {
+  background-color: #212121 !important;
+  color: #e3342f !important;
 }
 
 .footer-container {
@@ -10822,7 +10865,7 @@ a.text-dark:focus {
 .blog-header {
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 86%;
+  width: 100%;
   text-align: right;
 }
 
@@ -10835,6 +10878,10 @@ a.text-dark:focus {
 
 .blog-header a {
   display: inline;
+}
+
+.full-width {
+  width: 100%;
 }
 
 .block-container {
@@ -10855,5 +10902,21 @@ a.text-dark:focus {
   height: 300px;
   background-color: #2d2d2d;
   padding: 20px 20px;
+}
+
+.swal2-modal {
+  background-color: #101010 !important;
+}
+
+.swal2-modal .swal2-title {
+  color: #fff !important;
+}
+
+.swal2-modal .swal2-content {
+  color: #fff !important;
+}
+
+.swal2-modal a {
+  text-decoration: none !important;
 }
 

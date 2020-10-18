@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-
-
-use Illuminate\Http\Request;
-
 use App\Page;
 use App\Assignment;
 use App\Blog;
 use Illuminate\Routing\Route;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Expr\Assign;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class PagesController extends Controller
@@ -30,20 +29,27 @@ class PagesController extends Controller
         return view ('pages.index', compact('pages', 'latestAssignment', 'latestBlog'));
     }
 
-    public function getAbout(){
-        return view ('pages.about');
-    }
-
     public function getAssignments(){
-        $assignments = Assignment::paginate(15)->sortByDesc('created_at');
+        $assignments = Assignment::orderBy('created_at', 'DESC')->paginate(10);
 
+        if(session('success_message')){
+            Alert::toast('Assignment created successfully!', 'success');
+        }
 
+        elseif(session('deleted_message')){
+            Alert::toast('Assignment deleted successfully!', 'success');
+        }
+
+        elseif(session('edited_message')){
+            Alert::toast('Assignment edited successfully!', 'success');
+        }
 
         return view ('pages.assignments', compact('assignments'));
     }
 
     public function getAssignment(Assignment $assignment){
         $assignment = Assignment::find($assignment->id);
+
 
         return view('pages.assignment_single', compact('assignment'));
     }
@@ -56,8 +62,8 @@ class PagesController extends Controller
     public function storeAssignment(Request $request){
         //hier wordt aangegeven welke velden verplicht zijn.
         $this->validate($request, [
-            'name' => 'required',
-            'assignment_text' => 'required',
+            'name' => 'required|min: 8',
+            'assignment_text' => 'required|min: 15',
             'assignment_image' => 'image'
         ]);
 
@@ -89,7 +95,8 @@ class PagesController extends Controller
 
         $assignment->save();
 
-        return redirect()->to('/assignments');
+//        return redirect()->to('/assignments')->withSuccessMessage('Assignment successfully added!');
+        return redirect('/assignments')->with('success', 'Post was created!');
     }
 
     // Get selected assignment through edit button.
@@ -101,6 +108,7 @@ class PagesController extends Controller
     }
 
     public function updateAssignment(Request $request, Assignment $assignment){
+
 
         if ($request->hasFile('assignment_image')){
 
@@ -115,21 +123,21 @@ class PagesController extends Controller
             $path = $request->file('assignment_image')->storeAs('public/assignment_images1', $fileNameToStore);
 
         } else {
-            $fileNameToStore = 'noimage.jpeg';
+            $fileNameToStore = $assignment->assignment_image;
         }
 
-        $assignmentUpdate = Assignment::where('id', $assignment->id)->update([
+        $assignment = Assignment::where('id', $assignment->id)->update([
 
             'name' => $request->input('name'),
             'assignment_text' => $request->input('assignment_text'),
-            'assignment_image' => $request->update['image']
+            'assignment_image' => $fileNameToStore
 
         ]);
 
 
-        if ($assignmentUpdate){
+        if ($assignment){
 
-            return redirect('/assignments')->with('success', 'Assignment updated sucessfully');
+            return redirect('/assignments')->withEditedMessage('Assignment updated successfully');
         }
 
 
@@ -140,7 +148,7 @@ class PagesController extends Controller
 
         $assignment->delete();
 
-        return redirect('/assignments');
+        return redirect('/assignments')->withDeletedMessage('Assignment deleted successfully');
 
     }
 
@@ -152,9 +160,18 @@ class PagesController extends Controller
     }
 
     public function getBlogs(){
-        $blogs = Blog::all()->sortByDesc('created_at');
+        $blogs = Blog::orderBy('created_at', 'DESC')->paginate(10);
         $assignments = Assignment::all();
 
+        if(session('success_message')){
+            Alert::toast('Success! Created blogpost', 'success');
+        }
+        elseif(session('edited_message')){
+            Alert::toast('Success! Edited blogpost', 'success');
+        }
+        elseif(session('deleted_message')){
+            Alert::toast('Success! Deleted blogpost.', 'success');
+        }
 
         return view ('pages.blog', compact('blogs', 'assignments'));
     }
@@ -167,7 +184,7 @@ class PagesController extends Controller
 
     public function getBlogFilter(Request $request) {
 
-        $filteredblogs =  Blog::filter($request)->get();
+        $filteredblogs =  Blog::filter($request)->orderBy('created_at', 'DESC')->paginate(10);
         $assignments = Assignment::all();
 
         return view ('pages.blog_results', compact('filteredblogs', 'assignments'));
@@ -189,7 +206,7 @@ class PagesController extends Controller
         $blog->user_id = Auth::user()->id;
         $blog->save();
 
-        return redirect()->to('/blog');
+        return redirect()->to('/blog')->withSuccessMessage('Blogpost created succesfully!');
     }
 
     public function showBlog(Blog $blog, Assignment $assignments){
@@ -216,7 +233,7 @@ class PagesController extends Controller
 
         if ($blogUpdate){
 
-            return redirect('/blog')->with('success', 'Blog updated sucessfully');
+            return redirect('/blog')->with('success', 'Blog updated sucessfully')->withEditedMessage('Blogpost edited successfully!');
         }
 
 
@@ -233,7 +250,7 @@ class PagesController extends Controller
             return redirect('/dashboard');
         } else {
 
-            return redirect('/blog');
+            return redirect('/blog')->withDeletedMessage('Blogpost deleted successfully!');
 
         }
 

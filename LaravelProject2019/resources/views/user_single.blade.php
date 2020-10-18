@@ -1,26 +1,24 @@
-@extends ('layouts.app')
+<?php
+/**
+ * Created by PhpStorm.
+ * User: erhan
+ * Date: 30/09/2020
+ * Time: 00:57
+ */
+?>
 
-@section ('title', 'Blog')
+@extends('layouts.app')
 
-@section('stylesheets')
-
-
-@endsection
-
-@section ('content')
-
-    @extends ('layouts.app')
-
-@section ('title', 'Create Assignment')
+@section ('title', 'Dashboard User')
 
 @section('stylesheets')
 
 
 @endsection
 
-@section ('content')
+@section('content')
 
-    <div class="row">
+<div class="row">
         <div class="col-sm-6 offset-sm-3">
             <h1>Update User: {{$user->name}}</h1>
             <hr>
@@ -35,26 +33,25 @@
                 <label for="email">Email address</label>
                 <input name="email" class="form-control mb-3" value="<?php echo $user->email; ?>">
 
-                <p>Active role(s):
-                    {{--@foreach ($user->roles as $userrole)--}}
-                        {{--{{$userrole}},--}}
-                    {{--@endforeach--}}
-                </p>
+                <label for="roles">Active role(s): {{json_encode($user->roles)}}</label>
 
-                <label for="roles">Role(s)</label>
-                <br>
-                    @foreach ($roles as $role)
-                        <input type="checkbox" name="{{$role}}" id="roles" value="{{$role}}">
-                        <label for="{{$role}}">{{$role}}</label>
-                        <br>
-                    @endforeach
+
+                <p>Roles</p>
+                <input type="checkbox" id="admin" name="roles[]" value='ROLE_ADMIN'>
+                <label for="admin">Admin</label><br>
+                <input type="checkbox" id="editor" name="roles[]" value='ROLE_EDITOR'>
+                <label for="editor">Editor</label><br>
+                <input type="checkbox" id="management" name="roles[]" value="ROLE_MANAGEMENT">
+                <label for="management">Management</label><br>
+
+
 
 
 
                 <button type="submit" class="btn btn-success mt-3">Update User</button>
 
                 @if (Auth::check())
-                    <a href="/dashboard/{{$user->id}}/delete" class="btn btn-outline-danger mt-3 ">
+                    <a id="user-delete"href="" class="btn btn-outline-danger mt-3 ">
                         Delete User
                     </a>
                 @endif
@@ -64,6 +61,34 @@
             </form>
         </div>
     </div>
+
+
+@section('scripts')
+    <script>
+
+
+        $( "#user-delete" ).click(function(e) {
+            e.preventDefault();
+
+            swal({
+                title: "Are you sure?",
+                text: "Once your account has been deleted there is no going back.",
+                type: "warning",
+                showCancelButton: true,
+                cancelButtonText: "No, take me back",
+                showConfirmButton: true,
+                confirmButtonColor: '#e3342f',
+                confirmButtonText: "<a style='color: white !important;'href='/dashboard/{{$user->id}}/delete'>Yes, I'm sure</a>",
+
+            })
+
+
+        });
+
+    </script>
+
+@endsection
+
 
     @if($errors->any())
         <div class="row">
@@ -76,22 +101,5 @@
             </div>
         </div>
     @endif
-
-@endsection
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @endsection

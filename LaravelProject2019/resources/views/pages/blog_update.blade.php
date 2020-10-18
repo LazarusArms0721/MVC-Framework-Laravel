@@ -13,20 +13,19 @@
         <div class="col-sm-6 offset-sm-3">
             <h1>Update Blog post</h1>
             <hr>
-            <form method="POST" action="/blog/{{$blog->id}}" enctype="multipart/form-data">
+            <form method="POST" action="/blog/{{$blog->id}}/update" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
                 <input type = "hidden" name = "_method" value = "put">
 
                 <label for="assignment_id">Assignment:</label>
                 <select name="assignment_id" id="assignment_id">
+                    <option value="{{$blog->assignment_id}}">{{$blog->assignment['name']}}</option>
                     @foreach ($assignments as $assignment)
                         <option value="{{ $assignment->id}}"> {{$assignment->name}}</option>
                     @endforeach
                 </select>
                 <br>
-                <p>Current Assignment Category {{$blog->assignment['name']}}</p>
-
 
                 <label for="title">Blogpost Title</label>
                 <input type="text" name="title" class="form-control" value="<?php echo $blog->title; ?>">
@@ -37,7 +36,7 @@
                 <button type="submit" class="btn btn-success mt-3">Update Blogpost</button>
 
                 @if (Auth::check())
-                    <a href="/blog/{{$blog->id}}/delete" class="btn btn-outline-danger mt-3 ">
+                    <a id="delete-blog" href="" class="btn btn-outline-danger mt-3 ">
                         Delete Assignment
                     </a>
                 @endif
@@ -45,6 +44,28 @@
             </form>
         </div>
     </div>
+
+@section('scripts')
+    <script>
+
+
+        $( "#delete-blog" ).click(function(e) {
+            e.preventDefault();
+            swal({
+                title: "Are you sure?",
+                text: "Once you delete this Blogpost there is no going back.",
+                type: "warning",
+                showCancelButton: true,
+                cancelButtonText: "No, take me back",
+                showConfirmButton: true,
+                confirmButtonColor: '#e3342f',
+                confirmButtonText: "<a style='color: white !important;' href='/blog/{{$blog->id}}/delete'>Yes, I'm sure</a>",
+            })
+        });
+
+    </script>
+
+@endsection
 
     @if($errors->any())
         <div class="row">

@@ -32,7 +32,7 @@
         </div>
 
         <div class="dashboard-table">
-            <table class="" cellpadding="5" border="2">
+            <table class="full-width" cellpadding="5" border="2">
                 <thead>
                 <tr class="table-head">
                     <th class="">Assignment Name</th>
@@ -46,7 +46,7 @@
             @foreach ($assignments as $assignment)
                     <tr class="table-body">
                         <td class="">{{$assignment->name}}</td>
-                        <td class="">{{$assignment->assignment_text}}</td>
+                        <td class="">{{Str::limit($assignment->assignment_text, 45)}}</td>
                         <td class="">Erhan Akin</td>
                         <td class="">{{$assignment->created_at->todatestring()}}</td>
 
@@ -58,7 +58,7 @@
                         @endif
                         @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
 
-                                <a href="/assignments/{{$assignment->id}}/delete" class="btn btn-outline-danger">
+                                <a id="delete-assignment" href="" class="btn btn-outline-danger">
                                     Delete
                                 </a>
                         @endif
@@ -68,6 +68,11 @@
 
             @endforeach
                 </tbody>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        {{ $assignments->links() }}
+                    </div>
+                </div>
             </table>
         </div>
 
@@ -77,11 +82,11 @@
             <a href="/blog/create" class="btn btn-primary mt-2 mb-2">
                 Create Blogpost
             </a>
-        @endif
+            @endif
         </div>
 
         <div class="dashboard-table">
-            <table class="" cellpadding="5" border="2">
+            <table class="full-width" cellpadding="5" border="2">
                 <thead>
                 <tr class="table-head">
                     <th class="">Blogpost Title</th>
@@ -109,7 +114,7 @@
 
                             @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
 
-                            <a href="/blog/{{$blog->id}}/delete" class="btn btn-outline-danger">
+                            <a id="delete-blog" href="" class="btn btn-outline-danger">
                                 Delete
                             </a>
                         @endif
@@ -119,13 +124,25 @@
 
                 @endforeach
                 </tbody>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        {{ $blogs->links() }}
+                    </div>
+                </div>
             </table>
         </div>
 
         @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
 
+        <div class="blog-header">
+            <h3>Users</h3>
+                <a href="/dashboard/user/create" class="btn btn-primary mt-2 mb-2">
+                    Create User
+                </a>
+        </div>
+
         <div class="dashboard-table">
-            <table class="" cellpadding="5" border="2">
+            <table class="full-width" cellpadding="5" border="2">
                 <thead>
                 <tr class="table-head">
                     <th class="">User Name</th>
@@ -141,16 +158,14 @@
                         <td class="">{{$user->name}}</td>
                         <td class="">{{$user->email}}</td>
                         <td class="">{{$user->created_at}}</td>
-                        <td class="">
-
-                        </td>
+                        <td class="">{{json_encode($user->roles)}}</td>
 
                            <td>
                                 <a href="/dashboard/{{$user->id}}/edit" class="btn btn-primary">
                                     Edit
                                 </a>
 
-                               <a href="/dashboard/{{$user->id}}/delete" class="btn btn-outline-danger">
+                               <a id="delete-user" href="" class="btn btn-outline-danger">
                                    Delete
                                </a>
                            </td>
@@ -166,7 +181,75 @@
         @endif
 
         {{--<p>{{$currentPath}}</p>--}}
+@endsection
+
+
+@section('scripts')
+
+    <script>
+        var buttonsAssignment = document.querySelectorAll('#delete-assignment');
+        var buttonsBlog = document.querySelectorAll('#delete-blog');
+        var buttonsUser = document.querySelectorAll('#delete-user');
+
+        for (var i = 0; i < buttonsAssignment.length; i++){
+            buttonsAssignment[i].onclick = function(e){
+                e.preventDefault();
+                swal({
+                    title: "Are you sure?",
+                    text: "Once you delete this Assignment, the action cannot be undone",
+                    type: "warning",
+                    showCancelButton: true,
+                    cancelButtonText: "Cancel",
+                    showConfirmButton: true,
+                    confirmButtonColor: '#e3342f',
+                    confirmButtonText: "<a style='color: white !important;' href='/assignments/{{$blog->id}}/delete'>Yes, I'm sure</a>",
+                })
+
+            }
+        }
+
+        for (var i = 0; i < buttonsBlog.length; i++){
+            buttonsBlog[i].onclick = function(e){
+                e.preventDefault();
+                swal({
+                    title: "Are you sure?",
+                    text: "Once you delete this Blog, the action cannot be undone",
+                    type: "warning",
+                    showCancelButton: true,
+                    cancelButtonText: "Cancel",
+                    showConfirmButton: true,
+                    confirmButtonColor: '#e3342f',
+                    confirmButtonText: "<a style='color: white !important;' href='/blog/{{$blog->id}}/delete'>Yes, I'm sure</a>",
+                })
+
+            }
+        }
+
+        for (var i = 0; i < buttonsUser.length; i++){
+            buttonsUser[i].onclick = function(e){
+                e.preventDefault();
+                swal({
+                    title: "Are you sure?",
+                    text: "Once you delete this User, the action cannot be undone",
+                    type: "warning",
+                    showCancelButton: true,
+                    cancelButtonText: "Cancel",
+                    showConfirmButton: true,
+                    confirmButtonColor: '#e3342f',
+                    {{--confirmButtonText: "<a style='color: white !important;' href='/dashboard/{{$user->id}}/delete'>Yes, I'm sure</a>",--}}
+                })
+
+            }
+        }
+
+
+
+    </script>
 
 
 
 @endsection
+
+
+
+
