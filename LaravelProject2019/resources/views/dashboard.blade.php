@@ -236,7 +236,7 @@
                     cancelButtonText: "Cancel",
                     showConfirmButton: true,
                     confirmButtonColor: '#e3342f',
-                    confirmButtonText: "<a style='color: white !important;' href='/dashboard/{{$user->id}}/delete'>Yes, I'm sure</a>",
+                    {{--confirmButtonText: "<a style='color: white !important;' href='/dashboard/{{$user->id}}/delete'>Yes, I'm sure</a>",--}}
                 })
 
             }

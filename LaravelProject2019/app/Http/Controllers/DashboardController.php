@@ -71,7 +71,7 @@ class DashboardController extends Controller
         $rolevalues = Role\UserRole::getRoleList();
 
         $roles = array_combine($rolenames, $rolevalues);
-
+        
 
         return view('user_single', compact('user', 'roles'));
 
@@ -80,16 +80,22 @@ class DashboardController extends Controller
 
     public function updateUser(Request $request,  User $user ){
 
+
+
         $userUpdate = User::where('id', $user->id)->update([
 
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'roles' => $request->input('roles'),
+            'roles' => json_encode($request->input('roles')),
 
         ]);
 
 
         if ($userUpdate){
+
+
+
+
 
 
             return redirect('/dashboard')->with('success', 'User updated sucessfully');

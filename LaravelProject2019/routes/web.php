@@ -16,7 +16,7 @@ use App\User;
 
 
 // ADD ROLE function
-
+//
 Route::get('/add/role/editor', function(){
 
     $newrole = auth()->user();

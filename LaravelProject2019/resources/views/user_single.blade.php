@@ -33,14 +33,25 @@
                 <label for="email">Email address</label>
                 <input name="email" class="form-control mb-3" value="<?php echo $user->email; ?>">
 
-                <label for="roles">Active role(s)</label>
-                <input name="roles" class="form-control mb-3" value="{{json_encode($user->roles)}}">
+                <label for="roles">Active role(s): {{json_encode($user->roles)}}</label>
+
+
+                <p>Roles</p>
+                <input type="checkbox" id="admin" name="roles[]" value='ROLE_ADMIN'>
+                <label for="admin">Admin</label><br>
+                <input type="checkbox" id="editor" name="roles[]" value='ROLE_EDITOR'>
+                <label for="editor">Editor</label><br>
+                <input type="checkbox" id="management" name="roles[]" value="ROLE_MANAGEMENT">
+                <label for="management">Management</label><br>
+
+
+
 
 
                 <button type="submit" class="btn btn-success mt-3">Update User</button>
 
                 @if (Auth::check())
-                    <a href="/dashboard/{{$user->id}}/delete" class="btn btn-outline-danger mt-3 ">
+                    <a id="user-delete"href="" class="btn btn-outline-danger mt-3 ">
                         Delete User
                     </a>
                 @endif
@@ -50,6 +61,34 @@
             </form>
         </div>
     </div>
+
+
+@section('scripts')
+    <script>
+
+
+        $( "#user-delete" ).click(function(e) {
+            e.preventDefault();
+
+            swal({
+                title: "Are you sure?",
+                text: "Once your account has been deleted there is no going back.",
+                type: "warning",
+                showCancelButton: true,
+                cancelButtonText: "No, take me back",
+                showConfirmButton: true,
+                confirmButtonColor: '#e3342f',
+                confirmButtonText: "<a style='color: white !important;'href='/dashboard/{{$user->id}}/delete'>Yes, I'm sure</a>",
+
+            })
+
+
+        });
+
+    </script>
+
+@endsection
+
 
     @if($errors->any())
         <div class="row">
