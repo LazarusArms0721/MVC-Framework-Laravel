@@ -169,7 +169,6 @@ Route::get('/blog/{blog}/delete',
 // OTHER
 //
 
-Route::get('/about', 'PagesController@getAbout')->name('pages.about');
 Route::get('/contact', 'ContactController@showForm')->name('contact.show');
 Route::get('/contact/create', 'ContactController@createEntry');
 Route::post('/contact-action', 'ContactController@storeContact');
@@ -183,6 +182,5 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 //Auth::routes();
 
-//Route::get('/home', 'HomeController@index')->name('home');
 
 

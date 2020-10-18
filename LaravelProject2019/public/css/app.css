@@ -10904,3 +10904,19 @@ a.text-dark:focus {
   padding: 20px 20px;
 }
 
+.swal2-modal {
+  background-color: #101010 !important;
+}
+
+.swal2-modal .swal2-title {
+  color: #fff !important;
+}
+
+.swal2-modal .swal2-content {
+  color: #fff !important;
+}
+
+.swal2-modal a {
+  text-decoration: none !important;
+}
+

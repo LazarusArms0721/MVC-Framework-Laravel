@@ -71,7 +71,7 @@ class DashboardController extends Controller
         $rolevalues = Role\UserRole::getRoleList();
 
         $roles = array_combine($rolenames, $rolevalues);
-        
+
 
         return view('user_single', compact('user', 'roles'));
 
@@ -92,11 +92,6 @@ class DashboardController extends Controller
 
 
         if ($userUpdate){
-
-
-
-
-
 
             return redirect('/dashboard')->with('success', 'User updated sucessfully');
         }

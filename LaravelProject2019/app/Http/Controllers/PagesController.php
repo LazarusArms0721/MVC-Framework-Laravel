@@ -29,10 +29,6 @@ class PagesController extends Controller
         return view ('pages.index', compact('pages', 'latestAssignment', 'latestBlog'));
     }
 
-    public function getAbout(){
-        return view ('pages.about');
-    }
-
     public function getAssignments(){
         $assignments = Assignment::orderBy('created_at', 'DESC')->paginate(10);
 
