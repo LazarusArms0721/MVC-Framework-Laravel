@@ -47,6 +47,13 @@ class DashboardController extends Controller
         return back()->withInput();
     }
 
+    public function deleteUserDashboard(User $user){
+
+        $user->delete();
+
+        return redirect('/')->with('success', 'You have deleted your profile.');
+    }
+
     public function showDashboard(){
 
         $assignments = Assignment::orderBy('created_at', 'DESC')->paginate(10);

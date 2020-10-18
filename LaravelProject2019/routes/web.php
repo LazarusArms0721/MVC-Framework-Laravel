@@ -68,6 +68,10 @@ Route::get('/dashboard/{user}/delete',
             'DashboardController@deleteUser')
                 ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
 
+Route::get('dashboard/user/create',
+            'DashboardController@addUser')
+                ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+
 
 //
 //  User Dashboard

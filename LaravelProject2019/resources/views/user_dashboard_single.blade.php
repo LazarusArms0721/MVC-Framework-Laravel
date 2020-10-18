@@ -41,9 +41,9 @@
                 @if (Auth::check())
                     {{--<a href="/dashboard/user/{{$user->id}}/delete" class="btn btn-outline-danger mt-3 ">--}}
                         {{--Delete Account--}}
-                    {{--</a> --}}
+                    {{--</a>--}}
 
-                    <a href="#" id="btndelete" data-id="{{$user->id}}" class="btn btn-outline-danger mt-3">Delete Account</a>
+                    <a href="" id="delete-action" data-id="{{$user->id}}" class="btn btn-outline-danger mt-3">Delete Account</a>
                 @endif
 
                 <a href="/dashboard/user" class="btn btn-outline-info mt-3">Return</a>
@@ -52,32 +52,33 @@
         </div>
     </div>
 
-    <script type="text/javascript">
+@section('scripts')
+        <script>
 
-//        $(document).on('click', '#btndelete', function (e) {
-//            e.preventDefault();
-//            var id = $(this).data('id');
-//            swal.fire({
-//                title: "Are you sure?",
-//                type: "Error",
-//                confirmButtonClass: "btn-danger",
-//                confirmButtonText: "Yes, I am sure",
-//                showCancelButton: true
-//            },
-//            function () {
-//                $.ajax({
-//                    type: 'GET',
-//                    url: '/dashboard/user/{user}/delete',
-//                    data: {id:id},
-//                    success: function (data) {
-//
-//                    }
-//                });
-//
-//            });
-//        });
 
-    </script>
+            $( "#delete-action" ).click(function(e) {
+                e.preventDefault();
+
+                swal({
+                    title: "Are you sure?",
+                    text: "Once your account has been deleted there is no going back.",
+                    type: "warning",
+                    showCancelButton: true,
+                    cancelButtonText: "No, take me back",
+                    showConfirmButton: true,
+                    confirmButtonColor: '#e3342f',
+                    confirmButtonText: "<a href='/dashboard/user/{{$user->id}}/delete'>Yes, I'm sure</a>",
+
+                })
+
+
+            });
+
+        </script>
+
+@endsection
+
+
 
     @if($errors->any())
         <div class="row">

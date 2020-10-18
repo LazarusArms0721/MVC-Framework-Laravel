@@ -29,7 +29,7 @@
 .blog-header {
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 86%;
+  width: 100%;
   text-align: right;
 
 
@@ -44,4 +44,8 @@
     display: inline;
   }
 
+}
+
+.full-width {
+  width: 100%;
 }
