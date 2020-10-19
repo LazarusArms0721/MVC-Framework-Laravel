@@ -137,6 +137,7 @@ class PagesController extends Controller
 
         if ($assignment){
 
+
             return redirect('/assignments')->withEditedMessage('Assignment updated successfully');
         }
 

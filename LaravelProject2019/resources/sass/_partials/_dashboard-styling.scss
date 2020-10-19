@@ -1,14 +1,14 @@
 .dashboard-table {
 
   border-radius: 5px;
-  border-style: 1px solid #ffffff;
   margin-bottom: 50px;
 
 
   .table-head {
-
+    height: 50px;
 
     th {
+      padding-left: 10px;
       font-size: 18px;
       font-style: bold;
       background-color: #311B92;
@@ -23,6 +23,10 @@
 
   .table-body {
     background-color: #2d2d2d;
+
+    tr td {
+      padding-left: 10px;
+    }
   }
 }
 
@@ -48,4 +52,12 @@
 
 .full-width {
   width: 100%;
+}
+
+table tr:last-child td:first-child {
+  border-bottom-left-radius: 5px;
+}
+
+table tr:last-child td:last-child {
+  border-bottom-right-radius: 5px;
 }

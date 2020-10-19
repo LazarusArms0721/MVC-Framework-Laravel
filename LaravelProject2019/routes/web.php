@@ -17,29 +17,29 @@ use App\User;
 
 // ADD ROLE function
 //
-Route::get('/add/role/editor', function(){
-
-    $newrole = auth()->user();
-
-
-
-
-    return $newrole->addRole('ROLE_EDITOR')->save();
-
-
-})->middleware('auth');
-
-Route::get('/add/role/admin', function(){
-
-    $newrole = auth()->user();
-
-
-
-
-    return $newrole->addRole('ROLE_ADMIN')->save();
-
-
-})->middleware('auth');
+//Route::get('/add/role/editor', function(){
+//
+//    $newrole = auth()->user();
+//
+//
+//
+//
+//    return $newrole->addRole('ROLE_EDITOR')->save();
+//
+//
+//})->middleware('auth');
+//
+//Route::get('/add/role/admin', function(){
+//
+//    $newrole = auth()->user();
+//
+//
+//
+//
+//    return $newrole->addRole('ROLE_ADMIN')->save();
+//
+//
+//})->middleware('auth');
 
 //
 // HOME
@@ -68,9 +68,12 @@ Route::get('/dashboard/{user}/delete',
             'DashboardController@deleteUser')
                 ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
 
-Route::get('dashboard/user/create',
+Route::get('/dashboard/user/create',
             'DashboardController@addUser')
                 ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+
+Route::get('/dashboard/notifications',
+            'NotificationsController@getIndex');
 
 
 //

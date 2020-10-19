@@ -45,6 +45,11 @@
             <li class="nav-item dashboard-showcase">
                 <a class="nav-link" href="/dashboard">Dashboard</a>
             </li>
+            @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
+            <li class="nav-item dashboard-showcase">
+                <a class="nav-link" href="/dashboard/notifications">Notifications</a>
+            </li>
+            @endif
             <li style="color: #fff; list-style:none; margin-right:10px;">
                 <a href="/dashboard/user">{{ Auth::user()->name}}</a>
             </li>

@@ -19,11 +19,12 @@
 @section('content')
 
     <div class="container">
-        <p>{{$user->name}}</p>
-        <p>{{$user->email}}</p>
-        <p>{{$user->created_at}}</p>
-        <p>{{$user->id}}</p>
+        {{--<p>{{$user->name}}</p>--}}
+        {{--<p>{{$user->email}}</p>--}}
+        {{--<p>{{$user->created_at}}</p>--}}
+        {{--<p>{{$user->id}}</p>--}}
 
+        <table>
         <tr class="table-body">
             <td class="">{{$user->name}}</td>
             <td class="">{{$user->email}}</td>
@@ -41,6 +42,7 @@
             </td>
 
         </tr>
+        </table>
     </div>
 
 
