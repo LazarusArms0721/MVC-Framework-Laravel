@@ -47,6 +47,8 @@
             </li>
             @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
             <li class="nav-item dashboard-showcase">
+                <i class="fas fa-bell"></i>
+                <i class="fas fa-envelope"></i>
                 <a class="nav-link" href="/dashboard/notifications">Notifications</a>
             </li>
             @endif
