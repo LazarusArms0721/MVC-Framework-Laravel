@@ -47,12 +47,14 @@
             </li>
 
             @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
+                <?php $notifications = auth()->user()->unreadNotifications; ?>
                 <div class="dropdown">
                     <button class="btn ddb-button btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-bell"></i>
+                        <span class="badge badge-danger">{{$notifications->count()}}</span>
                     </button>
                     <div class="dropdown-menu ddm-ads bg-dark" aria-labelledby="dropdownMenuButton">
-                        <?php $notifications = auth()->user()->unreadNotifications; ?>
+
                         @forelse($notifications as $notification)
                             <div class="notification-card">
                                 <p style="color: #fff !important;">New Contact Form submission by {{$notification->data['name']}} at {{$notification->created_at}}
