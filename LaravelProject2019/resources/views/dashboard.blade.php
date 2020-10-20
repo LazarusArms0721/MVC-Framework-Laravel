@@ -20,8 +20,6 @@
 
         <h1 style="color: #1565c0 !important;">Dashboard</h1>
 
-
-
         <div class="blog-header">
             <h3>Latest Assignments</h3>
             @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))

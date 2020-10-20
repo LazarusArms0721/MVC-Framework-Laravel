@@ -52,11 +52,16 @@
                         <i class="fas fa-bell"></i>
                     </button>
                     <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
-                        {{--@foreach(auth()->user()->notifications as $notification)--}}
-
+                        <?php $notifications = auth()->user()->unreadNotifications; ?>
+                        @foreach($notifications as $notification)
+                            <p style="color: #fff !important;">New Contact Form entry by {{$notification->data['name']}} at {{$notification->created_at}} </p>
                             {{--<a class="nav-link" href="#">{{$notification->data['data']}}</a>--}}
 
-                        {{--@endforeach--}}
+
+                            {{$notification->data['email']}}
+
+
+                        @endforeach
 
 
                     </div>

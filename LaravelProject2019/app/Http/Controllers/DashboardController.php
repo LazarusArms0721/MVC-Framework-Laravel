@@ -60,10 +60,21 @@ class DashboardController extends Controller
         $assignments = Assignment::orderBy('created_at', 'DESC')->paginate(10);
         $blogs = Blog::orderBy('created_at','DESC')->paginate(10);
         $users = User::all();
+        $notifications = auth()->user()->unreadNotifications;
 
-        $currentPath = \Illuminate\Support\Facades\Route::getFacadeRoot()->current()->uri();
 
-        return view('dashboard', compact('blogs','assignments', 'currentPath','users'));
+        return view('dashboard', compact('blogs','assignments','users', 'notifications'));
+    }
+
+    public function markNotification(Request $request){
+        auth()->user()
+            ->unreadNotifications
+            ->when($request->input('id'), function ($query) use ($request) {
+                return $query->where('id', $request-input('id'));
+            })
+            ->markAsRead();
+
+        return response()->noContent();
     }
 
     public function createUser(){

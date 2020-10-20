@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use App\Contact;
 
-class TaskCompleted extends Notification implements ShouldQueue
+class TaskCompleted extends Notification
 {
     use Queueable;
 
@@ -17,9 +17,9 @@ class TaskCompleted extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($contact)
     {
-        //
+        $this->contact = $contact;
     }
 
     /**
@@ -56,7 +56,8 @@ class TaskCompleted extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'data' => 'This is my first notification'
+            'name'  => $this->contact->name,
+            'email' => $this->contact->email,
         ];
     }
 }

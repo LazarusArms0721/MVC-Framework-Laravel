@@ -13,6 +13,8 @@
 */
 
 use App\User;
+use App\Contact;
+use App\Notifications\TaskCompleted;
 
 
 
@@ -45,9 +47,18 @@ use App\User;
 //
 // HOME
 //
-Route::get('/',
-            'PagesController@getIndex')
-                ->name('pages.index');
+
+//Route::get('/',
+//            'PagesController@getIndex')
+//                ->name('pages.index');
+
+Route::get('/', 'PagesController@getIndex', function(){
+
+
+//    User::find(12)->notify(new TaskCompleted());
+
+
+})->name('pages.index');
 
 //
 // Dashboard

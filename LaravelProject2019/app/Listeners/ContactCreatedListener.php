@@ -5,6 +5,9 @@ namespace App\Listeners;
 use App\Events\ContactCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Notification;
+use App\User;
+use App\Notifications\TaskCompleted;
 
 class ContactCreatedListener
 {
@@ -24,8 +27,10 @@ class ContactCreatedListener
      * @param  ContactCreated  $event
      * @return void
      */
-    public function handle(ContactCreated $event)
+    public function handle($event)
     {
-        dd('from ContactCreatedListener', $event->contact);
+        $admins = User::where('roles', '=', '["ROLES_ADMIN"]');
+
+        Notification::send($admins, new TaskCompleted($event->contact));
     }
 }
