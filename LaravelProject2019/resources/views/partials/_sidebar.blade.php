@@ -46,6 +46,23 @@
                 <a class="nav-link" href="/dashboard">Dashboard</a>
             </li>
 
+            @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
+                        {{--@foreach(auth()->user()->notifications as $notification)--}}
+
+                            {{--<a class="nav-link" href="#">{{$notification->data['data']}}</a>--}}
+
+                        {{--@endforeach--}}
+
+
+                    </div>
+                </div>
+            @endif
+
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{Auth::user()->name}}
@@ -56,11 +73,6 @@
                 </div>
             </div>
 
-            @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard/notifications"><i class="fas fa-bell"></i></a>
-            </li>
-            @endif
 
             {{--<button onclick="myFunction()" class="dropbtn">Menu</button>--}}
             {{--<div id="myDropdown" class="dropdown-content">--}}
