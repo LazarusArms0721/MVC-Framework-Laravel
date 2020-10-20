@@ -29,8 +29,9 @@ class ContactCreatedListener
      */
     public function handle($event)
     {
-        $admins = User::where('roles', '=', '["ROLES_ADMIN"]');
+//        dd('from ContactCreatedListener', $event->contact);
+        $admin = User::find(12);
 
-        Notification::send($admins, new TaskCompleted($event->contact));
+        Notification::send($admin, new TaskCompleted($event->contact));
     }
 }
