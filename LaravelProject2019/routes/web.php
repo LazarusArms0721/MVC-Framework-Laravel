@@ -84,8 +84,12 @@ Route::get('/dashboard/user/create',
             'DashboardController@addUser')
                 ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
 
-Route::get('/dashboard/notifications',
-            'NotificationsController@getIndex');
+//Route::get('/dashboard/notifications',
+//            'NotificationsController@getIndex');
+
+Route::get('/dashboard/contact',
+            'DashboardController@getContacts')
+                ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
 
 
 //

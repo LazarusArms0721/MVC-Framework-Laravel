@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -145,8 +146,16 @@ class DashboardController extends Controller
 
     }
 
-    public function deleteUserAlert(){
+//    public function deleteUserAlert(){
+//
+//    }
 
+    public function getContacts(){
+        $contacts = Contact::orderBy('created_at', 'DESC')->paginate(10);
+
+        return view('dashboard_contacts', compact('contacts'));
     }
+
+
 
 }

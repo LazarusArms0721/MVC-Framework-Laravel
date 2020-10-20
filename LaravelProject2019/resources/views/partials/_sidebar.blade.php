@@ -68,7 +68,7 @@
                                     </a>
                             @endif
                         @empty
-                                <p style="color: #fff !important;">There are no new notifications</p>
+                                <p style="color: #fff !important; text-align: center">There are no new notifications.</p>
                         @endforelse
 
 
@@ -80,9 +80,12 @@
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{Auth::user()->name}}
                 </button>
-                <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item text-white" href="/dashboard/user">Profile</a>
-                    <a class="dropdown-item text-white" href="{{ url('/logout') }}">Logout</a>
+                <div class="dropdown-menu ddm-pf bg-dark" aria-labelledby="dropdownMenuButton">
+                    @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
+                        <a class="dropdown-item text-white" href="/dashboard/contact"><i class="far fa-envelope"></i> Submissions</a>
+                    @endif
+                    <a class="dropdown-item text-white" href="/dashboard/user"><i class="fas fa-user"></i> Profile</a>
+                    <a class="dropdown-item text-white" href="{{ url('/logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </div>
             </div>
 
