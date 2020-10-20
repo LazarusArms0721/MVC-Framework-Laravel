@@ -223,6 +223,9 @@
             }
         }
 
+        @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
+
+
         for (var i = 0; i < buttonsUser.length; i++){
             buttonsUser[i].onclick = function(e){
                 e.preventDefault();
@@ -239,6 +242,8 @@
 
             }
         }
+
+        @endif
 
 
 
