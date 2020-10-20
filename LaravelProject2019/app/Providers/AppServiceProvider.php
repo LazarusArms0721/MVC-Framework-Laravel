@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Contact;
 use App\Http\Middleware\CheckUserRole;
+use App\Observers\ContactObserver;
 use App\Role\UserRoleChecker;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
@@ -39,5 +41,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        Contact::observe(ContactObserver::class);
     }
 }

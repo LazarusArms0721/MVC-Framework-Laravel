@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\TaskCompleted;
 use Illuminate\Http\Request;
 
 use App\Contact;
@@ -14,13 +15,15 @@ class ContactController extends Controller
 
     }
 
-    public function storeContact(){
+    public function storeContact(Request $request){
 
         $contact = new Contact();
         $contact->name = request('name');
         $contact->email = request('email');
         $contact->message = request('message');
         $contact->save();
+
+        event(new TaskCompleted($contact));
 
         return view('contact.form');
     }

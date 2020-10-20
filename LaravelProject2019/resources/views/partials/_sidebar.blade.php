@@ -45,15 +45,59 @@
             <li class="nav-item dashboard-showcase">
                 <a class="nav-link" href="/dashboard">Dashboard</a>
             </li>
-            <li style="color: #fff; list-style:none; margin-right:10px;">
-                <a href="/dashboard/user">{{ Auth::user()->name}}</a>
-            </li>
-            <li style="color:#fff; list-style:none; margin-right:10px;"><a href="{{ url('/logout') }}">Logout</a></li>
-            {{--<button onclick="myFunction()" class="dropbtn">Menu</button>--}}
-            <div id="myDropdown" class="dropdown-content">
-                <a href="{{ url('/logout') }}"> Logout </a>
 
+            @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
+                <div class="dropdown">
+                    <button class="btn ddb-button btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <div class="dropdown-menu ddm-ads bg-dark" aria-labelledby="dropdownMenuButton">
+                        <?php $notifications = auth()->user()->unreadNotifications; ?>
+                        @forelse($notifications as $notification)
+                            <div class="notification-card">
+                                <p style="color: #fff !important;">New Contact Form submission by {{$notification->data['name']}} at {{$notification->created_at}}
+                                    <br>
+                                    {{$notification->data['email']}}
+                                    <br>
+                                    <a class="mark-as-read" href="#" data-id="{{$notification->id}}">Mark as read</a>
+                                </p>
+                            </div>
+                            @if($loop->last)
+                                    <a href="#" id="mark-all">
+                                        Mark all as read
+                                    </a>
+                            @endif
+                        @empty
+                                <p style="color: #fff !important; text-align: center">There are no new notifications.</p>
+                        @endforelse
+
+
+                    </div>
+                </div>
+            @endif
+
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{Auth::user()->name}}
+                </button>
+                <div class="dropdown-menu ddm-pf bg-dark" aria-labelledby="dropdownMenuButton">
+                    @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
+                        <a class="dropdown-item text-white" href="/dashboard/contact"><i class="far fa-envelope"></i> Submissions</a>
+                    @endif
+                    <a class="dropdown-item text-white" href="/dashboard/user"><i class="fas fa-user"></i> Profile</a>
+                    <a class="dropdown-item text-white" href="{{ url('/logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
             </div>
+
+
+            {{--<button onclick="myFunction()" class="dropbtn">Menu</button>--}}
+            {{--<div id="myDropdown" class="dropdown-content">--}}
+
+                {{--<a href="/dashboard/user">{{ Auth::user()->name}}</a>--}}
+            {{--</div>--}}
+
+
+
 
 
 
@@ -65,3 +109,45 @@
         </ul>
     </div>
 </nav>
+
+
+    @if(Auth::check())
+        @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
+            <script>
+
+                console.log('hello');
+                function sendMarkRequest(id = null){
+                    return $.ajax("/notifications/read", {
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        method: 'POST',
+                        data: id,
+                    });
+                }
+
+                $(function() {
+                    $('.mark-as-read').click(function() {
+                        let request = sendMarkRequest($(this).data('id'));
+
+                        console.log("hoi");
+
+                        request.done(() => {
+                           $(this).parents('div.notification-card').remove();
+                        });
+                    });
+
+                    $('#mark-all').click(function(){
+                        let request = sendMarkRequest();
+
+                        request.done(() => {
+                          $('div.notification-card').remove();
+                        });
+                    });
+
+
+                });
+
+            </script>
+        @endif
+    @endif

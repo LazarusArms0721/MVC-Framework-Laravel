@@ -11,7 +11,7 @@
 
 
     <div class="col-md-8 offset-2 blog-container">
-        <h1>Blog page</h1>
+        <h1>Blog</h1>
 
         <form action="/blog-filter?assignment_id=" method="GET">
             @csrf
@@ -35,7 +35,7 @@
         @foreach ($blogs as $blog)
           <div class="blog">
             <h4>{{$blog->title}}</h4>
-            <p>{{$blog->assignment['name']}}</p>
+            <a href="/blog-filter?assignment_id={{$blog->assignment_id}}">{{$blog->assignment['name']}}</a>
             <p>{{$blog->text }}</p>
 
             <p class="author-name">Written by {{$blog->user['name']}} on {{$blog->created_at->todatestring()}}</p>

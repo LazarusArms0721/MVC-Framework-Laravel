@@ -20,24 +20,21 @@
 
         <h1 style="color: #1565c0 !important;">Dashboard</h1>
 
-
-
         <div class="blog-header">
             <h3>Latest Assignments</h3>
             @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
-                <a href="/assignments/create" class="btn btn-primary mt-2 mb-2">
+                <a href="/assignment/create" class="btn btn-primary mt-2 mb-2">
                     Create Assignment
                 </a>
             @endif
         </div>
 
         <div class="dashboard-table">
-            <table class="full-width" cellpadding="5" border="2">
+            <table class="full-width" cellpadding="5">
                 <thead>
                 <tr class="table-head">
                     <th class="">Assignment Name</th>
                     <th class="">Text</th>
-                    <th class="">Author</th>
                     <th class="">Created At</th>
                     <th class="">Actions</th>
                 </tr>
@@ -47,7 +44,6 @@
                     <tr class="table-body">
                         <td class="">{{$assignment->name}}</td>
                         <td class="">{{Str::limit($assignment->assignment_text, 45)}}</td>
-                        <td class="">Erhan Akin</td>
                         <td class="">{{$assignment->created_at->todatestring()}}</td>
 
                         <td class="">
@@ -86,7 +82,7 @@
         </div>
 
         <div class="dashboard-table">
-            <table class="full-width" cellpadding="5" border="2">
+            <table class="full-width" cellpadding="5">
                 <thead>
                 <tr class="table-head">
                     <th class="">Blogpost Title</th>
@@ -136,13 +132,13 @@
 
         <div class="blog-header">
             <h3>Users</h3>
-                <a href="/dashboard/user/create" class="btn btn-primary mt-2 mb-2">
-                    Create User
-                </a>
+                {{--<a href="/dashboard/user/create" class="btn btn-primary mt-2 mb-2">--}}
+                    {{--Create User--}}
+                {{--</a>--}}
         </div>
 
         <div class="dashboard-table">
-            <table class="full-width" cellpadding="5" border="2">
+            <table class="full-width" cellpadding="5">
                 <thead>
                 <tr class="table-head">
                     <th class="">User Name</th>
@@ -225,6 +221,9 @@
             }
         }
 
+        @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
+
+
         for (var i = 0; i < buttonsUser.length; i++){
             buttonsUser[i].onclick = function(e){
                 e.preventDefault();
@@ -236,11 +235,13 @@
                     cancelButtonText: "Cancel",
                     showConfirmButton: true,
                     confirmButtonColor: '#e3342f',
-                    {{--confirmButtonText: "<a style='color: white !important;' href='/dashboard/{{$user->id}}/delete'>Yes, I'm sure</a>",--}}
+                    confirmButtonText: "<a style='color: white !important;' href='/dashboard/{{$user->id}}/delete'>Yes, I'm sure</a>",
                 })
 
             }
         }
+
+        @endif
 
 
 

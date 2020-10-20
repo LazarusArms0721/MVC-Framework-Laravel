@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Assignment;
@@ -40,7 +42,7 @@ class DashboardController extends Controller
 
         if ($userUpdate){
 
-            return redirect('/dashboard')->with('success', 'You have updated your profile!');
+            return redirect('/dashboard/user')->with('success', 'You have updated your profile!');
         }
 
 
@@ -59,10 +61,45 @@ class DashboardController extends Controller
         $assignments = Assignment::orderBy('created_at', 'DESC')->paginate(10);
         $blogs = Blog::orderBy('created_at','DESC')->paginate(10);
         $users = User::all();
+        $notifications = auth()->user()->unreadNotifications;
 
-        $currentPath = \Illuminate\Support\Facades\Route::getFacadeRoot()->current()->uri();
 
-        return view('dashboard', compact('blogs','assignments', 'currentPath','users'));
+        return view('dashboard', compact('blogs','assignments','users', 'notifications'));
+    }
+
+    public function markNotification(Request $request){
+        auth()->user()
+            ->unreadNotifications
+            ->when($request->input('id'), function ($query) use ($request) {
+                return $query->where('id', $request-input('id'));
+            })
+            ->markAsRead();
+
+        return response()->noContent();
+    }
+
+    public function createUser(){
+
+        return view('pages.create_user');
+    }
+
+    public function storeUser(Request $request){
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $user = new User();
+
+        $user->name     = $request->input('name');
+        $user->email    = $request->input('email');
+        $user->password = Hash::make($request->input('password'));
+
+        $user->save();
+
+        return redirect('/dashboard')->with('success', 'User was created!');
+
     }
 
     public function getUser(User $user){
@@ -109,8 +146,16 @@ class DashboardController extends Controller
 
     }
 
-    public function deleteUserAlert(){
+//    public function deleteUserAlert(){
+//
+//    }
 
+    public function getContacts(){
+        $contacts = Contact::orderBy('created_at', 'DESC')->paginate(10);
+
+        return view('dashboard_contacts', compact('contacts'));
     }
+
+
 
 }

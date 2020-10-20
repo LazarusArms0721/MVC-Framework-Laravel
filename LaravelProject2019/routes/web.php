@@ -13,40 +13,52 @@
 */
 
 use App\User;
+use App\Contact;
+use App\Notifications\TaskCompleted;
+
 
 
 // ADD ROLE function
 //
-Route::get('/add/role/editor', function(){
-
-    $newrole = auth()->user();
-
-
-
-
-    return $newrole->addRole('ROLE_EDITOR')->save();
-
-
-})->middleware('auth');
-
-Route::get('/add/role/admin', function(){
-
-    $newrole = auth()->user();
-
-
-
-
-    return $newrole->addRole('ROLE_ADMIN')->save();
-
-
-})->middleware('auth');
+//Route::get('/add/role/editor', function(){
+//
+//    $newrole = auth()->user();
+//
+//
+//
+//
+//    return $newrole->addRole('ROLE_EDITOR')->save();
+//
+//
+//})->middleware('auth');
+//
+//Route::get('/add/role/admin', function(){
+//
+//    $newrole = auth()->user();
+//
+//
+//
+//
+//    return $newrole->addRole('ROLE_ADMIN')->save();
+//
+//
+//})->middleware('auth');
 
 //
 // HOME
 //
-Route::get('/',
-            'PagesController@getIndex')
-                ->name('pages.index');
+
+//Route::get('/',
+//            'PagesController@getIndex')
+//                ->name('pages.index');
+
+Route::get('/', 'PagesController@getIndex', function(){
+
+
+//    User::find(12)->notify(new TaskCompleted());
+
+
+})->name('pages.index');
 
 //
 // Dashboard
@@ -68,8 +80,15 @@ Route::get('/dashboard/{user}/delete',
             'DashboardController@deleteUser')
                 ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
 
-Route::get('dashboard/user/create',
+Route::get('/dashboard/user/create',
             'DashboardController@addUser')
+                ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+
+//Route::get('/dashboard/notifications',
+//            'NotificationsController@getIndex');
+
+Route::get('/dashboard/contact',
+            'DashboardController@getContacts')
                 ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
 
 
@@ -163,6 +182,12 @@ Route::put('/blog/{blog}/update',
 Route::get('/blog/{blog}/delete',
     'PagesController@deleteBlog')
     ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+
+//
+// Notifications
+//
+
+Route::post('/notifications/read', 'DashboardController@markNotification');
 
 
 //
