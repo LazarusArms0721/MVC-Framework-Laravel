@@ -51,7 +51,17 @@
                 <div class="dropdown">
                     <button class="btn ddb-button btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-bell"></i>
-                        <span class="badge badge-danger">{{$notifications->count()}}</span>
+                        @if ($notifications->count() >  0)
+                        <span class="badge badge-danger">
+
+                            {{$notifications->count()}}
+
+                        </span>
+                        @else
+                        <span>
+
+                        </span>
+                        @endif
                     </button>
                     <div class="dropdown-menu ddm-ads bg-dark" aria-labelledby="dropdownMenuButton">
 
