@@ -48,20 +48,28 @@
 
             @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn ddb-button btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-bell"></i>
                     </button>
-                    <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
+                    <div class="dropdown-menu ddm-ads bg-dark" aria-labelledby="dropdownMenuButton">
                         <?php $notifications = auth()->user()->unreadNotifications; ?>
-                        @foreach($notifications as $notification)
-                            <p style="color: #fff !important;">New Contact Form entry by {{$notification->data['name']}} at {{$notification->created_at}} </p>
-                            {{--<a class="nav-link" href="#">{{$notification->data['data']}}</a>--}}
-
-
-                            {{$notification->data['email']}}
-
-
-                        @endforeach
+                        @forelse($notifications as $notification)
+                            <div class="notification-card">
+                                <p style="color: #fff !important;">New Contact Form submission by {{$notification->data['name']}} at {{$notification->created_at}}
+                                    <br>
+                                    {{$notification->data['email']}}
+                                    <br>
+                                    <a class="mark-as-read" href="#" data-id="{{$notification->id}}">Mark as read</a>
+                                </p>
+                            </div>
+                            @if($loop->last)
+                                    <a href="#" id="mark-all">
+                                        Mark all as read
+                                    </a>
+                            @endif
+                        @empty
+                                <p style="color: #fff !important;">There are no new notifications</p>
+                        @endforelse
 
 
                     </div>
@@ -98,3 +106,45 @@
         </ul>
     </div>
 </nav>
+
+
+    @if(Auth::check())
+        @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
+            <script>
+
+                console.log('hello');
+                function sendMarkRequest(id = null){
+                    return $.ajax("/notifications/read", {
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        method: 'POST',
+                        data: id,
+                    });
+                }
+
+                $(function() {
+                    $('.mark-as-read').click(function() {
+                        let request = sendMarkRequest($(this).data('id'));
+
+                        console.log("hoi");
+
+                        request.done(() => {
+                           $(this).parents('div.notification-card').remove();
+                        });
+                    });
+
+                    $('#mark-all').click(function(){
+                        let request = sendMarkRequest();
+
+                        request.done(() => {
+                          $('div.notification-card').remove();
+                        });
+                    });
+
+
+                });
+
+            </script>
+        @endif
+    @endif

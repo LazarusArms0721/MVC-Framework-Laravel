@@ -16889,6 +16889,26 @@ a.text-dark:focus {
   display: block;
 }
 
+.ddb-button {
+  background-color: rgba(0, 0, 0, 0) !important;
+  border-style: none;
+}
+
+.ddm-ads {
+  left: -100px !important;
+  min-width: 16rem !important;
+  padding: 10px 10px;
+  border-radius: 5px;
+  top: 50px !important;
+}
+
+.ddm-ads .notification-card {
+  background-color: #202020 !important;
+  border-radius: 5px !important;
+  padding: 5px 5px !important;
+  margin-bottom: 10px;
+}
+
 .assignments-container {
   margin-top: 50px;
 }

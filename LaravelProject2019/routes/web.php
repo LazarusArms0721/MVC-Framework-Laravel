@@ -179,6 +179,12 @@ Route::get('/blog/{blog}/delete',
     'PagesController@deleteBlog')
     ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
 
+//
+// Notifications
+//
+
+Route::post('/notifications/read', 'DashboardController@markNotification');
+
 
 //
 // OTHER
