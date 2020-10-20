@@ -45,22 +45,31 @@
             <li class="nav-item dashboard-showcase">
                 <a class="nav-link" href="/dashboard">Dashboard</a>
             </li>
+
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{Auth::user()->name}}
+                </button>
+                <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item text-white" href="/dashboard/user">Profile</a>
+                    <a class="dropdown-item text-white" href="{{ url('/logout') }}">Logout</a>
+                </div>
+            </div>
+
             @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
-            <li class="nav-item dashboard-showcase">
-                <i class="fas fa-bell"></i>
-                <i class="fas fa-envelope"></i>
-                <a class="nav-link" href="/dashboard/notifications">Notifications</a>
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard/notifications"><i class="fas fa-bell"></i></a>
             </li>
             @endif
-            <li style="color: #fff; list-style:none; margin-right:10px;">
-                <a href="/dashboard/user">{{ Auth::user()->name}}</a>
-            </li>
-            <li style="color:#fff; list-style:none; margin-right:10px;"><a href="{{ url('/logout') }}">Logout</a></li>
-            {{--<button onclick="myFunction()" class="dropbtn">Menu</button>--}}
-            <div id="myDropdown" class="dropdown-content">
-                <a href="{{ url('/logout') }}"> Logout </a>
 
-            </div>
+            {{--<button onclick="myFunction()" class="dropbtn">Menu</button>--}}
+            {{--<div id="myDropdown" class="dropdown-content">--}}
+
+                {{--<a href="/dashboard/user">{{ Auth::user()->name}}</a>--}}
+            {{--</div>--}}
+
+
+
 
 
 
