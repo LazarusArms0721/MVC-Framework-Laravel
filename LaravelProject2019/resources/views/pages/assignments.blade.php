@@ -14,7 +14,7 @@
 
     <div class="col-md-8 offset-2 assignments-container">
 
-    <h1>Assignments Page</h1>
+    <h1>Assignments</h1>
 
     @if(Auth::check())
         @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
