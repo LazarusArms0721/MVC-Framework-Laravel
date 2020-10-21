@@ -16803,6 +16803,11 @@ a.text-dark:focus {
   }
 }
 
+.dropdown .dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: #448AFF;
+}
+
 .contact-showcase {
   background-color: #38c172;
   border-radius: 5px;
@@ -16818,7 +16823,7 @@ a.text-dark:focus {
 }
 
 .dashboard-showcase {
-  background-color: #3490dc;
+  background-color: #448AFF;
   border-radius: 5px;
   margin-left: 5px;
 }

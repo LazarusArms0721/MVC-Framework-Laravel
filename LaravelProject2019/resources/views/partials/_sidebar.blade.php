@@ -48,7 +48,7 @@
 
             @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
                 <?php $notifications = auth()->user()->unreadNotifications; ?>
-                <div class="dropdown">
+                <div class="dropdown mr-2">
                     <button class="btn ddb-button btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-bell"></i>
                         @if ($notifications->count() >  0)
@@ -67,12 +67,12 @@
 
                         @forelse($notifications as $notification)
                             <div class="notification-card">
-                                <p style="color: #fff !important;">New Contact Form submission by {{$notification->data['name']}} at {{$notification->created_at}}
-                                    <br>
-                                    {{$notification->data['email']}}
-                                    <br>
-                                    <a class="mark-as-read" href="#" data-id="{{$notification->id}}">Mark as read</a>
-                                </p>
+                                <p style="color: #fff !important; margin-bottom: 5px;">New Contact Form submission by <mark style="border-radius: 5px;background-color: #448AFF; color: #fff !important;">{{$notification->data['name']}}</mark></p>
+                                <p style="margin-bottom: 5px;"><mark style="margin-bottom: 5px; border-radius: 5px;background-color: #448AFF; color: #fff !important;">{{$notification->data['email']}}</mark></p>
+                                <mark style="border-radius: 5px;background-color: #448AFF; color: #fff !important;">on {{$notification->created_at}}</mark>
+                                <br>
+                                <br>
+                                <a style="margin-top: 10px;" class="mark-as-read" href="#" data-id="{{$notification->id}}">Mark as read</a>
                             </div>
                             @if($loop->last)
                                     <a href="#" id="mark-all">
@@ -89,8 +89,9 @@
             @endif
 
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{Auth::user()->name}}
+                <button style="color: #448AFF;" class="btn btn-secondary dropdown-toggle ddb-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user-circle"></i>
+                    <span>{{Auth::user()->name}}</span>
                 </button>
                 <div class="dropdown-menu ddm-pf bg-dark" aria-labelledby="dropdownMenuButton">
                     @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
