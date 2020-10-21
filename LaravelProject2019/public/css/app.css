@@ -17016,6 +17016,14 @@ a.text-dark:focus {
   background-color: #424242;
 }
 
+th {
+  color: #fff !important;
+}
+
+td {
+  color: #fff !important;
+}
+
 .dashboard-table {
   border-radius: 5px;
   margin-bottom: 50px;

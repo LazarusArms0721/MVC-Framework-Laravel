@@ -69,7 +69,7 @@
                             <div class="notification-card">
                                 <p style="color: #fff !important; margin-bottom: 5px;">New Contact Form submission by <mark style="border-radius: 5px;background-color: #448AFF; color: #fff !important;">{{$notification->data['name']}}</mark></p>
                                 <p style="margin-bottom: 5px;"><mark style="margin-bottom: 5px; border-radius: 5px;background-color: #448AFF; color: #fff !important;">{{$notification->data['email']}}</mark></p>
-                                <mark style="border-radius: 5px;background-color: #448AFF; color: #fff !important;">on {{$notification->created_at}}</mark>
+                                <mark style="border-radius: 5px;background-color: #448AFF; color: #fff !important;">on {{$notification->created_at->format('d-m-Y H:i')}}</mark>
                                 <br>
                                 <br>
                                 <a style="margin-top: 10px;" class="mark-as-read" href="#" data-id="{{$notification->id}}">Mark as read</a>
@@ -128,14 +128,14 @@
         @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
             <script>
 
-                console.log('hello');
+//                console.log('hello');
                 function sendMarkRequest(id = null){
                     return $.ajax("/notifications/read", {
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         method: 'POST',
-                        data: id,
+                        data: id
                     });
                 }
 
@@ -143,7 +143,7 @@
                     $('.mark-as-read').click(function() {
                         let request = sendMarkRequest($(this).data('id'));
 
-                        console.log("hoi");
+//                        console.log("hoi");
 
                         request.done(() => {
                            $(this).parents('div.notification-card').remove();
