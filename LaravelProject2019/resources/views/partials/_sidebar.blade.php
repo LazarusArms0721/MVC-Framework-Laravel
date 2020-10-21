@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 20px;">
+<nav class="navbar navbar-expand-lg navbar-dark bg-black" style="margin-bottom: 20px;">
     <a class="navbar-brand" href="{{route('pages.index')}}">Portfolio</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -63,7 +63,7 @@
                         </span>
                         @endif
                     </button>
-                    <div class="dropdown-menu ddm-ads bg-dark" aria-labelledby="dropdownMenuButton">
+                    <div class="dropdown-menu ddm-ads bg-black" aria-labelledby="dropdownMenuButton">
 
                         @forelse($notifications as $notification)
                             <div class="notification-card">
@@ -93,7 +93,7 @@
                     <i class="fas fa-user-circle"></i>
                     <span>{{Auth::user()->name}}</span>
                 </button>
-                <div class="dropdown-menu ddm-pf bg-dark" aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-menu ddm-pf bg-black" aria-labelledby="dropdownMenuButton">
                     @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
                         <a class="dropdown-item text-white" href="/dashboard/contact"><i class="far fa-envelope"></i> Submissions</a>
                     @endif

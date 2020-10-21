@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@charset "UTF-8";
 
 /*!
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
@@ -16803,6 +16803,10 @@ a.text-dark:focus {
   }
 }
 
+.bg-black {
+  background-color: #000 !important;
+}
+
 .dropdown .dropdown-item:hover,
 .dropdown-item:focus {
   background-color: #448AFF;
@@ -16876,7 +16880,7 @@ a.text-dark:focus {
 /* Links inside the dropdown */
 
 .dropdown-content a {
-  color: black;
+  color: #212121;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -16958,7 +16962,7 @@ a.text-dark:focus {
   min-height: 300px;
   margin-top: 10px;
   margin-bottom: 10px;
-  background-color: #424242;
+  background-color: #2d2d2d;
   border-radius: 5px;
 }
 
