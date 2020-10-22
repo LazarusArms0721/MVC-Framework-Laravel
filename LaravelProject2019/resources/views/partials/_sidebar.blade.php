@@ -146,7 +146,7 @@
 //                        console.log("hoi");
 
                         request.done(() => {
-                           $(this).parents('div.notification-card').remove();
+                           $(this).parent('div.notification-card').remove();
                         });
                     });
 

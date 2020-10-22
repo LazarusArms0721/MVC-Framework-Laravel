@@ -38,7 +38,7 @@
             <a href="/blog-filter?assignment_id={{$blog->assignment_id}}">{{$blog->assignment['name']}}</a>
             <p>{{$blog->text }}</p>
 
-            <p class="author-name">Written by {{$blog->user['name']}} on {{$blog->created_at->todatestring()}}</p>
+            <p class="author-name">Written by {{$blog->user['name']}} on {{$blog->created_at->format('d-m-Y H:i')}}</p>
 
 
               <div class="button-group">

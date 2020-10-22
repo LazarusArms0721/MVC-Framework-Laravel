@@ -28,4 +28,16 @@
         </div>
     </div>
 
+    @if($errors->any())
+        <div class="row">
+            <div class="col-sm-6 offset-sm-3">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
+
 @endsection

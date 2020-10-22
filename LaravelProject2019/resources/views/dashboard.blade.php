@@ -51,7 +51,7 @@
                     <tr class="table-body">
                         <td class="">{{$assignment->name}}</td>
                         <td class="">{{Str::limit($assignment->assignment_text, 45)}}</td>
-                        <td class="">{{$assignment->created_at->todatestring()}}</td>
+                        <td class="">{{$assignment->created_at->format('d-m-Y H:i')}}</td>
 
                         <td class="">
                             @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_EDITOR))
@@ -100,7 +100,7 @@
                             <td class="">{{ substr($blog->text, 0, 23) }}</td>
                             <td class="">{{$blog->assignment['name']}}</td>
                             <td class="">{{$blog->user['name']}}</td>
-                            <td class="">{{$blog->created_at->todatestring()}}</td>
+                            <td class="">{{$blog->created_at->format('d-m-Y H:i')}}</td>
                             <td class="">
                                 @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_EDITOR))
                                     <a href="/blog/{{$blog->id}}/edit" class="btn btn-primary">
@@ -144,7 +144,7 @@
                         <tr class="table-body">
                             <td class="">{{$user->name}}</td>
                             <td class="">{{$user->email}}</td>
-                            <td class="">{{$user->created_at}}</td>
+                            <td class="">{{$user->created_at->format('d-m-Y H:i')}}</td>
                             <td class="">{{json_encode($user->roles)}}</td>
                             <td>
                                 <a href="/dashboard/{{$user->id}}/edit" class="btn btn-primary">

@@ -199,7 +199,14 @@ class PagesController extends Controller
         return view ('pages.create_blog', compact('assignments'));
     }
 
-    public function storeBlog(){
+    public function storeBlog(Request $request){
+        $this->validate($request, [
+            'assignment_id' => 'required',
+            'title' => 'required',
+            'text' => 'required'
+        ]);
+
+
         $blog = new Blog();
         $blog->assignment_id = request('assignment_id');
         $blog->title = request('title');

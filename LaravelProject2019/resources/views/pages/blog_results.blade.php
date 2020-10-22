@@ -41,7 +41,7 @@
 
                 {{--<p>{{$blog->text }}</p>--}}
                 {{--<img src="{{$blog->assignment_image}}" alt="">--}}
-                <p class="author-name">Written by {{$filteredblog->user['name']}} on {{$filteredblog->created_at->todatestring()}}</p>
+                <p class="author-name">Written by {{$filteredblog->user['name']}} on {{$filteredblog->created_at->format('d-m-Y H:i')}}</p>
 
                 <div class="button-group">
                     <a href="/blog/{{$filteredblog->id}}/single" class="btn btn-primary">
