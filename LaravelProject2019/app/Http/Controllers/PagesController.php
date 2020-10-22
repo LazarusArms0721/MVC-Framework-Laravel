@@ -229,6 +229,12 @@ class PagesController extends Controller
 
     public function updateBlog(Request $request,  Blog $blog ){
 
+        $this->validate($request, [
+            'assignment_id' => 'required',
+            'title' => 'required',
+            'text' => 'required'
+        ]);
+
         $blogUpdate = Blog::where('id', $blog->id)->update([
 
             'assignment_id' => $request->input('assignment_id'),
@@ -244,8 +250,8 @@ class PagesController extends Controller
             return redirect('/blog')->with('success', 'Blog updated sucessfully')->withEditedMessage('Blogpost edited successfully!');
         }
 
+            return back()->withInput();
 
-        return back()->withInput();
     }
 
     public function deleteBlog(Blog $blog){
