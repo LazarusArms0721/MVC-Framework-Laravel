@@ -17123,3 +17123,11 @@ table tr:last-child td:last-child {
   text-decoration: none !important;
 }
 
+.datepicker-days th {
+  color: black !important;
+}
+
+.datepicker-days tr td {
+  color: black !important;
+}
+

@@ -11,16 +11,16 @@
 
 
     <div class="col-md-8 offset-2 blog-container">
-        <h1>Blogposts for: {{$filteredblogs[0]->assignment['name']}}</h1>
+        <h1>Showing blogposts between {{$startdate}} and {{$enddate}}</h1>
 
         <form action="/blog-filter?assignment_id=" method="GET">
             @csrf
             {{--<label for="assignment_id">Search blog by Assignment category</label>--}}
             {{--<select name="assignment_id" id="assignment_id">--}}
 
-                {{--@foreach ($assignments as $assignment)--}}
-                    {{--<option value="{{$assignment->id}}">{{$assignment->name}}</option>--}}
-                {{--@endforeach--}}
+            {{--@foreach ($assignments as $assignment)--}}
+            {{--<option value="{{$assignment->id}}">{{$assignment->name}}</option>--}}
+            {{--@endforeach--}}
             {{--</select>--}}
             {{--<button action="submit">Search</button>--}}
 
@@ -37,8 +37,8 @@
         @foreach ($filteredblogs as $filteredblog)
             <div class="blog">
                 <h4>{{$filteredblog->title}}</h4>
-
                 <a href="/blog-filter?assignment_id={{$filteredblog->assignment_id}}">{{$filteredblog->assignment['name']}}</a>
+                <p>{{$filteredblog->assignment['name']}}</p>
 
                 {{--<p>{{$blog->text }}</p>--}}
                 {{--<img src="{{$blog->assignment_image}}" alt="">--}}
@@ -51,9 +51,9 @@
 
                     @if (Auth::check())
                         @if(Auth()->user()->hasRole(App\Role\UserRole::ROLE_EDITOR))
-                        <a href="/blog/{{$filteredblog->id}}/edit" class="btn btn-secondary">
-                            Blogpost aanpassen
-                        </a>
+                            <a href="/blog/{{$filteredblog->id}}/edit" class="btn btn-secondary">
+                                Blogpost aanpassen
+                            </a>
                         @endif
                     @endif
                 </div>

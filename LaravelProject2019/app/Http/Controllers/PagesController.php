@@ -193,6 +193,19 @@ class PagesController extends Controller
 
     }
 
+    public function getDateFilter(Request $request){
+        $startdate  = $request->input('startdate');
+        $enddate    = $request->input('enddate');
+        $assignments = Assignment::all();
+
+//        $filteredblogs = Blog::whereBetween('created_at', [$startdate, $enddate]);
+
+        $filteredblogs = Blog::filter($request)->whereBetween('created_at', [$startdate, $enddate])->get();
+
+        return view('pages.blog_results_date', compact('filteredblogs', 'assignments', 'startdate','enddate'));
+
+    }
+
     public function createBlog(){
         $assignments = Assignment::all();
 

@@ -35,7 +35,7 @@
 
                 <button id="update-blog" type="submit" class="btn btn-success mt-3">Update Blogpost</button>
 
-                @if (Auth::check())
+                @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
                     <a id="delete-blog" href="" class="btn btn-outline-danger mt-3 ">
                         Delete Assignment
                     </a>
