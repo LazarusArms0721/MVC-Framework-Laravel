@@ -91,6 +91,9 @@ Route::get('/dashboard/contact',
             'DashboardController@getContacts')
                 ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
 
+Route::get('/dashboard/contact/{contact}/delete',
+            'DashboardController@deleteContact')
+                ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
 
 //
 //  User Dashboard

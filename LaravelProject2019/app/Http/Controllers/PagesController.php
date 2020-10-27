@@ -30,7 +30,7 @@ class PagesController extends Controller
     }
 
     public function getAssignments(){
-        $assignments = Assignment::orderBy('created_at', 'DESC')->paginate(9);
+        $assignments = Assignment::orderBy('created_at', 'DESC')->paginate(6);
 
         if(session('success_message')){
             Alert::toast('Assignment created successfully!', 'success');
@@ -49,7 +49,7 @@ class PagesController extends Controller
 
     public function getAssignment(Assignment $assignment){
         $assignment = Assignment::find($assignment->id);
-        $blogs = Blog::all()->where('assignment_id', $assignment->id)->sortByDesc->take(    2);
+        $blogs = Blog::all()->where('assignment_id', $assignment->id)->take(    2)->sortByDesc('created_at');
 
 
         return view('pages.assignment_single', compact('assignment','blogs'));

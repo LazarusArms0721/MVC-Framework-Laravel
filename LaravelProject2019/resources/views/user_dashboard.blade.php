@@ -19,9 +19,6 @@
 @section('content')
 
         <div class="row">
-            <div class="col-md-2 p-2">
-                <img src="" alt="">
-            </div>
             <div class="col-md-1 bg-black p-2">
                 <p>Name:</p>
                 <p>Email:</p>
