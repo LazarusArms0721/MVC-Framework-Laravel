@@ -16988,6 +16988,10 @@ a.text-dark:focus {
   color: #38c172;
 }
 
+#form-hidden {
+  display: none;
+}
+
 .button-group {
   margin-top: 10px;
   margin-bottom: 10px;

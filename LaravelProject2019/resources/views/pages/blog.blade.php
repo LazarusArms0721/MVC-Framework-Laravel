@@ -21,33 +21,38 @@
             @endif
         @endif
 
+        <div class="row">
+            <form action="/blog-filter?assignment_id=" method="GET" class="mb-1">
+                @csrf
+                <label for="assignment_id">Search blog by Assignment category</label>
+                <select name="assignment_id" id="assignment_id">
+                    @foreach ($assignments as $assignment)
+                        <option value="{{$assignment->id}}">{{$assignment->name}}</option>
+                    @endforeach
+                </select>
+                <button class="btn btn-outline-info" action="submit">Search</button>
+            </form>
+            <a onclick="showCalendar()" class="btn btn-outline-secondary mb-1 ml-1">
+                <i class="fas fa-calendar-alt"></i>
+            </a>
+        </div>
 
-        <form action="/blog-filter?assignment_id=" method="GET" class="mb-1">
-            @csrf
-            <label for="assignment_id">Search blog by Assignment category</label>
-            <select name="assignment_id" id="assignment_id">
-                @foreach ($assignments as $assignment)
-                    <option value="{{$assignment->id}}">{{$assignment->name}}</option>
-                @endforeach
-            </select>
-            <button class="btn btn-outline-info" action="submit">Search</button>
-        </form>
 
-        <form class="" action="/date-filter">
 
-            {{csrf_field()}}
-            <div class="row">
-                <div class="col-md-4">
-                    <input name="startdate" class="date form-control" type="text">
-                </div>
-                <div class="col-md-4">
+        <div class="row" id="form-hidden">
+            <form class="form-inline" action="/date-filter">
+
+                {{csrf_field()}}
+                <div class="form-group mb-2">
+                    <label class="mr-2" for="date">Filter by date</label>
+                    <input name="startdate" class="date form-control mr-2" type="text">
                     <input name="enddate" class="date form-control" type="text">
                 </div>
-                <div class="col-md-2">
+                <div class="form-group mx-sm-3 mb-2">
                     <button class="btn btn-outline-info">Submit</button>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
 
 
 
@@ -94,6 +99,15 @@
 
 @section('scripts')
     <script>
+
+      function showCalendar() {
+            var x = document.getElementById("form-hidden");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        };
 
 
        $('.date').datepicker({

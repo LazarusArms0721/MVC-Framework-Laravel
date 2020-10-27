@@ -37,7 +37,7 @@
         @foreach ($filteredblogs as $filteredblog)
             <div class="blog">
                 <h4>{{$filteredblog->title}}</h4>
-                <a href="/blog-filter?assignment_id={{$filteredblog->assignment_id}}">{{$filteredblog->assignment['name']}}</a>
+                <a href="/blog-filter?assignment_id={{$filteredblog->assignment_id}}">{{$filt->assignment['name']}}</a>
                 <p>{{$filteredblog->assignment['name']}}</p>
 
                 {{--<p>{{$blog->text }}</p>--}}
