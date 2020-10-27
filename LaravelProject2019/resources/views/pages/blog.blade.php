@@ -100,7 +100,8 @@
 @section('scripts')
     <script>
 
-      function showCalendar() {
+
+        function showCalendar() {
             var x = document.getElementById("form-hidden");
             if (x.style.display === "none") {
                 x.style.display = "block";
