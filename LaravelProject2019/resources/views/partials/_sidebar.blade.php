@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 20px;">
+<nav class="navbar navbar-expand-lg navbar-dark bg-black" style="margin-bottom: 20px;">
     <a class="navbar-brand" href="{{route('pages.index')}}">Portfolio</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -47,20 +47,32 @@
             </li>
 
             @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
-                <div class="dropdown">
+                <?php $notifications = auth()->user()->unreadNotifications; ?>
+                <div class="dropdown mr-2">
                     <button class="btn ddb-button btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-bell"></i>
+                        @if ($notifications->count() >  0)
+                        <span class="badge badge-danger">
+
+                            {{$notifications->count()}}
+
+                        </span>
+                        @else
+                        <span>
+
+                        </span>
+                        @endif
                     </button>
-                    <div class="dropdown-menu ddm-ads bg-dark" aria-labelledby="dropdownMenuButton">
-                        <?php $notifications = auth()->user()->unreadNotifications; ?>
+                    <div class="dropdown-menu ddm-ads bg-black" aria-labelledby="dropdownMenuButton">
+
                         @forelse($notifications as $notification)
                             <div class="notification-card">
-                                <p style="color: #fff !important;">New Contact Form submission by {{$notification->data['name']}} at {{$notification->created_at}}
-                                    <br>
-                                    {{$notification->data['email']}}
-                                    <br>
-                                    <a class="mark-as-read" href="#" data-id="{{$notification->id}}">Mark as read</a>
-                                </p>
+                                <p style="color: #fff !important; margin-bottom: 5px;">New Contact Form submission by <mark style="border-radius: 5px;background-color: #448AFF; color: #fff !important;">{{$notification->data['name']}}</mark></p>
+                                <p style="margin-bottom: 5px;"><mark style="margin-bottom: 5px; border-radius: 5px;background-color: #448AFF; color: #fff !important;">{{$notification->data['email']}}</mark></p>
+                                <mark style="border-radius: 5px;background-color: #448AFF; color: #fff !important;">on {{$notification->created_at->format('d-m-Y H:i')}}</mark>
+                                <br>
+                                <br>
+                                <a style="margin-top: 10px;" class="mark-as-read" href="#" data-id="{{$notification->id}}">Mark as read</a>
                             </div>
                             @if($loop->last)
                                     <a href="#" id="mark-all">
@@ -77,10 +89,11 @@
             @endif
 
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{Auth::user()->name}}
+                <button style="color: #448AFF;" class="btn btn-secondary dropdown-toggle ddb-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user-circle"></i>
+                    <span>{{Auth::user()->name}}</span>
                 </button>
-                <div class="dropdown-menu ddm-pf bg-dark" aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-menu ddm-pf bg-black" aria-labelledby="dropdownMenuButton">
                     @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
                         <a class="dropdown-item text-white" href="/dashboard/contact"><i class="far fa-envelope"></i> Submissions</a>
                     @endif
@@ -115,14 +128,14 @@
         @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
             <script>
 
-                console.log('hello');
+//                console.log('hello');
                 function sendMarkRequest(id = null){
                     return $.ajax("/notifications/read", {
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         method: 'POST',
-                        data: id,
+                        data: id
                     });
                 }
 
@@ -130,10 +143,10 @@
                     $('.mark-as-read').click(function() {
                         let request = sendMarkRequest($(this).data('id'));
 
-                        console.log("hoi");
+//                        console.log("hoi");
 
                         request.done(() => {
-                           $(this).parents('div.notification-card').remove();
+                           $(this).parent('div.notification-card').remove();
                         });
                     });
 

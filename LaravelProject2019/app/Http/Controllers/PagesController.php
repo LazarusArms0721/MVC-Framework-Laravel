@@ -30,7 +30,7 @@ class PagesController extends Controller
     }
 
     public function getAssignments(){
-        $assignments = Assignment::orderBy('created_at', 'DESC')->paginate(10);
+        $assignments = Assignment::orderBy('created_at', 'DESC')->paginate(9);
 
         if(session('success_message')){
             Alert::toast('Assignment created successfully!', 'success');
@@ -49,9 +49,10 @@ class PagesController extends Controller
 
     public function getAssignment(Assignment $assignment){
         $assignment = Assignment::find($assignment->id);
+        $blogs = Blog::all()->where('assignment_id', $assignment->id)->sortByDesc->take(    2);
 
 
-        return view('pages.assignment_single', compact('assignment'));
+        return view('pages.assignment_single', compact('assignment','blogs'));
     }
 
     public function createAssignment(){
@@ -193,13 +194,33 @@ class PagesController extends Controller
 
     }
 
+    public function getDateFilter(Request $request){
+        $startdate  = $request->input('startdate');
+        $enddate    = $request->input('enddate');
+        $assignments = Assignment::all();
+
+//        $filteredblogs = Blog::whereBetween('created_at', [$startdate, $enddate]);
+
+        $filteredblogs = Blog::filter($request)->whereBetween('created_at', [$startdate, $enddate])->get();
+
+        return view('pages.blog_results_date', compact('filteredblogs', 'assignments', 'startdate','enddate'));
+
+    }
+
     public function createBlog(){
         $assignments = Assignment::all();
 
         return view ('pages.create_blog', compact('assignments'));
     }
 
-    public function storeBlog(){
+    public function storeBlog(Request $request){
+        $this->validate($request, [
+            'assignment_id' => 'required',
+            'title' => 'required',
+            'text' => 'required'
+        ]);
+
+
         $blog = new Blog();
         $blog->assignment_id = request('assignment_id');
         $blog->title = request('title');
@@ -222,6 +243,12 @@ class PagesController extends Controller
 
     public function updateBlog(Request $request,  Blog $blog ){
 
+        $this->validate($request, [
+            'assignment_id' => 'required',
+            'title' => 'required',
+            'text' => 'required'
+        ]);
+
         $blogUpdate = Blog::where('id', $blog->id)->update([
 
             'assignment_id' => $request->input('assignment_id'),
@@ -237,8 +264,8 @@ class PagesController extends Controller
             return redirect('/blog')->with('success', 'Blog updated sucessfully')->withEditedMessage('Blogpost edited successfully!');
         }
 
+            return back()->withInput();
 
-        return back()->withInput();
     }
 
     public function deleteBlog(Blog $blog){

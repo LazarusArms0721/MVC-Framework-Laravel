@@ -14,10 +14,15 @@
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 10px;
-  background-color: #424242;
-  border-radius: 5px;
+  background-color: #2D2D2D;
+  box-shadow: 1px 1px 10px -4px #000;
+
 }
 
 .author-name {
   color: $green;
+}
+
+#form-hidden {
+  display: none;
 }

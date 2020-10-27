@@ -13,7 +13,7 @@
         <div class="col-sm-6 offset-sm-3">
             <h1>Update Blog post</h1>
             <hr>
-            <form method="POST" action="/blog/{{$blog->id}}/update" enctype="multipart/form-data">
+            <form id="blogpost-form" method="POST" action="/blog/{{$blog->id}}/update" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
                 <input type = "hidden" name = "_method" value = "put">
@@ -33,9 +33,9 @@
                 <label for="text">Blogpost Text</label>
                 <textarea rows="10" name="text" class="form-control"><?php echo $blog->text; ?></textarea>
 
-                <button type="submit" class="btn btn-success mt-3">Update Blogpost</button>
+                <button id="update-blog" type="submit" class="btn btn-success mt-3">Update Blogpost</button>
 
-                @if (Auth::check())
+                @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
                     <a id="delete-blog" href="" class="btn btn-outline-danger mt-3 ">
                         Delete Assignment
                     </a>
@@ -61,6 +61,25 @@
                 confirmButtonColor: '#e3342f',
                 confirmButtonText: "<a style='color: white !important;' href='/blog/{{$blog->id}}/delete'>Yes, I'm sure</a>",
             })
+        });
+
+        $("#update-blog" ).click(function(e) {
+            e.preventDefault();
+            var form = $(this).parents('#blogpost-form');
+            console.log(form);
+            swal({
+                title:  "Update Blogpost?",
+                text:   "You are about to update this blogpost",
+                type:   "info",
+                showCancelButton: true,
+                cancelButtonText: "Nevermind",
+                showConfirmButton: true,
+                confirmButtonColor: "#e3342f",
+            }).then(function(isConfirm){
+                if(isConfirm){
+                    $('#blogpost-form').submit();
+                }
+            });
         });
 
     </script>

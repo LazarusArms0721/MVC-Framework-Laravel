@@ -13,7 +13,7 @@
         <div class="col-sm-6 offset-sm-3">
             <h1>Update Assignment</h1>
             <hr>
-            <form method="POST" action="/assignments/{{$assignment->id}}" enctype="multipart/form-data">
+            <form id="assignment-form"method="POST" action="/assignments/{{$assignment->id}}" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
                 <input type = "hidden" name = "_method" value = "put">
@@ -28,18 +28,14 @@
                 <label for="assignment_image">Select image to upload:</label>
                 <input type="file" name="assignment_image" class="form-control" value="<?php echo $assignment->assignment_image; ?>">
 
-                <button type="submit" class="btn btn-success mt-3">Update Assignment</button>
+                <button id="update-assignment" type="submit" class="btn btn-success mt-3">Update Assignment</button>
 
-                @if (Auth::check())
+                @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
                     <a id="delete-assignment" href="" class="btn btn-outline-danger mt-3 ">
                         Delete Assignment
                     </a>
                 @endif
-
-
-
             </form>
-
         </div>
     </div>
 
@@ -50,7 +46,7 @@
         $( "#delete-assignment" ).click(function(e) {
             e.preventDefault();
             swal({
-                title: "Are you sure?",
+                title: "Delete Assignment?",
                 text: "Once you delete this Assignmnent there is no going back.",
                 type: "warning",
                 showCancelButton: true,
@@ -59,6 +55,25 @@
                 confirmButtonColor: '#e3342f',
                 confirmButtonText: "<a style='color: white !important;' href='/assignments/{{$assignment->id}}/delete'>Yes, I'm sure</a>",
             })
+        });
+
+        $("#update-assignment" ).click(function(e) {
+            e.preventDefault();
+            var form = $(this).parents('#assignment-form');
+            console.log(form);
+            swal({
+                title:  "Update Assignment?",
+                text:   "You are about to update this assignment",
+                type:   "info",
+                showCancelButton: true,
+                cancelButtonText: "Nevermind",
+                showConfirmButton: true,
+                confirmButtonColor: "#e3342f",
+            }).then(function(isConfirm){
+                if(isConfirm){
+                    $('#assignment-form').submit();
+                }
+            });
         });
 
     </script>

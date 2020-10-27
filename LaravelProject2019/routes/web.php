@@ -66,7 +66,7 @@ Route::get('/', 'PagesController@getIndex', function(){
 
 Route::get('/dashboard',
             'DashboardController@showDashboard')
-                ->middleware('auth');
+                ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_EDITOR);
 
 Route::get('/dashboard/{user}/edit',
             'DashboardController@getUser')
@@ -162,6 +162,10 @@ Route::get('blog/{blog}/single',
 Route::get('/blog-filter',
             'PagesController@getBlogFilter')
                 ->name('pages.blog_results');
+
+Route::get('/date-filter',
+            'PagesController@getDateFilter')
+                ->name('pages.blog_results_date');
 
 Route::get('/blog/create',
             'PagesController@createBlog')

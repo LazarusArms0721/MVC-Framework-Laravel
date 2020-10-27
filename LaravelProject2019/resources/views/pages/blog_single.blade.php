@@ -14,7 +14,7 @@
         <p>{{$blog->assignment['name']}}</p>
         <p>{{$blog->text}}</p>
         {{--<img src="{{$blog->assignment_image}}" alt="">--}}
-        <p class="author-name">Written by {{$blog->user['name']}} on {{$blog->created_at->todatestring()}}</p>
+        <p class="author-name">Written by {{$blog->user['name']}} on {{$blog->created_at->format('d-m-Y H:i')}}</p>
 
 
         <div class="button-group">

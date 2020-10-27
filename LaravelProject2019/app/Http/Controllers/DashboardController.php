@@ -20,16 +20,22 @@ class DashboardController extends Controller
 
     public function showUserDashboard(){
 
+
         $user = User::find(Auth::user()->id);
 
-        return view('user_dashboard', compact('user'));
+//        $userRoles = $user->hasRoles($user->roles);
+
+        $blogs = Blog::all()->where('user_id', $user->id);
+
+
+        return view('user_dashboard', compact('user', 'blogs'));
     }
 
     public function editUserDashboard(User $user){
         $user = User::find($user->id);
-        $roles = Role\UserRole::getRoleList();
 
-        return view('user_dashboard_single', compact('user', 'roles'));
+
+        return view('user_dashboard_single', compact('user'));
     }
 
     public function updateUserDashboard(Request $request, User $user){
@@ -55,6 +61,7 @@ class DashboardController extends Controller
 
         return redirect('/')->with('success', 'You have deleted your profile.');
     }
+
 
     public function showDashboard(){
 
