@@ -49,9 +49,10 @@ class PagesController extends Controller
 
     public function getAssignment(Assignment $assignment){
         $assignment = Assignment::find($assignment->id);
+        $blogs = Blog::all()->where('assignment_id', $assignment->id)->sortByDesc->take(    2);
 
 
-        return view('pages.assignment_single', compact('assignment'));
+        return view('pages.assignment_single', compact('assignment','blogs'));
     }
 
     public function createAssignment(){
