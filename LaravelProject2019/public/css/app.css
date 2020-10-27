@@ -16977,11 +16977,17 @@ a.text-dark:focus {
      object-fit: cover;
 }
 
+.assignment-block .image_block:hover {
+  -webkit-filter: brightness(60%);
+  transition: all 1s ease;
+}
+
 .assignment-block .content_block {
-  background-color: #000;
+  background-color: #2D2D2D;
   padding: 10px;
   max-height: 350px;
   height: 200px;
+  box-shadow: 1px 1px 10px -4px #000;
 }
 
 .blog-container {
@@ -16998,8 +17004,8 @@ a.text-dark:focus {
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 10px;
-  background-color: #424242;
-  border-radius: 5px;
+  background-color: #2D2D2D;
+  box-shadow: 1px 1px 10px -4px #000;
 }
 
 .author-name {

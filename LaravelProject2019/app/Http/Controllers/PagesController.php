@@ -30,7 +30,7 @@ class PagesController extends Controller
     }
 
     public function getAssignments(){
-        $assignments = Assignment::orderBy('created_at', 'DESC')->paginate(10);
+        $assignments = Assignment::orderBy('created_at', 'DESC')->paginate(9);
 
         if(session('success_message')){
             Alert::toast('Assignment created successfully!', 'success');

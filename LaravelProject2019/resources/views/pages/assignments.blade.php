@@ -64,29 +64,33 @@
     @foreach($assignments as $assignment)
 
         <div class="col-md-4 assignment-block">
-            <img class="image_block" src="{{asset('storage/assignment_images1').'/'.$assignment->assignment_image }}" alt="">
+            <a href="/assignments/{{$assignment->id}}">
+                <img class="image_block" src="{{asset('storage/assignment_images1').'/'.$assignment->assignment_image }}" alt="">
+            </a>
             <div class="content_block">
                 <h3>{{$assignment->name}}</h3>
                 <p>{{$assignment->assignment_text}}</p>
-                <div class="button-group">
-                    <a href="/assignments/{{$assignment->id}}" class="btn btn-primary">
+
+            </div>
+            <div class="button-group">
+                <a href="/assignments/{{$assignment->id}}" class="btn btn-primary">
                     Read More
-                    </a>
+                </a>
 
-                    <a href="/blog-filter?assignment_id={{$assignment->id}}" class="btn btn-secondary">
+                <a href="/blog-filter?assignment_id={{$assignment->id}}" class="btn btn-secondary">
                     Blogposts
-                    </a>
+                </a>
 
-                    @if (Auth::check())
-                        @if(Auth()->user()->hasRole(App\Role\UserRole::ROLE_EDITOR))
-                            <a href="/assignments/{{$assignment->id}}/edit" class="btn btn-outline-secondary">
+                @if (Auth::check())
+                    @if(Auth()->user()->hasRole(App\Role\UserRole::ROLE_EDITOR))
+                        <a href="/assignments/{{$assignment->id}}/edit" class="btn btn-outline-secondary">
                             Edit
-                            </a>
-                        @endif
+                        </a>
                     @endif
-                </div>
+                @endif
             </div>
         </div>
+
 
     @endforeach
     </div>
