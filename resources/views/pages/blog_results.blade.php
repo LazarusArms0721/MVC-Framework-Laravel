@@ -16,7 +16,7 @@
         <h1>Blogposts for: {{$filteredblogs[0]->assignment['name']}}</h1>
 
         @endif
-        
+
         <form action="/blog-filter?assignment_id=" method="GET">
             @csrf
             {{--<label for="assignment_id">Search blog by Assignment category</label>--}}
