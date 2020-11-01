@@ -15,6 +15,7 @@
 use App\User;
 use App\Contact;
 use App\Notifications\TaskCompleted;
+use App\Role\Userrole;
 
 
 
