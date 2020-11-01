@@ -185,7 +185,7 @@
                     cancelButtonText: "Cancel",
                     showConfirmButton: true,
                     confirmButtonColor: '#e3342f',
-                    confirmButtonText: "<a style='color: white !important;' href='/assignments/{{$blog->id}}/delete'>Yes, I'm sure</a>",
+                    confirmButtonText: "<a style='color: white !important;' href='/assignments/{{$assignment->id}}/delete'>Yes, I'm sure</a>",
                 })
 
             }
