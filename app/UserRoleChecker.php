@@ -5,7 +5,7 @@ namespace App\Role;
 
 use App\User;
 
-class Userrolechecker
+class UserRoleChecker
 {
 
     public function check(User $user, $role){
