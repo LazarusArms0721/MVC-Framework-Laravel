@@ -111,8 +111,8 @@ class DashboardController extends Controller
 
     public function getUser(User $user){
         $user = User::find($user->id);
-        $rolenames = Role\UserRole::getRoleList();
-        $rolevalues = Role\UserRole::getRoleList();
+        $rolenames = Role\Userrole::getRoleList();
+        $rolevalues = Role\Userrole::getRoleList();
 
         $roles = array_combine($rolenames, $rolevalues);
 

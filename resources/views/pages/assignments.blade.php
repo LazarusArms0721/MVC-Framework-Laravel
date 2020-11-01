@@ -17,7 +17,7 @@
     <h1>Assignments</h1>
 
     @if(Auth::check())
-        @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
+        @if (Auth()->user()->hasRole(App\Role\Userrole::ROLE_ADMIN))
         <a href="/assignment/create" class="btn btn-primary">
             Create Assignment
         </a>
@@ -82,7 +82,7 @@
                 </a>
 
                 @if (Auth::check())
-                    @if(Auth()->user()->hasRole(App\Role\UserRole::ROLE_EDITOR))
+                    @if(Auth()->user()->hasRole(App\Role\Userrole::ROLE_EDITOR))
                         <a href="/assignments/{{$assignment->id}}/edit" class="btn btn-outline-secondary">
                             Edit
                         </a>
@@ -103,7 +103,7 @@
 
 
     @if (Auth::check())
-        @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
+        @if (Auth()->user()->hasRole(App\Role\Userrole::ROLE_ADMIN))
         <a href="/assignments/create" class="btn btn-primary btn-lg">
             Assignment aanmaken
         </a>

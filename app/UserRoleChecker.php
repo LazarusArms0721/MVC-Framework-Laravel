@@ -5,16 +5,16 @@ namespace App\role;
 
 use App\User;
 
-class UserRoleChecker
+class Userrolechecker
 {
 
     public function check(User $user, $role){
-        if ($user->hasRole(UserRole::ROLE_ADMIN)) {
+        if ($user->hasRole(Userrole::ROLE_ADMIN)) {
             return true;
         }
-        else if ($user->hasRole(UserRole::ROLE_MANAGEMENT)){
+        else if ($user->hasRole(Userrole::ROLE_MANAGEMENT)){
             $managementRoles =
-                UserRole::getAllowedRoles(UserRole::ROLE_MANAGEMENT);
+                Userrole::getAllowedRoles(Userrole::ROLE_MANAGEMENT);
 
             if (in_array($role, $managementRoles)){
                 return true;

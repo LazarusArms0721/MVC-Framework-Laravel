@@ -46,7 +46,7 @@
                 <a class="nav-link" href="/dashboard">Dashboard</a>
             </li>
 
-            @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
+            @if (Auth()->user()->hasRole(App\Role\Userrole::ROLE_ADMIN))
                 <?php $notifications = auth()->user()->unreadNotifications; ?>
                 <div class="dropdown mr-2">
                     <button class="btn ddb-button btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -94,7 +94,7 @@
                     <span>{{Auth::user()->name}}</span>
                 </button>
                 <div class="dropdown-menu ddm-pf bg-black" aria-labelledby="dropdownMenuButton">
-                    @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
+                    @if (Auth()->user()->hasRole(App\Role\Userrole::ROLE_ADMIN))
                         <a class="dropdown-item text-white" href="/dashboard/contact"><i class="far fa-envelope"></i> Submissions</a>
                     @endif
                     <a class="dropdown-item text-white" href="/dashboard/user"><i class="fas fa-user"></i> Profile</a>
@@ -125,7 +125,7 @@
 
 
     @if(Auth::check())
-        @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
+        @if (Auth()->user()->hasRole(App\Role\Userrole::ROLE_ADMIN))
             <script>
 
 //                console.log('hello');

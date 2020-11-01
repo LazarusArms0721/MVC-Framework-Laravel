@@ -15,7 +15,7 @@
 use App\User;
 use App\Contact;
 use App\Notifications\TaskCompleted;
-use App\Role\UserRole;
+use App\role\Userrole;
 
 
 
@@ -64,34 +64,34 @@ Route::get('/', 'PagesController@getIndex', function(){
 
 Route::get('/dashboard',
             'DashboardController@showDashboard')
-                ->middleware('auth')->middleware('check_user_role:' . \App\role\userrole::ROLE_EDITOR);
+                ->middleware('auth')->middleware('check_user_role:' . \App\Role\Userrole::ROLE_EDITOR);
 
 Route::get('/dashboard/{user}/edit',
             'DashboardController@getUser')
-                ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+                ->middleware('auth')->middleware('check_user_role:' . \App\Role\Userrole::ROLE_ADMIN);
 
 Route::put('/dashboard/{user}/update',
             'DashboardController@updateUser')
-                ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+                ->middleware('auth')->middleware('check_user_role:' . \App\Role\Userrole::ROLE_ADMIN);
 
 Route::get('/dashboard/{user}/delete',
             'DashboardController@deleteUser')
-                ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+                ->middleware('auth')->middleware('check_user_role:' . \App\Role\Userrole::ROLE_ADMIN);
 
 Route::get('/dashboard/user/create',
             'DashboardController@addUser')
-                ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+                ->middleware('auth')->middleware('check_user_role:' . \App\Role\Userrole::ROLE_ADMIN);
 
 //Route::get('/dashboard/notifications',
 //            'NotificationsController@getIndex');
 
 Route::get('/dashboard/contact',
             'DashboardController@getContacts')
-                ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+                ->middleware('auth')->middleware('check_user_role:' . \App\Role\Userrole::ROLE_ADMIN);
 
 Route::get('/dashboard/contact/{contact}/delete',
             'DashboardController@deleteContact')
-                ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+                ->middleware('auth')->middleware('check_user_role:' . \App\Role\Userrole::ROLE_ADMIN);
 
 //
 //  User Dashboard
@@ -119,7 +119,7 @@ Route::get('/assignments/{assignment}',
             'Pagescontroller@getAssignment');
 
 Route::get('/assignment/create', 'PagesController@createAssignment'
-             )->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+             )->middleware('check_user_role:' . \App\Role\Userrole::ROLE_ADMIN);
 
 //
 //Route::get('assignments/create',
@@ -128,20 +128,20 @@ Route::get('/assignment/create', 'PagesController@createAssignment'
 // POST CREATED ASSIGNMENT
 Route::post('/assignment-action',
             'PagesController@storeAssignment')
-                ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+                ->middleware('auth')->middleware('check_user_role:' . \App\Role\Userrole::ROLE_ADMIN);
 // DELETE ASSIGNMENT
 Route::get('/assignments/{assignment}/delete',
             'PagesController@deleteAssignment')
-                ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+                ->middleware('auth')->middleware('check_user_role:' . \App\Role\Userrole::ROLE_ADMIN);
 
 // SHOW AND UPDATE ASSIGNMENTS
 Route::get('/assignments/{assignment}/edit',
             'PagesController@showAssignment')
-                ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_EDITOR);
+                ->middleware('auth')->middleware('check_user_role:' . \App\Role\Userrole::ROLE_EDITOR);
 
 Route::put('/assignments/{assignment}',
             'PagesController@updateAssignment')
-                ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_EDITOR);
+                ->middleware('auth')->middleware('check_user_role:' . \App\Role\Userrole::ROLE_EDITOR);
 
 //Filter op basis van GET (assignment=value) in url.
 Route::get('/assignment-filter',
@@ -170,23 +170,23 @@ Route::get('/date-filter',
 
 Route::get('/blog/create',
             'PagesController@createBlog')
-                ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+                ->middleware('auth')->middleware('check_user_role:' . \App\Role\Userrole::ROLE_ADMIN);
 
 Route::post('/blog-action',
             'PagesController@storeBlog')
-                ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+                ->middleware('auth')->middleware('check_user_role:' . \App\Role\Userrole::ROLE_ADMIN);
 
 Route::get('/blog/{blog}/edit',
             'PagesController@showBlog')
-                ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_EDITOR);
+                ->middleware('auth')->middleware('check_user_role:' . \App\Role\Userrole::ROLE_EDITOR);
 
 Route::put('/blog/{blog}/update',
             'PagesController@updateBlog')
-                ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_EDITOR);
+                ->middleware('auth')->middleware('check_user_role:' . \App\Role\Userrole::ROLE_EDITOR);
 
 Route::get('/blog/{blog}/delete',
     'PagesController@deleteBlog')
-    ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+    ->middleware('auth')->middleware('check_user_role:' . \App\Role\Userrole::ROLE_ADMIN);
 
 //
 // Notifications
