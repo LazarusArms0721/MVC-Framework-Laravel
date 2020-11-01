@@ -15,7 +15,8 @@
 use App\User;
 use App\Contact;
 use App\Notifications\TaskCompleted;
-use App\role\Userrole;
+use App\Role\Userrole;
+
 
 
 
@@ -64,15 +65,15 @@ Route::get('/', 'PagesController@getIndex', function(){
 
 Route::get('/dashboard',
             'DashboardController@showDashboard')
-                ->middleware('auth')->middleware('check_user_role:' . \App\Role\Userrole::ROLE_EDITOR);
+                ->middleware('auth')->middleware('check_user_role:' . Userrole::ROLE_EDITOR);
 
 Route::get('/dashboard/{user}/edit',
             'DashboardController@getUser')
-                ->middleware('auth')->middleware('check_user_role:' . \App\Role\Userrole::ROLE_ADMIN);
+                ->middleware('auth')->middleware('check_user_role:' . Userrole::ROLE_ADMIN);
 
 Route::put('/dashboard/{user}/update',
             'DashboardController@updateUser')
-                ->middleware('auth')->middleware('check_user_role:' . \App\Role\Userrole::ROLE_ADMIN);
+                ->middleware('auth')->middleware('check_user_role:' . Userrole::ROLE_ADMIN);
 
 Route::get('/dashboard/{user}/delete',
             'DashboardController@deleteUser')

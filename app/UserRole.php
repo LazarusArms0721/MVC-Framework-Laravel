@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\role;
+namespace App\Role;
 
 
 
