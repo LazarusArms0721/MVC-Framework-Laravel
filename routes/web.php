@@ -49,9 +49,6 @@ use App\Role\UserRole;
 // HOME
 //
 
-//Route::get('/',
-//            'PagesController@getIndex')
-//                ->name('pages.index');
 
 Route::get('/', 'PagesController@getIndex', function(){
 
