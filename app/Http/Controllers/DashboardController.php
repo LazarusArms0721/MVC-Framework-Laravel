@@ -163,6 +163,13 @@ class DashboardController extends Controller
         return view('dashboard_contacts', compact('contacts'));
     }
 
+    public function deleteContact(Contact $contact){
+
+        $contact->delete();
+
+        return redirect('/dashboard/contact')->with('success', 'Contact deleted sucesfully');
+    }
+
 
 
 }

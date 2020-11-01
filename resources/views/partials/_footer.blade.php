@@ -7,12 +7,12 @@
  */
 ?>
 
-<div class="footer-container bg-dark">
+<div class="footer-container">
 
     <div class="container">
-
-        <h1>Hello World</h1>
         <p>Erhan Akin 2020 All Rights Reserved</p>
+        <i class="fab fa-linkedin-in"></i>
+        <i class="fab fa-instagram"></i>
         {{--<li style="color: #fff; list-style:none; margin-right:10px;">{{ Auth::guard()->user()}}</li>--}}
 
     </div>

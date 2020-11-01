@@ -17034,6 +17034,8 @@ a.text-dark:focus {
   padding-top: 50px;
   padding-bottom: 50px;
   margin-top: 20px;
+  background-color: #2D2D2D;
+  box-shadow: 0px 0 1px rgba(0, 0, 0, 0.8);
 }
 
 .login-page {
@@ -17054,6 +17056,20 @@ th {
 
 td {
   color: #fff !important;
+}
+
+.table th,
+.table td {
+  padding: 0.3rem;
+}
+
+tr:hover {
+  background-color: #2D2D2D;
+  opacity: 0.8;
+}
+
+tr:hover td {
+  color: #1565c0 !important;
 }
 
 .dashboard-table {

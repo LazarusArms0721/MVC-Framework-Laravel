@@ -17,6 +17,18 @@ class ContactController extends Controller
 
     public function storeContact(Request $request){
 
+        $this->validate($request, [
+            'name' => 'required|min: 3',
+            'email' => 'required|regex:/(.+)@(.+)\.(.+)/i',
+            'message' => 'required|min: 15'
+        ]);
+
+        if ($request->faxonly) {
+            return redirect()->back()
+                ->withSuccess('Your form has been submitted');
+        }
+
+
         $contact = new Contact();
         $contact->name = request('name');
         $contact->email = request('email');

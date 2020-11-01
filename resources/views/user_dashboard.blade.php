@@ -19,9 +19,6 @@
 @section('content')
 
         <div class="row">
-            <div class="col-md-2 p-2">
-                <img src="" alt="">
-            </div>
             <div class="col-md-1 bg-black p-2">
                 <p>Name:</p>
                 <p>Email:</p>
@@ -37,17 +34,18 @@
         </div>
 
         <div class="row mt-1 mb-1">
-            <a href="/dashboard/user/{{$user->id}}/edit" class="btn btn-primary">
+            <a id="edit-profile" href="/dashboard/user/{{$user->id}}/edit" class="btn btn-primary">
                 Edit
             </a>
 
-            <a href="/dashboard/user/{{$user->id}}/delete" class="btn btn-outline-danger">
-                Delete
-            </a>
+            {{--<a id="delete-profile" href="/dashboard/user/{{$user->id}}/delete" class="btn btn-outline-danger">--}}
+                {{--Delete--}}
+            {{--</a>--}}
         </div>
 
-    <h1>Latest blogposts made by {{$user->name}}</h1>
+    @if (count($blogs) > 0)
 
+    <h1>Latest blogposts made by {{$user->name}}</h1>
 
         @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
             <a href="/blog/create" class="btn btn-primary mt-2 mb-2">
@@ -97,6 +95,17 @@
             </div>
         </div>
 
+
+
+
+
+    @endif
+
+    @if (count($blogs) < 1)
+
+    <h1 class="mt-2">No blogsposts made by {{$user->name}}</h1>
+
+    @endif
 
 
 

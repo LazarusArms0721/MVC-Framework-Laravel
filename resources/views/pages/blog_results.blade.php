@@ -11,7 +11,11 @@
 
 
     <div class="col-md-8 offset-2 blog-container">
+
+        @if(count($filteredblogs) > 0 )
         <h1>Blogposts for: {{$filteredblogs[0]->assignment['name']}}</h1>
+
+        @endif
 
         <form action="/blog-filter?assignment_id=" method="GET">
             @csrf
@@ -34,7 +38,7 @@
 
         </form>
 
-        @foreach ($filteredblogs as $filteredblog)
+        @forelse ($filteredblogs as $filteredblog)
             <div class="blog">
                 <h4>{{$filteredblog->title}}</h4>
 
@@ -59,7 +63,12 @@
                 </div>
             </div>
 
-        @endforeach
+        @empty
+
+            <h1>No blogposts for this assignment.</h1>
+
+
+        @endforelse
 
         <a href="/blog" class="btn btn-secondary">
             Return to overview

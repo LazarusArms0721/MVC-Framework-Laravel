@@ -6,6 +6,19 @@ td {
   color: #fff !important;
 }
 
+.table th, .table td {
+  padding: 0.3rem;
+}
+
+tr:hover {
+  background-color: #2D2D2D;
+  opacity: 0.8;
+
+  td {
+    color: #1565c0 !important;
+  }
+}
+
 .dashboard-table {
 
   border-radius: 5px;
