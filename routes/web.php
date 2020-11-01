@@ -64,7 +64,7 @@ Route::get('/', 'PagesController@getIndex', function(){
 
 Route::get('/dashboard',
             'DashboardController@showDashboard')
-                ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_EDITOR);
+                ->middleware('auth')->middleware('check_user_role:' . \App\role\userrole::ROLE_EDITOR);
 
 Route::get('/dashboard/{user}/edit',
             'DashboardController@getUser')
