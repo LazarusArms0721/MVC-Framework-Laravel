@@ -6,7 +6,7 @@ namespace App\Role;
 
 
 
-class Userrole
+class UserRole
 {
 
     const ROLE_ADMIN ='ROLE_ADMIN';
