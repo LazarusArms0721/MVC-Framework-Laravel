@@ -5,7 +5,7 @@ namespace App\Providers;
 use App\Contact;
 use App\Http\Middleware\CheckUserRole;
 use App\Observers\ContactObserver;
-use App\Role\Userrolechecker;
+use App\Role\UserRoleChecker;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(CheckUserRole::class, function(Application $app) {
             return new CheckUserRole(
-                $app->make(Userrolechecker::class)
+                $app->make(UserRoleChecker::class)
             );
         });
     }

@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\User;
-use App\Role\Userrolechecker;
+use App\Role\UserRoleChecker;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,9 +19,9 @@ class CheckUserRole
      */
 
 
-    protected $userRoleChecker;
+    protected $serRoleChecker;
 
-    public function __construct(Userrolechecker $userRoleChecker){
+    public function __construct(UserRoleChecker $userRoleChecker){
         $this->userRoleChecker = $userRoleChecker;
     }
 

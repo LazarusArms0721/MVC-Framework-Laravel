@@ -58,7 +58,7 @@
     <script>
         var buttonsContact = document.querySelectorAll('#delete-contact');
 
-        @if (Auth()->user()->hasRole(App\Role\Userrole::ROLE_ADMIN))
+        @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
 
 
         for (var i = 0; i < buttonsContact.length; i++){
