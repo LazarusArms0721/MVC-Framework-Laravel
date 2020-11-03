@@ -35,17 +35,17 @@ use App\Role\UserRole;
 //
 //})->middleware('auth');
 //
-//Route::get('/add/role/admin', function(){
-//
-//    $newrole = auth()->user();
-//
-//
-//
-//
-//    return $newrole->addRole('ROLE_ADMIN')->save();
-//
-//
-//})->middleware('auth');
+Route::get('/add/role/admin', function(){
+
+    $newrole = auth()->user();
+
+
+
+
+    return $newrole->addRole('ROLE_ADMIN')->save();
+
+
+})->middleware('auth');
 
 //
 // HOME
