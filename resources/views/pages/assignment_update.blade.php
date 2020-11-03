@@ -30,7 +30,7 @@
 
                 <button id="update-assignment" type="submit" class="btn btn-success mt-3">Update Assignment</button>
 
-                @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
+                @if (Auth()->user()->hasRole(App\Role\Userrole::ROLE_ADMIN))
                     <a id="delete-assignment" href="" class="btn btn-outline-danger mt-3 ">
                         Delete Assignment
                     </a>

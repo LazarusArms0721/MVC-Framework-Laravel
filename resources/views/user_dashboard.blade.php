@@ -47,7 +47,7 @@
 
     <h1>Latest blogposts made by {{$user->name}}</h1>
 
-        @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
+        @if (Auth()->user()->hasRole(App\Role\Userrole::ROLE_ADMIN))
             <a href="/blog/create" class="btn btn-primary mt-2 mb-2">
                 Create Blogpost
             </a>
@@ -72,13 +72,13 @@
                     <td class="">{{$blog->user['name']}}</td>
                     <td class="">{{$blog->created_at->format('d-m-Y H:i')}}</td>
                     <td class="">
-                        @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_EDITOR))
+                        @if (Auth()->user()->hasRole(App\Role\Userrole::ROLE_EDITOR))
                             <a href="/blog/{{$blog->id}}/edit" class="btn btn-primary">
                                 Edit
                             </a>
                         @endif
 
-                        @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
+                        @if (Auth()->user()->hasRole(App\Role\Userrole::ROLE_ADMIN))
 
                             <a id="delete-blog" href="" class="btn btn-outline-danger">
                                 Delete

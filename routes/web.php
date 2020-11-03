@@ -12,9 +12,9 @@
 |
 */
 
-use App\User;
-use App\Contact;
-use App\Notifications\TaskCompleted;
+use App\Role\UserRole;
+
+
 
 
 
@@ -44,13 +44,11 @@ use App\Notifications\TaskCompleted;
 //
 //})->middleware('auth');
 
+
 //
 // HOME
 //
 
-//Route::get('/',
-//            'PagesController@getIndex')
-//                ->name('pages.index');
 
 Route::get('/', 'PagesController@getIndex', function(){
 
@@ -66,11 +64,11 @@ Route::get('/', 'PagesController@getIndex', function(){
 
 Route::get('/dashboard',
             'DashboardController@showDashboard')
-                ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_EDITOR);
+                ->middleware('auth')->middleware('check_user_role:' . UserRole::ROLE_EDITOR);
 
 Route::get('/dashboard/{user}/edit',
             'DashboardController@getUser')
-                ->middleware('auth')->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
+                ->middleware('auth')->middleware('check_user_role:' . UserRole::ROLE_ADMIN);
 
 Route::put('/dashboard/{user}/update',
             'DashboardController@updateUser')
@@ -211,8 +209,6 @@ Auth::routes();
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 
-
-//Auth::routes();
 
 
 

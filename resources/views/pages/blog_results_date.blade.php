@@ -25,7 +25,7 @@
             {{--<button action="submit">Search</button>--}}
 
             @if (Auth::check())
-                @if (Auth()->user()->hasRole(App\Role\UserRole::ROLE_ADMIN))
+                @if (Auth()->user()->hasRole(App\Role\Userrole::ROLE_ADMIN))
                     <a href="/blog/create" class="btn btn-primary">
                         Create Blogpost
                     </a>
@@ -50,7 +50,7 @@
                     </a>
 
                     @if (Auth::check())
-                        @if(Auth()->user()->hasRole(App\Role\UserRole::ROLE_EDITOR))
+                        @if(Auth()->user()->hasRole(App\Role\Userrole::ROLE_EDITOR))
                             <a href="/blog/{{$filteredblog->id}}/edit" class="btn btn-secondary">
                                 Blogpost aanpassen
                             </a>

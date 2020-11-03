@@ -19,7 +19,7 @@ class CheckUserRole
      */
 
 
-    protected $userRoleChecker;
+    protected $serRoleChecker;
 
     public function __construct(UserRoleChecker $userRoleChecker){
         $this->userRoleChecker = $userRoleChecker;
