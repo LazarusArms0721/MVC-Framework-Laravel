@@ -12,9 +12,6 @@
 |
 */
 
-//use App\User;
-//use App\Contact;
-//use App\Notifications\TaskCompleted;
 use App\Role\UserRole;
 
 
@@ -46,6 +43,7 @@ Route::get('/add/role/admin', function(){
 
 
 })->middleware('auth');
+
 
 //
 // HOME
@@ -211,8 +209,6 @@ Auth::routes();
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 
-
-//Auth::routes();
 
 
 
