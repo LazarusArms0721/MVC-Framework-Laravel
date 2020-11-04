@@ -71,23 +71,23 @@
                 <h3>{{$assignment->name}}</h3>
                 <p>{{$assignment->assignment_text}}</p>
 
-            </div>
-            <div class="button-group">
-                <a href="/assignments/{{$assignment->id}}" class="btn btn-primary">
-                    Read More
-                </a>
+                <div class="button-group">
+                    <a href="/assignments/{{$assignment->id}}" class="btn btn-primary">
+                        Read More
+                    </a>
 
-                <a href="/blog-filter?assignment_id={{$assignment->id}}" class="btn btn-secondary">
-                    Blogposts
-                </a>
+                    <a href="/blog-filter?assignment_id={{$assignment->id}}" class="btn btn-secondary">
+                        Blogposts
+                    </a>
 
-                @if (Auth::check())
-                    @if(Auth()->user()->hasRole(App\Role\Userrole::ROLE_EDITOR))
-                        <a href="/assignments/{{$assignment->id}}/edit" class="btn btn-outline-secondary">
-                            Edit
-                        </a>
+                    @if (Auth::check())
+                        @if(Auth()->user()->hasRole(App\Role\Userrole::ROLE_EDITOR))
+                            <a href="/assignments/{{$assignment->id}}/edit" class="btn btn-outline-secondary">
+                                Edit
+                            </a>
+                        @endif
                     @endif
-                @endif
+                </div>
             </div>
         </div>
 
