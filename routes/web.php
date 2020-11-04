@@ -116,7 +116,7 @@ Route::get('/assignments',
                 ->name('pages.assignments');
 
 Route::get('/assignments/{assignment}',
-            'Pagescontroller@getAssignment');
+            'PagesController@getAssignment');
 
 Route::get('/assignment/create', 'PagesController@createAssignment'
              )->middleware('check_user_role:' . \App\Role\UserRole::ROLE_ADMIN);
