@@ -79,6 +79,10 @@
 
 @media only screen and (max-width: 600px) {
 
+  .assignment-block {
+    max-height: 400px !important;
+  }
+
   .assignments-container {
     margin-top: 0px !important;
   }

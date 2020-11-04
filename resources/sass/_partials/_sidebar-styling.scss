@@ -6,6 +6,18 @@
   background-color: #448AFF;
 }
 
+.navbar-dark .navbar-nav .nav-link {
+  color: $white !important;
+
+  &:hover {
+    color: $blue !important;
+  }
+}
+
+.navbar-dark .navbar-toggler {
+  border-color: rgba(0,0,0,0.0) !important;
+}
+
 .contact-showcase {
   background-color: $green;
   border-radius: 5px;

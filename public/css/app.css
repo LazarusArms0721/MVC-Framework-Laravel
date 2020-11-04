@@ -16812,6 +16812,18 @@ a.text-dark:focus {
   background-color: #448AFF;
 }
 
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #3490dc !important;
+}
+
+.navbar-dark .navbar-toggler {
+  border-color: rgba(0, 0, 0, 0) !important;
+}
+
 .contact-showcase {
   background-color: #38c172;
   border-radius: 5px;
@@ -16990,6 +17002,16 @@ a.text-dark:focus {
   box-shadow: 1px 1px 10px -4px #000;
 }
 
+@media only screen and (max-width: 600px) {
+  .assignment-block {
+    max-height: 400px !important;
+  }
+
+  .assignments-container {
+    margin-top: 0px !important;
+  }
+}
+
 .blog-container {
   margin-top: 50px;
 }
@@ -17014,6 +17036,13 @@ a.text-dark:focus {
 
 #form-hidden {
   display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .blog-container {
+    margin-left: 0px !important;
+    margin-top: 0px !important;
+  }
 }
 
 .button-group {
@@ -17131,6 +17160,11 @@ table tr:last-child td:last-child {
   border-bottom-right-radius: 5px;
 }
 
+.jumbotron {
+  border-radius: 0 !important;
+  box-shadow: 1px 1px 10px -4px #000;
+}
+
 .block-container {
   border-radius: 10px;
 }
@@ -17141,6 +17175,7 @@ table tr:last-child td:last-child {
   height: 300px;
   background-color: #2d2d2d;
   padding: 20px 20px;
+  box-shadow: 1px 1px 10px -4px #000;
 }
 
 .block-container .right-block {
@@ -17149,15 +17184,25 @@ table tr:last-child td:last-child {
   height: 300px;
   background-color: #2d2d2d;
   padding: 20px 20px;
+  box-shadow: 1px 1px 10px -4px #000;
 }
 
 @media only screen and (max-width: 600px) {
   .left-block {
     width: 100% !important;
+    margin-bottom: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .left-block .image_block {
+    max-width: 100%;
   }
 
   .right-block {
     width: 100% !important;
+    margin-left: 15px !important;
+    margin-right: 15px;
   }
 }
 
