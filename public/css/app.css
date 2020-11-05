@@ -16813,7 +16813,7 @@ a.text-dark:focus {
 }
 
 .navbar-dark .navbar-nav .nav-link {
-  color: #fff !important;
+  color: #fff;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
@@ -16933,6 +16933,10 @@ a.text-dark:focus {
 .ddm-pf {
   top: 50px !important;
   left: -55px !important;
+}
+
+.active {
+  color: #1565c0 !important;
 }
 
 .assignments-container {
