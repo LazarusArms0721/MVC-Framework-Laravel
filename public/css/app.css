@@ -17172,7 +17172,7 @@ table tr:last-child td:last-child {
 .block-container .left-block {
   width: 45%;
   float: left;
-  height: 300px;
+  height: auto;
   background-color: #2d2d2d;
   padding: 20px 20px;
   box-shadow: 1px 1px 10px -4px #000;
@@ -17185,7 +17185,7 @@ table tr:last-child td:last-child {
 .block-container .right-block {
   width: 45%;
   float: right;
-  height: 300px;
+  height: auto;
   background-color: #2d2d2d;
   padding: 20px 20px;
   box-shadow: 1px 1px 10px -4px #000;
