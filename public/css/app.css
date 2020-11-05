@@ -17178,6 +17178,10 @@ table tr:last-child td:last-child {
   box-shadow: 1px 1px 10px -4px #000;
 }
 
+.block-container .left-block .image_block {
+  width: 100%;
+}
+
 .block-container .right-block {
   width: 45%;
   float: right;
