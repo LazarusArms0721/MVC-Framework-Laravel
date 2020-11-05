@@ -11,10 +11,11 @@
 
     <div class="jumbotron mt-1" style="background-color:#2d2d2d;">
         <h1 class="display-4">Portfolio: Erhan Akin</h1>
-        <p class="lead">Welcome! Instead of showing a boring resumé, I decided to make this website dedicated to all the projects I have worked on.</p>
-        <p class="lead">As a (front end) developer, I am mainly focussing on a diverse set of tasks that range from designing to actually building functional websites and services</p>
-        <hr class="my-4">
-        <p>My assignments can range from building complex SaaS applications to simple Wordpress websites.</p>
+        <h6 class="">Welcome! Instead of showing a boring resumé, I decided to make this website dedicated to all the projects I have worked on.</h6>
+        <h6 class="">As a (front end) developer, I am mainly focussing on a diverse set of tasks that range from designing to actually building functional websites and services</h6>
+        <hr class="my-4" style="color: #fff !important; border-color: #fff !important;">
+        <h6>My assignments can range from building complex SaaS applications to simple Wordpress websites.</h6>
+        <br>
         <a class="btn btn-primary" href="/assignments" role="button">See Assignments</a>
     </div>
 
