@@ -7,11 +7,12 @@
 }
 
 .navbar-dark .navbar-nav .nav-link {
-  color: $white !important;
+  color: $white;
 
   &:hover {
     color: $blue !important;
   }
+
 }
 
 .navbar-dark .navbar-toggler {
@@ -118,3 +119,7 @@
   left: -55px !important;
 }
 
+.active {
+  color: #1565c0 !important;
+
+}

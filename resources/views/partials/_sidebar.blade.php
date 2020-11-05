@@ -7,19 +7,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{route('pages.index')}}">Home</a>
+                <a class="nav-link  {{ (request()->is('/')) ? 'active' : '' }} " href="{{route('pages.index')}}">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('pages.assignments')}}">Assignments</a>
+                <a class="nav-link {{ (request()->is('assignments')) ? 'active' : '' }} {{ (request()->is('/assignments/{assignment}')) ? 'active' : '' }}" href="{{route('pages.assignments')}}">Assignments</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('pages.blog')}}">Blog</a>
+                <a class="nav-link {{ (request()->is('blog')) ? 'active' : '' }} {{ (request()->is('blog-filter')) ? 'active' : '' }}" href="{{route('pages.blog')}}">Blog</a>
             </li>
             {{--<li class="nav-item">--}}
                 {{--<a class="nav-link" href="{{route('pages.about')}}">About</a>--}}
             {{--</li>--}}
             <li class="nav-item">
-                <a class="nav-link" href="{{route('contact.show')}}">Contact</a>
+                <a class="nav-link {{ (request()->is('contact')) ? 'active' : '' }}" href="{{route('contact.show')}}">Contact</a>
             </li>
 
             @if (Auth::check())

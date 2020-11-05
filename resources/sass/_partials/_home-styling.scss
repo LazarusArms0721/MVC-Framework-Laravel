@@ -9,16 +9,28 @@
   .left-block {
     width: 45%;
     float:left;
-    height: 300px;
+    height: auto;
     background-color: #2d2d2d;
-    padding: 20px 20px;
+    padding: 0;
     box-shadow: 1px 1px 10px -4px #000;
+
+    .image_block {
+      width: 100%;
+    }
+
+    .content_block {
+      padding: 20px 20px;
+    }
+
+    .button-group {
+      padding-left: 20px;
+    }
   }
 
   .right-block {
     width: 45%;
     float: right;
-    height: 300px;
+    height: auto;
     background-color: #2d2d2d;
     padding: 20px 20px;
     box-shadow: 1px 1px 10px -4px #000;
@@ -34,6 +46,7 @@
 
     .image_block {
       max-width: 100%;
+      width:100%;
     }
   }
 
